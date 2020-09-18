@@ -1,0 +1,272 @@
+gitlab 正式地址  http://10.83.16.110
+gitlab 測試地址  http://10.84.111.202/
+
+
+
+
+
+[‎2018/‎12/‎26 上午 11:39]  paul.zy.zh(a查志勇):  
+http://10.83.16.110/HR/idlrecruit/issues 
+ 
+
+
+
+名詞解釋
+
+[‎2018/‎12/‎21 上午 10:21]  juanjuan.guo(郭娟娟):  
+System@Admin 
+ 
+We saved this conversation. You'll see it soon in the Conversations tab in Skype for Business and in the Conversation History folder in Outlook. 
+[‎2018/‎12/‎24 下午 04:27]  juanjuan.guo(郭娟娟):  
+[‎2018/‎10/‎31 上午 11:18]  paul.zy.zh(a查志勇):  
+
+簡體        繁體        英文        說明
+
+克隆        克隆        Clone       将远程仓库中的代码克隆到本地
+
+提交        認可        Commit   将所做的更改，存入本地暂存库
+
+推送        推送        Push 将所做的更改，存入远程版本库
+
+获取        擷取        Fetch       从远程版本库获得最新版本
+
+合并        合併        Meger     将两个版本库进行合并操作
+
+拉取        提取        Pull  将远程版本库合并到本地版本库，相当于（Fetch+Meger）
+
+同步        同步        Pull+Push 先将远程库拉取，再将本地库推送到远程库，相当于（Pull+Push） 
+
+检出    簽出    Checkout        切换至另一个分支，作为当前分支 
+
+
+
+[‎2019/‎1/‎5 下午 05:25]  paul.zy.zh(a查志勇):  
+在VS變更認可輸入時，輸入你的issue編號，如：修正issue #16中bug
+
+ 
+ 
+[‎2019/‎1/‎5 下午 05:26]  paul.zy.zh(a查志勇):  
+這樣推送後，再你的issue記錄下會自動生成一筆數據，例如：
+徐雪潔 @ShirleyXu mentioned in commit f7034906 · 1 day ago  
+
+
+[‎2019/‎1/‎5 下午 05:28]  paul.zy.zh(a查志勇):  
+供參考：http://10.83.16.110/HR/idlrecruit/issues/16 
+ 
+ 問題編號一定要 #16 這種格式
+
+
+e
+H0594499@CN511577 MINGW64 / (master)
+$ cd e  
+
+H0594499@CN511577 MINGW64 /e
+$ cd MyProjectTest/IDLRecruit
+
+H0594499@CN511577 MINGW64 /e/MyProjectTest/IDLRecruit (feature/EmpDocuments)
+$ git status
+On branch feature/EmpDocuments
+Your branch is up to date with 'origin/feature/EmpDocuments'.
+
+nothing to commit, working tree clean
+
+H0594499@CN511577 MINGW64 /e/MyProjectTest/IDLRecruit (feature/EmpDocuments)
+$ git remote -v
+origin  http://10.83.16.110/HR/idlrecruit.git (fetch)
+origin  http://10.83.16.110/HR/idlrecruit.git (push)
+
+H0594499@CN511577 MINGW64 /e/MyProjectTest/IDLRecruit (feature/EmpDocuments)
+$ git remote remove origin
+
+H0594499@CN511577 MINGW64 /e/MyProjectTest/IDLRecruit (feature/EmpDocuments)
+$ ^C
+
+H0594499@CN511577 MINGW64 /e/MyProjectTest/IDLRecruit (feature/EmpDocuments)
+
+
+另外，遠端已刪除的分支，本地可能還在顯示，可以用以下方法清除
+使用 git branch -a 命令可以查看所有本地分支和远程分支，发现很多在远程仓库已经删除的分支在本地依然可以看到。
+使用以下命令可以查看remote地址，远程分支，还有本地分支与之相对应关系等信息。
+git remote show origin
+此时我们可以看到那些远程仓库已经不存在的分支，根据提示，使用命令：
+git remote prune origin
+这样就删除本地那些远程仓库不存在的分支。 
+$
+
+快速克隆
+
+$ time git clone http://10.84.111.202/TEST/hellotest MyProject
+
+回歸
+git reset --hard commitID  
+
+查看操作日誌
+git reflog
+查看分之狀態
+$ git status
+查看階段修改
+$ git stage
+將文件加入緩存區
+$ git add  MyEclipseGen.java
+將所有修改和新增的文件加入緩存區
+$ git add  .
+//從緩存區提交到本地倉庫
+$ git commit -m "test88"
+//推送到遠端倉庫
+$ git push origin dep1
+
+
+git remote add origin http://xxxx.git 
+
+git pull origin master
+
+git push -u origin master
+
+git push origin --delete feature/Test  刪除遠端分之
+
+# 创建轻量标签
+$ git tag v0.1.2-light
+
+# 创建附注标签
+$ git tag -a v0.1.2 -m “0.1.2版本”
+
+$ git push origin v0.1.2 # 将v0.1.2标签提交到git服务器
+$ git push origin –tags # 将本地所有标签一次性提交到git服务器
+
+
+[‎2020/‎8/‎11 上午 11:52]  ran.zhang(張冉):  
+自己总结的 git flow  
+自己总结的 git flow
+
+git flow init  (初始化信息。设定相应的默认值建法)
+
+git flow feature start [featureBranchName]: 创建一个基于develop的feature分支，并切换到这个分支之下
+git flow feature pull origin   [featureBranchName]
+
+git flow feature publish [featureBranchName]：将feature分支上传至远端，也可以使用git的push命令
+
+git flow feature finish [featureBranchName]: 结束 feature 分支，并 merge 至 develop, 删除本地分支、远程分支(如已推送至仓库), 切换回develop分支。
+
+git flow release start [releaseBranchName]：开始准备release版本，从 develop分支开始创建一个 release 分支。
+
+git flow release publish [releaseBranchName]：将 release 分支上传至远端, 也可以使用git的push命令。
+
+git flow release finish [releaseBranchName]：完成 release 测试，自动将代码 merge 到 master 和develop 分支，用 release 分支名打 Tag，删除本地分支、远程分支(如已推送至仓库)。
+
+git flow hotfix start [hotfixBranchName]：基于 master 分支新建hotfix分支
+
+git flow hotfix publish [hotfixBranchName]：将hotfix分支上传至远端, 也可以使用git的push命令。
+
+git flow hotfix finish [hotfixBranchName]：结束 hotfix 分支，并 merge 到 master 分支和develop 分支, 自动打tag,删除本地分支、远程分支(如已推送至仓库)。
+
+推送標籤 
+
+
+
+1，创建develop分支
+
+#从master拉出develop分支
+
+#可选，获取最新版本。git pull origin master
+
+git checkout -b develop master
+
+#发布develop分支
+
+git push -u origin develop
+
+2，创建feature分支
+
+#从develop拉出feature_v1.0功能分支
+
+#可选，获取最新版本。git pull origin develop
+
+git checkout -b feature_v1.0 develop
+
+#发布feature_v1.0分支
+
+git push -u origin feature_v1.0
+
+#在feature_v1.0上开发一些功能
+
+3，完成feature，合并到develop分支
+
+#develop分支获取最新
+
+git pull origin develop
+
+#切换到develop分支
+
+git checkout develop
+
+#从feature分支合并到develop分支
+
+git merge --no-ff feature_v1.0
+
+#删除feature分支，也可以不删除
+
+git branch -d feature_v1.0
+
+4，开始release
+
+#从develop拉出一个release分支
+
+#可选，获取最新版本。git pull origin develop
+
+git checkout -b release_v1.0 develop
+
+#fix bugs
+
+5，完成release，合并到master分支和develop分支，在master打上tag标记
+
+#合并到master
+
+git checkout master
+
+git merge --no-ff release_v1.0
+
+#在master打tag标记
+
+git tag release1.0 master
+
+git push --tags
+
+#合并到develop
+
+git checkout develop
+
+git merge --no-ff release_v1.0
+
+6，开始hotfix
+
+#从主线master拉出一个hotfix分支
+
+#可选，获取最新版本。git pull origin master
+
+git checkout -b hotfix_v1.0.1 master
+
+7，完成hotfix，合并到master和develop，并在master上打tag。
+
+#合并hotfix_v1.0.1到master
+
+git checkout master
+
+git merge --no-ff hotfix_v1.0.1
+
+#在master打上tag
+
+git tag hotfix1.0.1 master
+
+git push --tags
+
+#合并hotfix_v1.0.1到develop
+
+git checkout develop
+
+git merge --no-ff hotfix_v1.0.1
+ 
+
+
+ 
+
+ 

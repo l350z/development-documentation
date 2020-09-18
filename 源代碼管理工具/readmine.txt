@@ -1,0 +1,152 @@
+
+
+
+
+Thanks & Best Regards!  
+----------------------------------------------------------------------------
+FIH 全球資訊科技總處-應用系統開發部 
+丁艷鳳 
+EXT:566-78776 
+Office:LF B18-2F 
+SuperNotes:yan-feng.ding@mail.foxconn.com 
+
+
+
+--------------------------------------------------------------------------------
+⌘本電子郵件及附件所載信息均為保密信息，受合同保護或依法不得洩漏。其內容僅供指定收件人按限定範圍或特殊目的使用。未經授權者收到此信息均無權閱讀、 使用、 複製、洩漏或散佈。若您因為誤傳而收到本郵件或者非本郵件之指定收件人，請即刻回覆郵件或致電Super Notes郵件客服熱線 560-104，並永久刪除此郵件及其附件和銷毀所有複印件。謝謝您的合作！
+This e-mail message together with any attachments thereto (if any) is confidential, protected under an enforceable non-disclosure agreement, intended only for the use of the named recipient(s) above and may contain information that is privileged, belonging to professional work products or exempt from disclosure under applicable laws.Any unauthorized review, use, copying, disclosure, or distribution of any information contained in or attached to this transmission is STRICTLY PROHIBITED and may be against the laws. If you have received this message in error, or are not the named recipient(s), please immediately notify the sender by e-mail or telephone at Super Notes support hotline 560-104 and delete this e-mail message and any attached documentation from your computer. Receipt by anyone other than the intended recipient(s) is not a waiver of any attorney-client or work product privilege. Thank you!⌘
+
+--------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------
+— 轉呈者 yan-feng.ding@mail.foxconn.com 於 2019/8/21 上午 11:20:30 —
+
+ paul.zy.zha@mail.foxconn.com To：  juan-juan.guo@mail.foxconn.com,xue-jie.xu@mail.foxconn.com,fih-it-si1-sa@mail.foxconn.com,ran.zhang@mail.foxconn.com,yan-feng.ding@mail.foxconn.com,wen-xian.han@mail.foxconn.com,ning-ning.xu@mail.foxconn.com 
+  Cc：    
+ 2019/8/20 下午 02:34:54 主旨：  轉呈:系統開發與運維管理升級目標 
+
+
+Dear all,
+ 
+一. 爲便於管理專案、工作任務、個人日誌及工時，部門開始推廣使用Redmine作爲專案管理工具，要求所有專案陸續加入管理。
+該工具主要用於項目計劃、任務(議題/Issue)及文檔管理，並可與Gitlab源碼管理工具做整合。
+專案加入Redmine之後，可以不再使用Gitlab中的Issue功能。
+VS Commit時，輸入Redmine中的Issue編號，同樣可以把該次變更記錄與Issue關聯起來，並且可以自動變更任務狀態、記錄工時。Commit文字具體格式如下：
+ 
+格式：關鍵字+Issue編號+工時 +變更說明，每個部分用空格隔開
+舉例1：open #80 @4.5h 新增校招人力分派功能
+說明：將任務#80設置爲“新建”狀態(並根據系統設定自動將任務進度設置成10%)，記錄工時爲4小時。
+ 
+舉例2：close #80 @30m 校招人力分派功能開發完成
+說明：將任務#80設置爲“已關閉”狀態(並根據系統設定自動將任務進度設置成100%)，記錄工時爲30分鐘。
+ 
+關鍵值說明：
+1. 以下圖中列出的關鍵字皆可使用
+2. 位於同一欄中的關鍵字作用相同，可任意使用，比如寫open，opened和start都是同樣效果。
+ 
+Issue編號說明：
+1. 必須以#開頭
+2. 編號與Redmine在分派的任務編號一致（需在Redmine中提前建立Issue）
+ 
+工時格式說明：
+1. 工時以@開頭
+2. h代表小時，m代表分鐘，可輸入小數
+
+
+ 
+ 
+Commit推送後，Redmine中該Issue(議題/任務)頁面可查看該Issue的狀態變更記錄、工時記錄、和關聯的Commit記錄，見下圖：
+
+
+ 
+二. 另外，已開通Gitlab和Redmine中的郵件發送功能，系統會自動發送與專案任務通知給相關人員
+1. 在Redmine"我的賬戶"中做個人的郵件提醒設置，如下圖，選擇自己參與的專案
+ 
+
+2. 項目負責人在Gitlab項目"細節"頁面中做通知設置，如下圖，選擇通知級別
+ 
+
+3. 個人在Gitlab"個人資料設定"中做通知設置，如下圖，選擇自己參與的專案 
+ 
+
+ 
+三. 已爲各位建立Redmine系統賬號，初始密碼8個1
+Redmine系統地址：http://redmine.efih-foxconn.com/
+ 
+四. 招聘雲和智慧資源系統優先使用Redmine工具進行管理，其它開發或維護中系統後續都要加入，以後就可以不必再重複填寫個人日誌。
+
+
+Best Regards
+
+查志勇(Paul Zha)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Dept.:FIH全球資訊科技-應用系統開發部
+Eex:566-78720
+Mobile:15603162870
+Office:   LF B18-2F
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+--專業.價值.創新--尊重.包容.溝通--
+
+
+
+
+--------------------------------------------------------------------------------
+⌘本電子郵件及附件所載信息均為保密信息，受合同保護或依法不得洩漏。其內容僅供指定收件人按限定範圍或特殊目的使用。未經授權者收到此信息均無權閱讀、 使用、 複製、洩漏或散佈。若您因為誤傳而收到本郵件或者非本郵件之指定收件人，請即刻回覆郵件或致電Super Notes郵件客服熱線 560-104，並永久刪除此郵件及其附件和銷毀所有複印件。謝謝您的合作！
+This e-mail message together with any attachments thereto (if any) is confidential, protected under an enforceable non-disclosure agreement, intended only for the use of the named recipient(s) above and may contain information that is privileged, belonging to professional work products or exempt from disclosure under applicable laws.Any unauthorized review, use, copying, disclosure, or distribution of any information contained in or attached to this transmission is STRICTLY PROHIBITED and may be against the laws. If you have received this message in error, or are not the named recipient(s), please immediately notify the sender by e-mail or telephone at Super Notes support hotline 560-104 and delete this e-mail message and any attached documentation from your computer. Receipt by anyone other than the intended recipient(s) is not a waiver of any attorney-client or work product privilege. Thank you!⌘
+
+--------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------
+— 轉呈者 paul.zy.zha@mail.foxconn.com 於 2019/8/20 下午 01:38:54 —
+
+ def.yl.zhu@mail.foxconn.com To：  Wei-Sheng.Xiao@mail.foxconn.com,peak.hf.duan@mail.foxconn.com,paul.zy.zha@mail.foxconn.com 
+  Cc：    
+ 2019/8/19 下午 05:04:19 主旨：  系統開發與運維管理升級目標 
+
+
+系統開發與運維管理基本目標：
+1、所有系統或專案的源代碼都在Gitlab受管控。
+2、每次源代碼的提交（Git Commit）都對應到確定的議題（Redmine）。
+3、每個人的主要工作任務都能在Redmine議題中體現追溯，包括功能需求變更、測試BUG、專案任務等。（非專案的，或很瑣碎的事情不必登記）
+4、第一項計劃9月底完成，第二三項10月底達成，8月底先拿當前開發中主要幾個系統做試運行。
+ 
+此外，開發特定程序，每周自動產出議題報表，推送到郵件。
+
+
+
+ 
+FIH IT 應用系統開發部  
+Def Zhu 朱優良  
+560-68932 (龍華) <-- I'm here
+566-76694 (廊坊)  
+
+
+
+--------------------------------------------------------------------------------
+⌘本電子郵件及附件所載信息均為保密信息，受合同保護或依法不得洩漏。其內容僅供指定收件人按限定範圍或特殊目的使用。未經授權者收到此信息均無權閱讀、 使用、 複製、洩漏或散佈。若您因為誤傳而收到本郵件或者非本郵件之指定收件人，請即刻回覆郵件或致電Super Notes郵件客服熱線 560-104，並永久刪除此郵件及其附件和銷毀所有複印件。謝謝您的合作！
+This e-mail message together with any attachments thereto (if any) is confidential, protected under an enforceable non-disclosure agreement, intended only for the use of the named recipient(s) above and may contain information that is privileged, belonging to professional work products or exempt from disclosure under applicable laws.Any unauthorized review, use, copying, disclosure, or distribution of any information contained in or attached to this transmission is STRICTLY PROHIBITED and may be against the laws. If you have received this message in error, or are not the named recipient(s), please immediately notify the sender by e-mail or telephone at Super Notes support hotline 560-104 and delete this e-mail message and any attached documentation from your computer. Receipt by anyone other than the intended recipient(s) is not a waiver of any attorney-client or work product privilege. Thank you!⌘
+
+--------------------------------------------------------------------------------
+
+
+mail from ip-->192.168.175.1
+mail from pc-->CN110233
+Version: Super Notes 1.6.9.8B
+
+
+
+mail from ip-->10.84.111.216
+mail from pc-->CN514119
+Version: Super Notes 1.6.9.8B
+
+
+
+mail from ip-->10.84.111.193
+mail from pc-->CN512395
+Version: Super Notes 1.6.9.8B
+
