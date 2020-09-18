@@ -1,0 +1,1 @@
+osql -S"localhost" -U"sa" -P"Qa123456" -d"ESES" -i"C:\Users\h0594499\Desktop\ESES.sql" 
