@@ -4,4 +4,4 @@ Update-Database
 
 Update-Database -TargetMigration    回滾數據庫
 
-Add-Migration InitCreate  -force 強制執行
+Add-Migration InitCreate  -force 強制執行 
