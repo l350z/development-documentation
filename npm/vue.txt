@@ -1,0 +1,7 @@
+﻿http://localhost:21021/api/services/app/Session/GetCurrentLoginInformations
+
+router.afterEach((to) => {
+    Util.openNewPage(router.app, to.name, to.params, to.query);
+    iView.LoadingBar.finish();
+    window.scrollTo(0, 0);
+});
