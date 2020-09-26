@@ -1,0 +1,1014 @@
+select * from FL_OrderMaster
+select * from FL_OrderDetail
+
+select * from pub_CustInfo
+
+select * from usy_Function
+
+select * from FL_SaleMaster
+select * from FL_SaleDetail
+
+select * from pub_GoodsInfo
+select * from pub_Warehouse
+
+select Code_No,Code_Desc from pub_BaseCode where Code_Type='PayType' and Code_No>1
+select * from pub_BaseCode where Code_Type='PayType'and  Code_No<=1
+
+select distinct SUBSTRING(content,Charindex('(',content,1)-8,8)
+
+from dbo.LogInfo where CreateDate>='2013-12-01 00:00:00.000' and CreateDate<='2014-02-28 23:59:59.000'
+
+Sale_Man+'('+User_Name+')'
+
+
+
+
+select * from dbo.FL_ScrapedMaster
+select * from dbo.FL_ScrapedDetail
+select * from usy_Function
+
+select * from dbo.FL_OnSaleStock
+
+select * from pub_Warehouse
+select * from pub_WarehouseDetail
+select * from pub_Storage where St_Code='CKMD-LF'
+
+select * from pub_StorageLocation
+
+select * from pub_BaseCode where Code_Type='scrapedStatus'
+select * from dbo.v_scrapedInfo
+insert into fl_ScrapedMaster values(newid(),'BFCode20140416','1','CKMD-LF','H0594499',getdate(),'123','H0528988',getdate(),null,null);
+insert into fl_ScrapedMaster values(newid(),'BFCode20140417','1','CKMD-LF','H0528988',getdate(),'123','H0594499',getdate(),null,null);
+Select a.*,b.loc_code from dbo.v_StockGoodsInfo a left join pub_StorageLocation b on a.LocName=b.Loc_Code
+
+SELECT St_Code,St_Name FROM dbo.pub_Storage WHERE St_Guid IN (
+                            SELECT St_Guid FROM dbo.pub_WarehouseDetail WHERE Ware_Guid IN (
+                            SELECT Ware_Guid FROM pub_Warehouse WHERE Ware_Code='CKMD-LF')) and Type_Code!='O' and Type_Code!='S'
+                            
+                         select * from usy_Seq_No   
+select * from pub_Warehouse where 
+Ware_Guid in (select Ware_Guid from pub_WarehouseDetail 
+where St_Guid in(select St_Guid from dbo.pub_Storage where St_Code='CKMD-LFF'))                         
+                         
+select * from dbo.v_StockGoodsInfo
+select * from dbo.usy_Seq_No
+select * from dbo.pub_Storage
+select * from pub_WarehouseDetail where St_Guid='149DD71B-678D-455C-82E7-73659FE8841E'
+
+select * from pub_BaseCode where Code_Type='ONSALESTATUS'
+update pub_basecode set code_value='報廢入庫' where  code_type='STORAGETYPE' and code_no='8'
+
+Select * from dbo.v_StockGoodsInfo a
+
+Select a.* from dbo.v_StockGoodsInfo a  where 1=1
+
+select Loc_Code,Loc_Desc from pub_StorageLocation a inner join  pub_Storage b on a.St_Code=b.St_Code where b.st_code
+                     ='CKMD-LFC'
+                     
+ Select a.* from dbo.v_StockGoodsInfo a  where 1=1 and a.Ware_Name='廊坊門店倉庫'
+ 
+ select * from FL_StockOutMaster
+
+
+ select * from pub_BaseCode where Code_Type='LOGTYPE'
+ select * from FL_StockInDetail
+ select * from usy_Seq_No
+ 
+ select * from FL_StockLog
+轉化函數
+ select a.*,Convert(nvarchar(10),a.ModifyTime,120) as ModifyTime_,Case when a.EnableFlag=1 then '是' else '否' end as EnableFlagDesc,b.User_Name
+   from  pub_TestType a left join usy_user b on ISNULL(a.modifier,a.Creator)=b.user_code
+複製表
+2.SELECT INTO FROM语句
+
+      语句形式为：SELECT vale1, value2 into Table2 from Table1
+
+      要求目标表Table2不存在，因为在插入时会自动创建表Table2，并将Table1中指定字段数据复制到Table2中。
+
+
+
+
+--select into语句
+SELECT  'BenQGuru.eHR.LMS.LMSImportBL.LMSTeacherImportBL' ,
+        temp.ResourceKey ,
+        temp.CultureCode ,
+        temp.ResourceValue ,
+        temp.CreationTime ,
+        temp.CreatedBy ,
+        temp.LastUpdateTime ,
+        temp.LastUpdatedBy
+INTO    SYSPRIVATESTRINGRESOURCES
+FROM    SYSPRIVATESTRINGRESOURCES temp
+WHERE   temp.ResourceClass = 'BenQGuru.eHR.LMS.Common.UI.DropDownListBI'
+        AND ResourceKey IN ( 'RSK20050418084308_1', 'RSK20050418084308_2',
+                             'RSK20050418084308_3', 'RSK20050418084308_4' )
+
+--insert into select语句
+INSERT  INTO SYSPRIVATESTRINGRESOURCES
+        SELECT  'BenQGuru.eHR.LMS.LMSImportBL.LMSTeacherImportBL' ,
+                temp.ResourceKey ,
+                temp.CultureCode ,
+                temp.ResourceValue ,
+                temp.CreationTime ,
+                temp.CreatedBy ,
+                temp.LastUpdateTime ,
+                temp.LastUpdatedBy
+        FROM    SYSPRIVATESTRINGRESOURCES temp
+        WHERE   temp.ResourceClass = 'BenQGuru.eHR.LMS.Common.UI.DropDownListBI'
+                AND ResourceKey IN ( 'RSK20050418084308_1',
+                                     'RSK20050418084308_2',
+                                     'RSK20050418084308_3',
+                                     'RSK20050418084308_4' ) 
+
+
+
+
+1. 兩個字段疊加到一起交叉查詢
+and Scraped_Man+'('+User_Name+')' like '%" + this.txtScrapedMan.Text.Trim() + "%'";
+
+  if (txtCreateDate.Text != "")
+        {
+            if (txtCreateDate.Text != "" && txtFromToDate.Text != "")
+            {
+                condition += "and a.CreationTime between '" + txtCreateDate.Text + " 00:00:00" + "' and '" + txtFromToDate.Text + " 23:59:59" + "'";
+            }
+            else
+            {
+                // condition += "and a.CreationTime between '" + txtCreateDate.Text + " 00:00:00" + "' and '"+txtCreateDate.Text+" 23:59:59"+"'";
+                condition += "and a.CreationTime >= '" + txtCreateDate.Text + " 00:00:00" + "'";
+            }
+        }
+
+        else
+        {
+            if (txtFromToDate.Text.Trim() != "" && txtCreateDate.Text.Trim() == "")
+            {
+                //condition += "and a.CreationTime between '" + txtFromToDate.Text + " 00:00:00" + "' and '" + txtFromToDate.Text + " 23:59:59" + "'";
+                condition += "and a.CreationTime <= '" + txtFromToDate.Text + " 23:59:59" + "'";
+            }
+        }
+
+
+
+查詢數據庫中的所有表:
+
+  Select dbo.sysobjects.name as Table_name, dbo.syscolumns.name AS Column_name FROM dbo.syscolumns INNER JOIN dbo.sysobjects ON dbo.syscolumns.id = dbo.sysobjects.id Where (dbo.sysobjects.xtype = 'u') AND (NOT (dbo.sysobjects.name LIKE 'dtproperties')) 
+
+拼接字符串進行查詢
+ @"select Fixture_Prefix,Prefix_No,Fixture_Prefix+' 序號:'+Prefix_No as  FixturePrefixNo
+                            from dat_Fixture_Header where Fixture_Prefix in (" + strfixturePrefixes.Remove(strfixturePrefixes.Length-1) + ")";
+
+
+//存儲過程(求和)
+USE [ASSMS]
+GO
+/****** Object:  StoredProcedure [dbo].[usp_UpdateStcMatStock]    Script Date: 2016/8/1 上午 09:15:58 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[usp_UpdateStcMatStock_AspSentQty]
+	-- Add the parameters for the stored procedure here
+
+AS
+declare @MaterialCode nvarchar(50),
+@Count int,@MaterialCount int,@SumMaterialCount int,@StockCount int
+BEGIN
+	select row_number()over(order by MaterialCode) ItemNo,MaterialCode into #MatStock_Syn  from v_MatStock where LocID=dbo.ufn_getStocID('Synnex')
+    Begin Transaction 
+	 select @StockCount=COUNT(*) from #MatStock_Syn 
+	 set @Count=1
+	 while @Count<=@StockCount
+	 --更新聯強倉庫下的料號指定機種的累計使用數量
+	 BEGIN
+	 	 set @SumMaterialCount=0
+	  select @MaterialCode=MaterialCode from #MatStock_Syn  where ItemNo=@Count
+	 --某料號qty1 數量
+	 select a.*
+	    into #Temp_Material1 from
+		(select Getmaterial1,case when Qty1 is null or len(Qty1)=0 then '1' else Qty1 end as qty1 
+		from [dbo].[pubTotalRepairAgentL1L2] 
+	       where AgentID='1' and (GetMaterial1 is not null and len(GetMaterial1)>0)
+	   and GetMaterial1=@MaterialCode) a
+
+		if( EXISTS(select *  from #Temp_Material1) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=  sum(ISNULL(convert(int,qty1),1)) from #Temp_Material1 where GetMaterial1=@MaterialCode
+		 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+	 --某料號qty2 數量
+	 	 select *
+	    into #Temp_Material2 from
+			(select Getmaterial2,case when Qty2 is null or len(Qty2)=0 then '1' else Qty2 end as qty2 from [dbo].[pubTotalRepairAgentL1L2] 
+	       where AgentID='1' and (GetMaterial2 is not null and len(GetMaterial2)>0)
+	   and GetMaterial2=@MaterialCode) a
+	
+
+		if(EXISTS(select *  from #Temp_Material2) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty2),1)) from #Temp_Material2 where GetMaterial2=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+	 	 --某料號qty3 數量
+	 	 	 select *
+	    into #Temp_Material3 from
+		(select Getmaterial3,case when Qty3 is null or len(Qty3)=0 then '1' else Qty3 end as qty3 from [dbo].[pubTotalRepairAgentL1L2] 
+	       where AgentID='1' and (GetMaterial3 is not null and len(GetMaterial3)>0)
+	   and GetMaterial3=@MaterialCode) a
+	
+
+		if(EXISTS(select *  from #Temp_Material3) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty3),1)) from #Temp_Material3 where GetMaterial3=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+	 	 --某料號qty4 數量
+	 	 	 select *
+	    into #Temp_Material4 from
+		(select Getmaterial4,case when Qty4 is null or len(Qty4)=0 then '1' else Qty4 end as qty4 from [dbo].[pubTotalRepairAgentL1L2] 
+	       where AgentID='1' and (GetMaterial4 is not null and len(GetMaterial4)>0)
+	   and GetMaterial4=@MaterialCode) a
+
+		if(EXISTS(select *  from #Temp_Material4) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty4),1)) from #Temp_Material4 where GetMaterial4=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+	 	 --某料號qty5 數量
+	 	 	 select *
+	    into #Temp_Material5 from
+		(select Getmaterial5,case when Qty5 is null or len(Qty5)=0 then '1' else Qty5 end as qty5 from [dbo].[pubTotalRepairAgentL1L2] 
+	       where AgentID='1' and (GetMaterial5 is not null and len(GetMaterial5)>0)
+	   and GetMaterial5=@MaterialCode) a
+
+
+		if(EXISTS(select *  from #Temp_Material5) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty5),1)) from #Temp_Material5 where GetMaterial5=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+
+	 	--更新庫存表數據
+	 	if   EXISTS(select *  from Stc_MatStock where LocID=dbo.ufn_getStocID('Synnex') and MaterialCode=@MaterialCode)
+		BEGIN
+		update dbo.Stc_MatStock set ASPSendQty=@SumMaterialCount where  LocID=dbo.ufn_getStocID('Synnex') and MaterialCode=@MaterialCode
+		END
+	  set @Count=@Count+1
+	  	 --刪除臨時表
+	 drop table #Temp_Material1
+	 drop table #Temp_Material2
+	 drop table #Temp_Material3
+	 drop table #Temp_Material4
+     drop table #Temp_Material5
+	 END
+
+
+	 print 'Synnex Update Data Success'
+	
+  
+
+  
+
+
+
+	select row_number()over(order by MaterialCode) ItemNo,MaterialCode into #MatStock_Edt  from v_MatStock where LocID=dbo.ufn_getStocID('EDTI')
+
+	 select @StockCount=COUNT(*) from #MatStock_Edt 
+	 set @Count=1
+	
+	 while @Count<=@StockCount
+	 --更新EDTI倉庫下的料號指定機種的累計使用數量
+	 BEGIN
+	  set @SumMaterialCount=0
+	   select @MaterialCode=MaterialCode from #MatStock_Edt  where ItemNo=@Count
+	 --某料號qty1 數量
+	 select a.*
+	    into #Temp_PartNo1 from
+		(select PartNo1,case when QTY1 is null or len(QTY1)=0 then '1' else QTY1 end as qty1  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo1 is not null and len(PartNo1)>0)
+	   and PartNo1=@MaterialCode) a
+	 
+		if(EXISTS(select *  from #Temp_PartNo1) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty1),1)) from #Temp_PartNo1 where PartNo1=@MaterialCode
+		 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	 
+	 --某料號qty2 數量
+	 	 select *
+	    into #Temp_PartNo2 from
+		(select PartNo2,case when QTY2 is null or len(QTY2)=0 then '1' else QTY2 end as qty2  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo2 is not null and len(PartNo2)>0)
+	   and PartNo2=@MaterialCode) a
+	
+
+		if(EXISTS(select *  from #Temp_PartNo2) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty2),1)) from #Temp_PartNo2 where PartNo2=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+	 	 --某料號qty3 數量
+	 	 	 select *
+	    into #Temp_PartNo3 from
+	(select PartNo3,case when QTY3 is null or len(QTY3)=0 then '1' else QTY3 end as qty3  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo3 is not null and len(PartNo3)>0)
+	   and PartNo3=@MaterialCode) a
+	
+		if(EXISTS(select *  from #Temp_PartNo3) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty3),1)) from #Temp_PartNo3 where PartNo3=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+	 	 --某料號qty4 數量
+	 	 	 select *
+	    into #Temp_PartNo4 from
+	(select PartNo4,case when QTY4 is null or len(QTY4)=0 then '1' else QTY4 end as qty4  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo4 is not null and len(PartNo4)>0)
+	   and PartNo4=@MaterialCode) a
+	
+		if(EXISTS(select *  from #Temp_PartNo4) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty4),1)) from #Temp_PartNo4 where PartNo4=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+	 	 --某料號qty5 數量
+	 	 	 select *
+	    into #Temp_PartNo5 from
+	(select PartNo5,case when QTY5 is null or len(QTY5)=0 then '1' else QTY5 end as qty5  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo5 is not null and len(PartNo5)>0)
+	   and PartNo5=@MaterialCode) a
+
+	
+		if(EXISTS(select *  from #Temp_PartNo5) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty5),1)) from #Temp_PartNo5 where PartNo5=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+	  --某料號qty6 數量
+	 	 	 select *
+	    into #Temp_Material6 from
+	(select PartNo6,case when QTY6 is null or len(QTY6)=0 then '1' else QTY6 end as qty6  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo6 is not null and len(PartNo6)>0)
+	   and PartNo6=@MaterialCode) a
+
+	
+		if(EXISTS(select *  from #Temp_Material6) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty6),1)) from #Temp_Material6 where PartNo6=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+
+	  --某料號qty7 數量
+	 	 	 select *
+	    into #Temp_Material7 from
+	(select PartNo7,case when QTY7 is null or len(QTY7)=0 then '1' else QTY7 end as qty7  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo7 is not null and len(PartNo7)>0)
+	   and PartNo7=@MaterialCode) a
+
+	
+		if(EXISTS(select *  from #Temp_Material7) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty7),1)) from #Temp_Material7 where PartNo7=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+
+	  --某料號qty8 數量
+	 	 	 select *
+	    into #Temp_Material8 from
+	(select PartNo8,case when QTY8 is null or len(QTY8)=0 then '1' else QTY8 end as qty8  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo8 is not null and len(PartNo8)>0)
+	   and PartNo8=@MaterialCode) a
+
+	
+		if(EXISTS(select *  from #Temp_Material8) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty8),1)) from #Temp_Material8 where PartNo8=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+
+	  --某料號qty9 數量
+	 	 	 select *
+	    into #Temp_Material9 from
+	(select PartNo9,case when QTY9 is null or len(QTY9)=0 then '1' else QTY9 end as qty9  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo9 is not null and len(PartNo9)>0)
+	   and PartNo9=@MaterialCode) a
+
+
+		if(EXISTS(select *  from #Temp_Material9) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty9),1)) from #Temp_Material9 where PartNo9=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+	  --某料號qty10 數量
+	 	 	 select *
+	    into #Temp_Material10 from
+	(select PartNo10,case when QTY10 is null or len(QTY10)=0 then '1' else QTY10 end as qty10  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo10 is not null and len(PartNo10)>0)
+	   and PartNo10=@MaterialCode) a
+
+		if(EXISTS(select *  from #Temp_Material10) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty10),1)) from #Temp_Material10 where PartNo10=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+	  --某料號qty11 數量
+	 	 	 select *
+	    into #Temp_Material11 from
+	(select PartNo11,case when QTY11 is null or len(QTY11)=0 then '1' else QTY11 end as qty11  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo11 is not null and len(PartNo11)>0)
+	   and PartNo11=@MaterialCode) a
+
+	 
+		if(EXISTS(select *  from #Temp_Material11) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty11),1)) from #Temp_Material11 where PartNo11=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+	  --某料號qty12 數量
+	 	 	 select *
+	    into #Temp_Material12 from
+	(select PartNo12,case when QTY12 is null or len(QTY12)=0 then '1' else QTY12 end as qty12  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo12 is not null and len(PartNo12)>0)
+	   and PartNo12=@MaterialCode) a
+
+
+		if(EXISTS(select *  from #Temp_Material12) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty12),1)) from #Temp_Material12 where PartNo12=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+	  --某料號qty13 數量
+	 	 	 select *
+	    into #Temp_Material13 from
+	(select PartNo13,case when QTY13 is null or len(QTY13)=0 then '1' else QTY13 end as qty13  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo13 is not null and len(PartNo13)>0)
+	   and PartNo13=@MaterialCode) a
+
+
+		if(EXISTS(select *  from #Temp_Material13) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty13),1)) from #Temp_Material13 where PartNo13=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+
+	  --某料號qty14 數量
+	 	 	 select *
+	    into #Temp_Material14 from
+	(select PartNo14,case when QTY14 is null or len(QTY14)=0 then '1' else QTY14 end as qty14  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo14 is not null and len(PartNo14)>0)
+	   and PartNo14=@MaterialCode) a
+
+	
+		if(EXISTS(select *  from #Temp_Material14) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty14),1)) from #Temp_Material14 where PartNo14=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+	  --某料號qty15 數量
+	 	 	 select *
+	    into #Temp_Material15 from
+	(select PartNo15,case when QTY15 is null or len(QTY15)=0 then '1' else QTY15 end as qty15  from [pubTotalRepairAgentL3L4] 
+		where channel='EDTI' and (PartNo15 is not null and len(PartNo15)>0)
+	   and PartNo15=@MaterialCode) a
+
+
+		if(EXISTS(select *  from #Temp_Material15) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty15),1)) from #Temp_Material15 where PartNo15=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+
+
+	 	--更新庫存表數據
+	 	if   EXISTS(select *  from Stc_MatStock where LocID=dbo.ufn_getStocID('EDTI') and MaterialCode=@MaterialCode)
+		BEGIN
+		update dbo.Stc_MatStock set ASPSendQty=@SumMaterialCount where  LocID=dbo.ufn_getStocID('EDTI') and MaterialCode=@MaterialCode
+		END
+	  set @Count=@Count+1
+	   --刪除臨時表
+	  	 drop table #Temp_PartNo1
+	 drop table #Temp_PartNo2
+	 drop table #Temp_PartNo3
+	 drop table #Temp_PartNo4
+     drop table #Temp_PartNo5
+	  drop table #Temp_Material6
+	 drop table #Temp_Material7
+	 drop table #Temp_Material8
+	 drop table #Temp_Material9
+     drop table #Temp_Material10
+	  drop table #Temp_Material11
+	 drop table #Temp_Material12
+	 drop table #Temp_Material13
+	 drop table #Temp_Material14
+     drop table #Temp_Material15
+	 END
+
+	
+	 print 'EDTI Update Data Success'
+
+
+
+   
+
+
+
+	select row_number()over(order by MaterialCode) ItemNo,MaterialCode into #MatStock_EC  from v_MatStock where LocID=dbo.ufn_getStocID('EC')
+
+
+	 select @StockCount=COUNT(*) from #MatStock_EC 
+	 set @Count=1
+	
+	 while @Count<=@StockCount
+	 --更新EC倉庫下的料號指定機種的累計使用數量
+	 --L1L2下EC資料
+	 BEGIN
+	  set @SumMaterialCount=0
+	  select @MaterialCode=MaterialCode from #MatStock_EC  where ItemNo=@Count
+	 --某料號qty1 數量
+	 select a.*
+	    into #Temp_ECMaterial1 from
+		(select Getmaterial1,case when Qty1 is null or len(Qty1)=0 then '1' else Qty1 end as qty1 from [dbo].[pubTotalRepairAgentL1L2] 
+	       where AgentCName='Commtiva' and (GetMaterial1 is not null and len(GetMaterial1)>0)
+	   and GetMaterial1=@MaterialCode) a
+
+		if(EXISTS(select *  from #Temp_ECMaterial1) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty1),1)) from #Temp_ECMaterial1 where GetMaterial1=@MaterialCode
+		 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+	 --某料號qty2 數量
+	 	 select *
+	    into #Temp_ECMaterial2 from
+			(select Getmaterial2,case when Qty2 is null or len(Qty2)=0 then '1' else Qty2 end as qty2 from [dbo].[pubTotalRepairAgentL1L2] 
+	       where AgentCName='Commtiva' and (GetMaterial2 is not null and len(GetMaterial2)>0)
+	   and GetMaterial2=@MaterialCode) a
+	
+	
+		if(EXISTS(select *  from #Temp_ECMaterial2) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty2),1)) from #Temp_ECMaterial2 where GetMaterial2=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+	 	 --某料號qty3 數量
+	 	 	 select *
+	    into #Temp_ECMaterial3 from
+		(select Getmaterial3,case when Qty3 is null or len(Qty3)=0 then '1' else Qty3 end as qty3 from [dbo].[pubTotalRepairAgentL1L2] 
+	       where AgentCName='Commtiva' and (GetMaterial3 is not null and len(GetMaterial3)>0)
+	   and GetMaterial3=@MaterialCode) a
+	
+
+		if(EXISTS(select *  from #Temp_ECMaterial3) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty3),1)) from #Temp_ECMaterial3 where GetMaterial3=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+	 	 --某料號qty4 數量
+	 	 	 select *
+	    into #Temp_ECMaterial4 from
+		(select Getmaterial4,case when Qty4 is null or len(Qty4)=0 then '1' else Qty4 end as qty4 from [dbo].[pubTotalRepairAgentL1L2] 
+	       where AgentCName='Commtiva' and (GetMaterial4 is not null and len(GetMaterial4)>0)
+	   and GetMaterial4=@MaterialCode) a
+	
+		if(EXISTS(select *  from #Temp_ECMaterial4) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty4),1)) from #Temp_ECMaterial4 where GetMaterial4=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	 
+	 	 --某料號qty5 數量
+	 	 	 select *
+	    into #Temp_ECMaterial5 from
+		(select Getmaterial5,case when Qty5 is null or len(Qty5)=0 then '1' else Qty5 end as qty5 from [dbo].[pubTotalRepairAgentL1L2] 
+	       where AgentCName='Commtiva' and (GetMaterial5 is not null and len(GetMaterial5)>0)
+	   and GetMaterial5=@MaterialCode) a
+
+		if(EXISTS(select *  from #Temp_ECMaterial5) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty5),1)) from #Temp_ECMaterial5 where GetMaterial5=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+	 --L1L3中EC資料
+
+	 --某料號qty1 數量
+	 	 	 select *
+	    into #Temp_ECPartNo1 from
+	(select PartNo1,case when QTY1 is null or len(QTY1)=0 then '1' else QTY1 end as qty1  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo1 is not null and len(PartNo1)>0)
+	   and PartNo1=@MaterialCode) a
+
+	
+		if(EXISTS(select *  from #Temp_ECPartNo1) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty1),1)) from #Temp_ECPartNo1 where PartNo1=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+
+	 	 --某料號qty2 數量
+	 	 	 select *
+	    into #Temp_ECPartNo2 from
+	(select PartNo2,case when QTY2 is null or len(QTY2)=0 then '1' else QTY2 end as qty2  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo2 is not null and len(PartNo2)>0)
+	   and PartNo2=@MaterialCode) a
+
+
+		if(EXISTS(select *  from #Temp_ECPartNo2) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty2),1)) from #Temp_ECPartNo2 where PartNo2=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	 
+
+	 	 --某料號qty3 數量
+	 	 	 select *
+	    into #Temp_ECPartNo3 from
+	(select PartNo3,case when QTY3 is null or len(QTY3)=0 then '1' else QTY3 end as qty3  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo3 is not null and len(PartNo3)>0)
+	   and PartNo3=@MaterialCode) a
+
+	
+		if(EXISTS(select *  from #Temp_ECPartNo3) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty3),1)) from #Temp_ECPartNo3 where PartNo3=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	 
+
+	 	 --某料號qty4 數量
+	 	 	 select *
+	    into #Temp_ECPartNo4 from
+	(select PartNo4,case when QTY4 is null or len(QTY4)=0 then '1' else QTY4 end as qty4  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo4 is not null and len(PartNo4)>0)
+	   and PartNo4=@MaterialCode) a
+
+	
+		if(EXISTS(select *  from #Temp_ECPartNo4) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty4),1)) from #Temp_ECPartNo4 where PartNo4=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+	 	 --某料號qty5 數量
+	 	 	 select *
+	    into #Temp_ECPartNo5 from
+	(select PartNo5,case when QTY5 is null or len(QTY5)=0 then '1' else QTY5 end as qty5  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo5 is not null and len(PartNo5)>0)
+	   and PartNo5=@MaterialCode) a
+
+
+		if(EXISTS(select *  from #Temp_ECPartNo5) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty5),1)) from #Temp_ECPartNo5 where PartNo5=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+	 	 --某料號qty6 數量
+	 	 	 select *
+	    into #Temp_ECPartNo6 from
+	(select PartNo6,case when QTY6 is null or len(QTY6)=0 then '1' else QTY6 end as qty6  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo6 is not null and len(PartNo6)>0)
+	   and PartNo6=@MaterialCode) a
+
+
+		if(EXISTS(select *  from #Temp_ECPartNo6) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty6),1)) from #Temp_ECPartNo6 where PartNo6=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+	 	 --某料號qty7 數量
+	 	 	 select *
+	    into #Temp_ECPartNo7 from
+	(select PartNo7,case when QTY7 is null or len(QTY7)=0 then '1' else QTY7 end as qty7  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo7 is not null and len(PartNo7)>0)
+	   and PartNo7=@MaterialCode) a
+
+
+		if(EXISTS(select *  from #Temp_ECPartNo7) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty7),1)) from #Temp_ECPartNo7 where PartNo7=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+	 	 --某料號qty8 數量
+	 	 	 select *
+	    into #Temp_ECPartNo8 from
+	(select PartNo8,case when QTY8 is null or len(QTY8)=0 then '1' else QTY8 end as qty8  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo8 is not null and len(PartNo8)>0)
+	   and PartNo8=@MaterialCode) a
+
+
+		if(EXISTS(select *  from #Temp_ECPartNo8) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty8),1)) from #Temp_ECPartNo8 where PartNo8=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+	 	 --某料號qty9 數量
+	 	 	 select *
+	    into #Temp_ECPartNo9 from
+	(select PartNo9,case when QTY9 is null or len(QTY9)=0 then '1' else QTY9 end as qty9  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo9 is not null and len(PartNo9)>0)
+	   and PartNo9=@MaterialCode) a
+
+
+		if(EXISTS(select *  from #Temp_ECPartNo9) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty9),1)) from #Temp_ECPartNo9 where PartNo9=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+	 	 --某料號qty10 數量
+	 	 	 select *
+	    into #Temp_ECPartNo10 from
+	(select PartNo10,case when QTY10 is null or len(QTY10)=0 then '1' else QTY10 end as qty10  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo10 is not null and len(PartNo10)>0)
+	   and PartNo10=@MaterialCode) a
+
+
+		if(EXISTS(select *  from #Temp_ECPartNo10) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty10),1)) from #Temp_ECPartNo10 where PartNo10=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+
+	 	 --某料號qty11 數量
+	 	 	 select *
+	    into #Temp_ECPartNo11 from
+	(select PartNo11,case when QTY11 is null or len(QTY11)=0 then '1' else QTY11 end as qty11  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo11 is not null and len(PartNo11)>0)
+	   and PartNo11=@MaterialCode) a
+
+	
+		if(EXISTS(select *  from #Temp_ECPartNo11) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty11),1)) from #Temp_ECPartNo11 where PartNo11=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+	 	 --某料號qty12 數量
+	 	 	 select *
+	    into #Temp_ECPartNo12 from
+	(select PartNo12,case when QTY12 is null or len(QTY12)=0 then '1' else QTY12 end as qty12  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo12 is not null and len(PartNo12)>0)
+	   and PartNo12=@MaterialCode) a
+
+	
+		if(EXISTS(select *  from #Temp_ECPartNo12) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty12),1)) from #Temp_ECPartNo12 where PartNo12=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	
+
+	 	 --某料號qty13 數量
+	 	 	 select *
+	    into #Temp_ECPartNo13 from
+	(select PartNo13,case when QTY13 is null or len(QTY13)=0 then '1' else QTY13 end as qty13  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo13 is not null and len(PartNo13)>0)
+	   and PartNo13=@MaterialCode) a
+
+	 
+		if(EXISTS(select *  from #Temp_ECPartNo13) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty13),1)) from #Temp_ECPartNo13 where PartNo13=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	 
+
+	 	 --某料號qty14 數量
+	 	 	 select *
+	    into #Temp_ECPartNo14 from
+	(select PartNo14,case when QTY14 is null or len(QTY14)=0 then '1' else QTY14 end as qty14  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo14 is not null and len(PartNo14)>0)
+	   and PartNo14=@MaterialCode) a
+
+	
+		if(EXISTS(select *  from #Temp_ECPartNo14) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty14),1)) from #Temp_ECPartNo14 where PartNo14=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+
+
+	 	 --某料號qty15 數量
+	 	 	 select *
+	    into #Temp_ECPartNo15 from
+	(select PartNo15,case when QTY15 is null or len(QTY15)=0 then '1' else QTY15 end as qty15  from [pubTotalRepairAgentL3L4] 
+		where channel='Commtiva' and (PartNo15 is not null and len(PartNo15)>0)
+	   and PartNo15=@MaterialCode) a
+
+	
+		if(EXISTS(select *  from #Temp_ECPartNo15) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>'')
+		BEGIN
+		 select  @MaterialCount=sum(ISNULL(convert(int,qty15),1)) from #Temp_ECPartNo15 where PartNo15=@MaterialCode
+		 	 set @SumMaterialCount=@SumMaterialCount+@MaterialCount
+		END
+	 
+
+
+	 	--更新庫存表數據
+	 	if   EXISTS(select *  from Stc_MatStock where LocID=dbo.ufn_getStocID('EC') and MaterialCode=@MaterialCode)
+		BEGIN
+		update dbo.Stc_MatStock set ASPSendQty=@SumMaterialCount where  LocID=dbo.ufn_getStocID('EC') and MaterialCode=@MaterialCode
+		END
+	  set @Count=@Count+1
+	  	 --刪除臨時表
+	
+	 drop table #Temp_ECMaterial1
+	 drop table #Temp_ECMaterial2
+	 drop table #Temp_ECMaterial3
+	 drop table #Temp_ECMaterial4
+     drop table #Temp_ECMaterial5
+
+	 drop table #Temp_ECPartNo1
+	 drop table #Temp_ECPartNo2
+	 drop table #Temp_ECPartNo3
+	 drop table #Temp_ECPartNo4
+     drop table #Temp_ECPartNo5
+	 drop table #Temp_ECPartNo6
+	 drop table #Temp_ECPartNo7
+	 drop table #Temp_ECPartNo8
+	 drop table #Temp_ECPartNo9
+     drop table #Temp_ECPartNo10
+	 drop table #Temp_ECPartNo11
+	 drop table #Temp_ECPartNo12
+	 drop table #Temp_ECPartNo13
+	 drop table #Temp_ECPartNo14
+     drop table #Temp_ECPartNo15
+	 END
+
+	print 'EC Update Data Success'
+
+	
+    if @@Error <> 0 goto lab
+    Commit TRANSACTION
+    return 0
+    lab:
+    Print N'倉庫数据更新失敗'
+    Rollback TRANSACTION
+	drop table #MatStock_Syn
+	drop table #MatStock_Edt
+	drop table #MatStock_EC
+END
+
+
+exec [dbo].[usp_UpdateStcMatStock_AspSentQty]
+
+select *  from Stc_MatStock
+
+
+select * into Temp_Stc_MatStock  from v_MatStock where 1<>1
+	seleect * into table.b from table.a; 
+	drop table Temp_Stc_MatStock
+
+
+
+28.分組統計數據
+
+select '2015'as '年份','4' as '月份', sum(TotalCost) as '管制編號總價格',COUNT(JigNo) as '管制編號總數',CustomentName as '客戶/工廠',BUName as '製造處' from 
+(select  d.BUName,JigNo,OrderNumber,FactPrice,b.TotalCost,CustomentName  from MoData a left join MoRequestReport b  on a.RGUID=b.RGUID 
+left join pubBU d on b.BUID= d.BUID
+where len(JigNo)>0 and LEN(a.CreaDate)>0  and a.CreaDate>'2015-04-01 00:00:00.000' and a.CreaDate<'2015-04-30 23:59:59.000' and LEN(CustomentName)>0 ) as c group by CustomentName,BUName
+
+
+29.
+
+*         stuff(param1, startIndex, length, param2)
+说明：将param1中自startIndex(SQL中都是从1开始，而非0)起，删除length个字符，然后用param2替换删掉的字符。*/
+
+SELECT id, 
+                      value = stuff
+                          ((SELECT     ',' + value
+                              FROM         tb AS t
+                              WHERE     t .id = tb.id FOR xml path('')), 1, 1, '')
+FROM         tb
+GROUP BY id
+
+ 
+
+这样即可。
+
+
+
+
+
+USE [ASSMS]
+GO
+/****** Object:  UserDefinedFunction [dbo].[ufn_get_MaterialRegName]    Script Date: 2016/8/12 下午 12:18:52 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER FUNCTION [dbo].[ufn_get_MaterialRegName]
+(
+	@MaterialCode nvarchar(50)
+)
+
+
+RETURNS @Material_Regs  Table
+ (
+     RegName    nvarchar(50)  NULL
+ 
+)
+AS
+BEGIN
+   IF LEN(@MaterialCode) > 0
+      BEGIN
+          INSERT @Material_Regs SELECT  AgentRegion  from [pubTotalRepairAgentL1L2]  where 
+	(GetMaterial1=@MaterialCode or GetMaterial2=@MaterialCode or GetMaterial3=@MaterialCode
+or GetMaterial4=@MaterialCode or GetMaterial5=@MaterialCode )  and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>''
+          
+		    INSERT @Material_Regs SELECT Region  from [dbo].[pubTotalRepairAgentL3L4] where
+	 (PartNo1=@MaterialCode or PartNo2=@MaterialCode or PartNo3=@MaterialCode or PartNo4=@MaterialCode
+ or PartNo5=@MaterialCode or PartNo6=@MaterialCode or PartNo7=@MaterialCode or PartNo8=@MaterialCode
+  or PartNo9=@MaterialCode or PartNo10=@MaterialCode or PartNo11=@MaterialCode or PartNo12=@MaterialCode
+    or PartNo13=@MaterialCode or PartNo14=@MaterialCode or PartNo15=@MaterialCode)
+	 and  len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>''
+      END
+
+   RETURN 
+
+END
+
+
+
+
+
+
+--RETURNS nvarchar(max)
+--AS
+--BEGIN
+--declare @ret nvarchar(max)
+--set @ret = ''
+--if(EXISTS(select * from [dbo].[pubTotalRepairAgentL1L2] where 
+--(GetMaterial1=@MaterialCode or GetMaterial2=@MaterialCode or GetMaterial3=@MaterialCode
+--or GetMaterial4=@MaterialCode or GetMaterial5=@MaterialCode ) and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>''))
+--Begin
+--  	 select @ret=AgentRegion from [pubTotalRepairAgentL1L2]  where 
+--	(GetMaterial1=@MaterialCode or GetMaterial2=@MaterialCode or GetMaterial3=@MaterialCode
+--or GetMaterial4=@MaterialCode or GetMaterial5=@MaterialCode )  and len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>''
+--end
+--if(EXISTS(select * from [dbo].[pubTotalRepairAgentL3L4] where
+--(PartNo1=@MaterialCode or PartNo2=@MaterialCode or PartNo3=@MaterialCode or PartNo4=@MaterialCode
+-- or PartNo5=@MaterialCode or PartNo6=@MaterialCode or PartNo7=@MaterialCode or PartNo8=@MaterialCode
+--  or PartNo9=@MaterialCode or PartNo10=@MaterialCode or PartNo11=@MaterialCode or PartNo12=@MaterialCode
+--    or PartNo13=@MaterialCode or PartNo14=@MaterialCode or PartNo15=@MaterialCode)
+--	 and  len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>''))
+--	 Begin
+--	 select @ret=Region from [dbo].[pubTotalRepairAgentL3L4] where
+--	 (PartNo1=@MaterialCode or PartNo2=@MaterialCode or PartNo3=@MaterialCode or PartNo4=@MaterialCode
+-- or PartNo5=@MaterialCode or PartNo6=@MaterialCode or PartNo7=@MaterialCode or PartNo8=@MaterialCode
+--  or PartNo9=@MaterialCode or PartNo10=@MaterialCode or PartNo11=@MaterialCode or PartNo12=@MaterialCode
+--    or PartNo13=@MaterialCode or PartNo14=@MaterialCode or PartNo15=@MaterialCode)
+--	 and  len(@MaterialCode)>0 and @MaterialCode is not null and @MaterialCode<>''
+
+--	 end	
+
+
+--			return @ret
+
+--END
+
+
+
+
+

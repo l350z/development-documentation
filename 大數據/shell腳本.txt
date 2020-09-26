@@ -1,0 +1,119 @@
+1  echo "Hello World !"   向窗口輸出文本
+
+2  cal   窗口顯示日曆
+
+3  clear  清屏
+
+4  ls  是显示当前目录下文件
+
+5  ls -l   是显示当前目录下文件详细信息
+
+6  ll    ls -l的別名
+
+7 date  顯示日期
+
+8 cd  進入個人主目錄
+
+9 cd ..   返回上一級目錄
+
+10 cd ../..  返回上兩級目錄
+
+11 hadoop  dfs  -ls file:///         訪問本地文件系統
+
+12 ls -F | grep '/$'         顯示linux下的所有根目錄
+
+13 stat hadoop-3.2.0.tar.gz   顯示文件信息
+
+14 ssh hadoop.test02    免密鑰登陸
+
+15  mkdir -m 0666 lz   取消不能創建目錄權限  建立lz目錄
+
+16  rm -r  lz  刪除目錄
+
+17  cp hadoop-3.2.0.tar.gz lz    拷貝
+
+18 vi   *.sh   啟動某某文件
+
+19   export JAVA_HOME=
+ :!echo $JAVA_HOME  輸出環境變量
+ 
+20 编辑完保存退出的四种方式
+
+1）. Esc+：+wq+回车（w是write,q是quit）
+
+2）. Esc+：+x+回车（x=wq）
+
+3）. Esc+shift+zz 
+
+4）. Esc+ZZ(在大写开启下)
+
+如果是进入了编辑，但是未进行任何改动的保存退出命令如下：
+
+Esc+:+q+回车
+
+
+21 .bin/hdfs  --help  hadoop啟動查看幫助文件
+
+22 ss -nal   hadoop監聽端口
+
+23 ./bin/hdfs --help
+
+24 ./bin/hdfs dfs 
+
+25  scp hadoop.test02:/usr/local/hadoop/etc/hadoop/hdfs-site.xml /usr/local/hadoop/etc/hadoop/hdfs-site.xml    跨服務器拷貝
+
+26  hdfs dfs -put hadoop-3.2.0.tar.gz /lizen                 上傳文件
+
+27 shift+G   滾到最末行
+
+28    scp -r   sxt/ node02:'pwd'              分發給別的節點
+
+29  cat /etc/profile   打印要顯示的文件內容
+
+30 source /ect/profile  重讀
+
+31 jps 查看當前namenode
+
+32  tar xf zookeeper-3.4.6.tar.gz -c /opt/sxt/
+
+33 cd zookeeper-3.4.6/ 
+
+34 pwd    查看環境變量
+
+35 vi + /ect/profile
+
+36 mv zoo_sample.cfg zoo.cfg
+
+37 vi zoo.cfg
+
+38  zkServer.sh start     執行zookeeper
+
+39 zkServer.sh status 查看zookeeper狀態
+
+40 zkServer.sh stop
+
+41  zkCli.sh  連接客戶端
+
+42  hdfs --daemon start journalnode 啟動 journalnode
+
+43 hadoop-daemon.sh start namenode  啟動當前namenode
+
+44 hdfs namenode -bootstrapStandby 同步數據
+
+45 hdfs zkfc -formatZK   格式化zk  （註冊節點目錄）
+
+46 start-dfs.sh （啟動集群）
+
+47 hdfs --daemon stop namenode  停掉一個節點
+
+48 hdfs --daemon stop zkfc
+
+
+
+
+
+
+
+
+
+

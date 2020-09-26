@@ -2,14 +2,9 @@ gitlab 正式地址  http://10.83.16.110
 gitlab 測試地址  http://10.84.111.202/
 
 
-
-
-
 [‎2018/‎12/‎26 上午 11:39]  paul.zy.zh(a查志勇):  
 http://10.83.16.110/HR/idlrecruit/issues 
  
-
-
 
 名詞解釋
 
@@ -56,7 +51,6 @@ We saved this conversation. You'll see it soon in the Conversations tab in Skype
  問題編號一定要 #16 這種格式
 
 
-e
 H0594499@CN511577 MINGW64 / (master)
 $ cd e  
 
@@ -91,7 +85,7 @@ git remote show origin
 此时我们可以看到那些远程仓库已经不存在的分支，根据提示，使用命令：
 git remote prune origin
 这样就删除本地那些远程仓库不存在的分支。 
-$
+
 
 快速克隆
 
@@ -110,8 +104,17 @@ $ git stage
 $ git add  MyEclipseGen.java
 將所有修改和新增的文件加入緩存區
 $ git add  .
+·git add -A  提交所有变化
+
+·git add -u  提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)
+
+·git add .  提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
+
 //從緩存區提交到本地倉庫
 $ git commit -m "test88"
+
+//省略從緩存區提交到本地工作區,但只提交跟蹤過的文件，對於新增的文件不支持
+$ git commit -am "test88"
 //推送到遠端倉庫
 $ git push origin dep1
 
@@ -132,6 +135,40 @@ $ git tag -a v0.1.2 -m “0.1.2版本”
 
 $ git push origin v0.1.2 # 将v0.1.2标签提交到git服务器
 $ git push origin –tags # 将本地所有标签一次性提交到git服务器
+
+
+
+
+选择克隆单个分支
+git clone --branch <branch_name> <remote-address>
+
+只克隆最新的提交记录
+git clone <remote-address> --depth 1
+
+-- depth代表克隆的深度，--depth 1代表只克隆最新一次提交记录以及这次提交之后的最新内容，不克隆历史提交，所造成的影响就是不能查看历史提交记录，但是克隆速度大大提升。
+
+组合
+git clone --branch <branch_name> <remote-address> --depth 1
+
+只克隆单个分支的最新一次提交
+
+
+如果本地连过其他的git地址，需要将远程仓库地址改为公司的gitlab地址 git 命令如下：
+git remote rm origin
+git remote add origin git@192.168.1.110:Admin/projectname.git 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 [‎2020/‎8/‎11 上午 11:52]  ran.zhang(張冉):  

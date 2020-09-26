@@ -1,0 +1,109 @@
+   
+   1.模態頁面中繪製表格,添加內容.
+   
+   function GetApproveListByProcName(txtName,GridView,type)
+    {
+
+        var objname = document.getElementById(txtName).value;
+        if(objname.length<=0)
+        {
+            return;
+        }
+        var listTb = document.getElementById(GridView);
+        var row = CAjaxUtil.GetApproveListByProcName(objname,type).value;
+        var crownum = listTb.rows.length;
+        var getrownum = row.length;
+        if(row.length>0)
+        {
+            if( crownum > 0)
+            {
+                try
+                {
+                    for(var i=0;i < crownum-1; i++)
+                    {
+                        listTb.deleteRow([1]);
+                    }
+                    for(var i =0; i<getrownum; i++)
+                    {
+                        listTb.insertRow();
+                    }
+                    for(var i=1 ;i<listTb.rows.length;i++)
+                    {
+                        for(var c=0;c<3;c++)
+                        {
+                            listTb.rows[i].insertCell();
+                        }
+                    }
+        
+                    for(var i=0; i<getrownum;i++)
+                    {
+                        var anchor  = document.createElement("a");
+                        anchor.href ="#";
+                        anchor.innerHTML ="Select";
+                        anchor.onclick =function tttt(){var tableCell = this.parentElement;
+                                                        var j = tableCell.cellIndex;
+                                                        var tableRow = tableCell.parentElement;
+                                                      // oNum = tableRow.cells(j+1);
+                                                        var strName = tableRow.cells(j+1);
+                                                        var strNo = tableRow.cells(j+2);
+                                                         window.returnValue = strName.innerText + "|"+strNo.innerText;
+//                                                        var strID= tableRow.cells(j+2);
+//                                                        var strName = tableRow.cells(j+1);
+//                                                        window.returnValue = strID.innerText + "|" + strName.innerText ;
+                                                        window.close();};
+                        listTb.rows[i+1].cells[0].appendChild(anchor);
+                        listTb.rows[i+1].cells[1].innerText =row[i][0];
+                        listTb.rows[i+1].cells[2].innerText =row[i][1];
+                    }
+                    
+                }
+                catch(ex)
+                {
+                    alert(ex);
+                }
+            }
+        }        
+    }  
+
+
+
+2.父節點
+js中parentElement和offsetParent属性之间的用法区别: 
+首先是js中的parentElement属性，这个属性比较好理解，就是在 DOM 层次结构定义的上下级关系，如果元素A包含元素B，那么元素B就可以通过 parentElement 属性来获取元素A。 
+其次是offsetParent 属性，这个属性在 MSDN 的文档中也没有解释清楚，这就让人更难理解这个属性。 以下是本人在网上查到的一些资料总结，需要的朋友可以参考一下： 
+要明白 offsetParent 属性，要先明白"已定位元素"这个名字，所谓“已定位元素”就是指给元素设置了 position 属性的样式，并且 position 样式属性的值等于 absolute、relative、fixed 之一的元素。 
+在使用 offsetParent 属性获取父级对象时有以下两种情况： 
+1、元素本身已经定位 
+如果元素本身已经定位，那么 offsetParent 属性返回此元素已定位父级元素，如没有已定位的父级元素，则返回 BODY 对象，例如： <body> 
+<p> 
+<div> 
+<span id="obj1" style="position:absolute"></span> 
+</div> 
+<div id="pObj1" style="position:absolute"> 
+<span id="obj2" style="position:absolute"></span> 
+</div> 
+</p> 
+</body> 
+obj1.offsetParent 返回 BODY 对象 
+obj2.offsetParent 返回 pObj1 对象 
+2、元素没有定位 
+如果元素没有定位， offsetParent 不但会找已经定位的父级元素而且还会查找类型为 TD 和 TABLE 的父级元素，只要找到这三种父级元素的其中任何一种元素将返回此元素，否则返回 BODY 对象，例如： <table width="400" border="0"> 
+<tr> 
+<td id="td1"> 
+<div id="pObj1"> 
+<span id="obj1"></span> 
+</div> 
+</td> 
+</tr> 
+<tr> 
+<td> 
+<div id="pObj2" style="position:relative"> 
+<span id="obj2"></span> 
+</div> 
+</td> 
+</tr> 
+</table> 
+obj1.offsetParent 返回 td1 对象 
+obj2.offsetParent 返回 pObj2 对象 
+在 DOM 元素的属性里，还有 parentNode 这个属性，其实这个属性跟 parentElement 属性是一个意思，parentElement 属性是 IE 特有的，W3C 标准是使用 parentNode 属性，还有 children 和 childNodes, children 是 IE 特有的， childNodes 被其他浏览器支持。 
+

@@ -13,7 +13,24 @@ templateUrl：组件模板文件的 URL。如果提供了它，就不要再用 t
 providers ：使用一个 令牌 配置该指令或组件的 注入器，该令牌会映射到一个依赖项的提供商
 
 exportAs ：一个或多个名字，可以用来在模板中把该指令赋值给一个变量。当有多个名字时，请使用逗号分隔它们
+entryComponents	 定义此 NgModule 中要编译的组件集，这样它们才可以动态加载到视图中。
 
-npm install -save-dev @angular-devkit/build-angular   //安裝angular devkit
+2 npm install -save-dev @angular-devkit/build-angular   //安裝angular devkit
+
+3 創建新項目： ng new angular-tour-of-heroes     // ng new routing-app --routing  帶有應用路由模塊
+4 創建組件： ng generate component heroes
+5 創建服務：ng generate service hero
+6 添加應用內導航： ng generate module app-routing --flat --module=app
+--flat 把这个文件放进了 src/app 中，而不是单独的目录中。
+--module=app 告诉 CLI 把它注册到 AppModule 的 imports 数组中。
+7 添加路由出口 RouterOutlet
+<router-outlet></router-outlet>
+8 添加默認路由
+{ path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+9 可觀察對象
+在有消费者订阅之前，可观察对象不会执行。subscribe() 会执行一次定义好的行为，并且可以再次调用它。每次订阅都是单独计算的。重新订阅会导致重新计算这些值。
+
+10 ionic 修改端口號
+ionic serve -p 8101
 
 	
