@@ -1,1 +1,1 @@
-osql -S"localhost" -U"sa" -P"Qa123456" -d"ESES" -i"C:\Users\h0594499\Desktop\ESES.sql" 
+osql -S"localhost" -U"sa" -P"l350z101316" -d"MPVUEDb" -i"E:\H0594499\MPVUE\DataBase\MPVUE.sql" 
