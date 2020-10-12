@@ -1,0 +1,63 @@
+//查詢當前賬號密碼有效期
+SELECT * FROM dba_profiles WHERE profile='DEFAULT' AND resource_name='PASSWORD_LIFE_TIME';
+
+//修改密碼
+ALTER USER 用户名 IDENTIFIED BY 密码; 
+
+ //修改密码后，会发现该账户会被锁定，这时需要通过如下SQL语句进行解锁：
+alter user 用户名 account unlock;
+
+ // 如果想去除180天的密码生存周期的限制可通过如下SQL语句将其关闭
+ALTER PROFILE DEFAULT LIMIT PASSWORD_LIFE_TIME UNLIMITED;
+
+//查詢表空間
+
+ select default_tablespace from dba_users where username='scrap';
+ 
+ select * from dba_tablespaces;
+
+ select * from dba_tablespaces;
+    
+  select * from dba_tables where owner='scrap';
+      
+   select distinct s.owner from dba_segments s where s.tablespace_name ='SYSTEM';
+
+    alter table l_os_storage_bin move tablespace USERS
+
+
+    insert into l_os_storage_bin values('049','FAD','0205621','','I',sysdate,null)
+
+
+
+    1.添加字段：
+
+alter table  表名  add  字段  字段类型) [ default  '输入默认值']  [null/not null]  ;
+alter table insert_test add str_te varchar2(10);
+alter table insert_test modify str_te default '0';
+
+2.添加备注：
+
+comment on column  库名.表名.字段名 is  '输入的备注';  如： 我要在ers_data库中  test表 document_type字段添加备注  comment on column ers_data.test.document_type is '文件类型';
+
+3.修改字段类型：
+
+alter table 表名  modiy (字段  字段类型  [default '输入默认值' ] [null/not null]  ,字段  字段类型  [default '输入默认值' ] [null/not null] ); 修改多个字段用逗号隔开
+
+4.删除字段：
+
+alter table  表名  drop (字段);
+
+
+1、首先通过语句查询一下当前的时区是什么？
+
+SELECT DBTIMEZONE FROM DUAL;此时返回的结果是'+00:00'，这就意味着当前的Oracle时间是GMT+0.00，就是格林威治标准时间。
+
+2、修改Oracle的时区设置。
+
+ALTER DATABASE SET TIME_ZONE='+08:00';修改之后，重新启动Oracle数据库。
+
+3、显示正确时间
+
+select to_char(current_timestamp at time zone dbtimezone,'dd-mon-rr hh:mi:ss am') from dual;
+
+select to_char(current_timestamp at time zone dbtimezone,'dd-mon-rr hh24:mi:ss ') from dual;

@@ -1,0 +1,28 @@
+1  npm config set registry http://10.57.49.71:8081/repository/npm/
+2  npm install -g typescript
+3  ng 命令创建模块、类等
+    ng g module about
+4  創建新組件
+    ng  generate component heroes
+5 npm install -g @angular/cli@latest
+6 npm config list
+7 npm install vue-cli -g
+
+8 npm run dev
+
+命令行安装;
+ng new demo --style less
+cd demo
+ng add ng-alain
+ng serve
+
+npm install angularx-qrcode --save
+
+直接 clone git 仓库
+$ git clone --depth=1 https://github.com/cipchk/ng-alain.git my-project
+$ cd my-project  && npm install  && npm start
+
+10 npm install -g cordova ionic
+ionic  start ionic-demo
+
+npm install --save @ionic-native/themeable-browser

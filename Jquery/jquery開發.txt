@@ -1,0 +1,9 @@
+       $("#AppStatusId option").each(function () {
+                    //遍历所有option
+                    var value = $(this).val();   //获取option值
+                    var text = $(this).text();
+                    if (text == data.record.appStatus) {
+                        typeName = text;
+                        return false;
+                    }
+                });

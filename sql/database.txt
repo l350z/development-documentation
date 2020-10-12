@@ -1,0 +1,65 @@
+解鎖數據庫密碼:
+ALTER LOGIN sa ENABLE ;
+GO
+ALTER LOGIN sa WITH PASSWORD = 'Qa123456' unlock, check_policy = off,
+check_expiration = off ;
+GO
+
+當月第一天最後一天
+			    SELECT dateadd(m,1,getdate())
+SELECT day(getdate())
+select   dateadd(dd,-day(getdate()),dateadd(m,1,getdate()))
+select   dateadd(dd,-day(getdate())+1,getdate())  
+
+
+1、修改字段名：
+
+　　alter table 表名 rename column A to B
+
+2、修改字段类型：
+
+　　alter table 表名 alter column 字段名 type not null
+
+3、修改字段默认值
+　　alter table 表名 add default (0) for 字段名 with values
+
+　　如果字段有默认值，则需要先删除字段的约束，在添加新的默认值，
+
+　　select c.name from sysconstraints a 
+　　inner join syscolumns b on a.colid=b.colid 
+　　inner join sysobjects c on a.constid=c.id
+　　where a.id=object_id('表名') 
+　　and b.name='字段名'
+
+　　根据约束名称删除约束
+
+　　alter table 表名 drop constraint 约束名
+
+　　根据表名向字段中增加新的默认值
+
+　　alter table 表名 add default (0) for 字段名 with values
+
+4、增加字段：
+
+　　alter table 表名 add 字段名 type not null default 0
+
+5、删除字段：
+
+　　alter table 表名 drop column 字段名;
+
+alter table  dat_CategoryCode add constraint pk_CatCode_Note primary key (Category_Code,Note)
+
+
+1、禁用 table_name 表的所有 trigger 
+
+alter table table_name disable all triggers;
+
+2、启用 table_name 表的所有 trigger
+alter table table_name enable all triggers;
+
+3、禁用指定 trigger
+alter trigger trigger_name disable;
+
+4、启用指定 trigger
+alter trigger trigger_name enable;
+————————————————
