@@ -308,6 +308,10 @@ git merge --no-ff hotfix_v1.0.1
        "window.openFilesInNewWindow": false,
         "http.proxyStrictSSL": true,
         "http.proxy": "http://H0594499:l350z101316@10.191.131.45:3128",
+
+#換行符不轉化為與系統一樣
+
+git config --global core.autocrlf false 
  
 
 

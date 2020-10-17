@@ -104,6 +104,12 @@ $ git stage
 $ git add  MyEclipseGen.java
 將所有修改和新增的文件加入緩存區
 $ git add  .
+·git add -A  提交所有变化
+
+·git add -u  提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)
+
+·git add .  提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
+
 //從緩存區提交到本地倉庫
 $ git commit -m "test88"
 
