@@ -157,6 +157,17 @@ git clone --branch <branch_name> <remote-address> --depth 1
 git remote rm origin
 git remote add origin git@192.168.1.110:Admin/projectname.git 
 
+git branch -d 的时候如果本地分支没有被合并就会提示这个问题(The branch '***' is not fully merged.)
+
+git branch -D 是强制删除，所以直接执行 强制删除就好了。
+
+//刪除遠端分之
+
+git push origin --delete <BranchName>
+
+//清屏
+reset
+
 
 
 
@@ -243,6 +254,7 @@ git merge --no-ff feature_v1.0
 #删除feature分支，也可以不删除
 
 git branch -d feature_v1.0
+
 
 4，开始release
 

@@ -26,3 +26,7 @@ $ cd my-project  && npm install  && npm start
 ionic  start ionic-demo
 
 npm install --save @ionic-native/themeable-browser
+
+11 安裝yarn
+//在NPM 中安装
+npm install -g yarn
