@@ -1,0 +1,242 @@
+<html>
+<head>
+<title>
+test
+</title>
+<!-- <script>
+var reg = /S..|K..|F..|N../;
+var a=reg.test('F01');
+alert('result'+'---'+a);
+var b=reg.test('S01');
+alert('result'+'---'+b);
+var c=reg.test('K01');
+alert('result'+'---'+c);
+var d=reg.test('N01');
+alert('result'+'---'+d);
+var sapSourseBinType='N01';
+ var e= sapSourseBinType.indexOf("S0") == 0 || sapSourseBinType.indexOf("KM") == 0 || sapSourseBinType.indexOf("S1") == 0 || false
+                            || sapSourseBinType.indexOf("F") == 0 || sapSourseBinType.indexOf("N") == 0
+
+alert(e);
+</script>-->
+<style type="text/css">
+ul{border:dotted 1px #666;}
+li{background:#ddd; color:blue;}
+ul.out{list-style-position:outside;}
+ul.in{list-style-position:inside;}
+</style>
+</head>
+<body>
+<h4 style="color:red">網址列表</h2>
+<div>
+<h6>A</h6>
+<ul class="in">
+    <li><a href="https://angular.cn/guide/architecture">ANGULAR文檔</a></li>
+    <li><a href="https://www.jianshu.com/p/da5de8d88e15">安卓打包方法</a></li>
+    <li>关于内容</li>
+</ul>
+</div>
+
+<div>
+<h6 style="color:#9400D3">B</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+
+<div>
+<h6  style="color:	#00CED1">C</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li><a href="'https://www.csdn.net">CSDN 博客網站</a></li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:#00FF7F">D</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:	#32CD32">E</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:#0000FF">F</h6>
+<ul class="in">
+    <li><a href="https://fontawesome.dashgame.com/">Font Awesome</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:	#FFD700">G</h6>
+<ul class="in">
+    <li><a href="https://www.runoob.com/git/git-basic-operations.html">git 教程</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:	#FFA500">H</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:#FF0000">I</h6>
+<ul class="in">
+    <li><a href="https://www.iviewui.com/">IVIEW教程</a></li>
+    <li><a href="https://www.jianshu.com/p/d9e9a40fdedc">IONIC視頻播放</a></li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:	#800000">J</h6>
+<ul class="in">
+    <li><a href="https://jquery.cuishifeng.cn/">JQUERY文檔</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:#0000CD">K</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:	#00BFFF">L</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:	#008B8B">M</h6>
+<ul class="in">
+    <li><a href="https://gitee.com">碼云</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:#FF00FF">N</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:#A52A2A">O</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:#B3EE3A">P</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:#8B658B">Q</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:	#FF1493">R</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:#2F4F4F">S</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:	#DC143C">T</h6>
+<ul class="in">
+    <li><a href="https://ts.xcatliu.com/">TypeScript 入门教程</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:		#FF4500">U</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:		#FF0000">V</h6>
+<ul class="in">
+    <li><a href="https://cn.vuejs.org/">VUE教程</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:	#00FF7F">W</h6>
+<ul class="in">
+    <li><a href="https://www.w3school.com.cn/">W3SCHOOL學習網站</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:	#00CED1">X</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:	#9400D3">Y</h6>
+<ul class="in">
+    <li ><a href="http://fanyi.youdao.com/">有道翻譯</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+<div>
+<h6  style="color:	#000000">Z</h6>
+<ul class="in">
+    <li><a href="http://www.baidu.com">百度</a></li>
+    <li>关于形式</li>
+    <li>关于内容</li>
+</ul>
+</div>
+</body>
+</html>

@@ -119,6 +119,9 @@ $ git commit -am "test88"
 $ git push origin dep1
 
 
+ git fetch -a  //拉取远程所有代码
+
+
 git remote add origin http://xxxx.git 
 
 git pull origin master
@@ -164,6 +167,9 @@ git branch -D 是强制删除，所以直接执行 强制删除就好了。
 //刪除遠端分之
 
 git push origin --delete <BranchName>
+
+//清屏
+reset
 
 
 

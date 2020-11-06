@@ -119,6 +119,12 @@ $ git commit -am "test88"
 $ git push origin dep1
 
 
+ git fetch -a  //拉取远程所有代码
+
+  git merge --no-ff master // 將主分之的修改合併到當前分之
+
+
+
 git remote add origin http://xxxx.git 
 
 git pull origin master
