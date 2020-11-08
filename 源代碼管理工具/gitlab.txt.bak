@@ -104,6 +104,12 @@ $ git stage
 $ git add  MyEclipseGen.java
 將所有修改和新增的文件加入緩存區
 $ git add  .
+·git add -A  提交所有变化
+
+·git add -u  提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)
+
+·git add .  提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
+
 //從緩存區提交到本地倉庫
 $ git commit -m "test88"
 
@@ -111,6 +117,12 @@ $ git commit -m "test88"
 $ git commit -am "test88"
 //推送到遠端倉庫
 $ git push origin dep1
+
+
+ git fetch -a  //拉取远程所有代码
+
+  git merge --no-ff master // 將主分之的修改合併到當前分之
+
 
 
 git remote add origin http://xxxx.git 
@@ -150,6 +162,17 @@ git clone --branch <branch_name> <remote-address> --depth 1
 如果本地连过其他的git地址，需要将远程仓库地址改为公司的gitlab地址 git 命令如下：
 git remote rm origin
 git remote add origin git@192.168.1.110:Admin/projectname.git 
+
+git branch -d 的时候如果本地分支没有被合并就会提示这个问题(The branch '***' is not fully merged.)
+
+git branch -D 是强制删除，所以直接执行 强制删除就好了。
+
+//刪除遠端分之
+
+git push origin --delete <BranchName>
+
+//清屏
+reset
 
 
 
@@ -238,6 +261,7 @@ git merge --no-ff feature_v1.0
 
 git branch -d feature_v1.0
 
+
 4，开始release
 
 #从develop拉出一个release分支
@@ -302,6 +326,10 @@ git merge --no-ff hotfix_v1.0.1
        "window.openFilesInNewWindow": false,
         "http.proxyStrictSSL": true,
         "http.proxy": "http://H0594499:l350z101316@10.191.131.45:3128",
+
+#換行符不轉化為與系統一樣
+
+git config --global core.autocrlf false 
  
 
 
