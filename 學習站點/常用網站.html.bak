@@ -202,7 +202,7 @@ ul.in{list-style-position:inside;}
 <h6  style="color:		#FF0000">V</h6>
 <ul class="in">
     <li><a href="https://cn.vuejs.org/">VUE教程</a></li>
-    <li>关于形式</li>
+    <li><a href="https://www.jianshu.com/p/7ee37819bee7">videojs教程</a></li>
     <li>关于内容</li>
 </ul>
 </div>
