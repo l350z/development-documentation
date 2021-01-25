@@ -1,0 +1,31 @@
+1 執行ionic 命令
+ionic build  // 發佈ionic
+
+ionic cap add android  //創建安卓專案
+
+ionic cap copy //將發佈后的專案拷貝到安卓專案中
+
+ionic cap sync //同步本機代碼
+
+ionic cap open android // 安卓studio 中打開安卓專案
+
+2 打包
+1）安裝android studio
+
+ 2）  安裝 SDK  sdktools 28 03
+
+ 3）gradle.properties 配置文件中加入 代理配置
+
+  systemProp.http.proxyPassword=l350z101316
+systemProp.http.proxyHost=10.191.131.45
+systemProp.https.proxyPort=3128
+systemProp.https.proxyUser=H0594499
+systemProp.https.proxyHost=10.191.131.45
+systemProp.https.proxyPassword=l350z101316
+systemProp.http.proxyPort=3128
+systemProp.http.proxyUser=H0594499
+
+4）創建jks簽名文檔
+
+
+

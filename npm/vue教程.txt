@@ -24,3 +24,10 @@ $refs只会在组件渲染完成之后生效，并且它们不是响应式的。
 var MyComponent = Vue.extend({
   // 选项...
 })
+
+//卸載舊版本
+npm uninstall vue-cli -g
+
+//再安装Vue CLI 3
+
+npm install -g @vue/cli

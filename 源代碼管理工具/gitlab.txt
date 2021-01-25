@@ -345,6 +345,22 @@ git config --global core.autocrlf false
 git config --global --unset http.proxy
 
 git config --global --unset https.proxy
+
+#git 設置代理
+git config --global http.proxy http://H0594499:l350z101316@10.191.131.45:3128
+
+git config --global https.proxy  https://H0594499:l350z101316@10.191.131.45:3128
+
+
+
+#合併 與推送
+
+git checkout dev
+git pull
+git checkout master
+git merge dev
+git push -u origin master
+ 
  
 
 

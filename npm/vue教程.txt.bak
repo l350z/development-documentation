@@ -1,0 +1,26 @@
+1 ref 被用来给DOM元素或子组件注册引用信息。引用信息会根据父组件的 $refs 对象进行注册。如果在普通的DOM元素上使用，引用信息就是元素; 如果用在子组件上，引用信息就是组件实例
+$refs:一个对象，持有注册过 ref 特性 的所有 DOM 元素和组件实例
+注意：只要想要在Vue中直接操作DOM元素，就必须用ref属性进行注册，
+$refs只会在组件渲染完成之后生效，并且它们不是响应式的。这只意味着一个直接的子组件封装的“逃生舱”——你应该避免在模板或计算属性中访问 $refs
+
+2 state
+1）state -->状态树：定义需要管理的数组、对象、字符
+
+2）getter --> 类似计算属性，当需要从store的state中派生出一些状态，就需要使用getter，getter会接受state作为第一个参数，
+而getter的返回值会根据它的依赖缓存起来，只有getter中的依赖值发生改变才回重新计算
+
+3）mutation --> 更改store中state状态的唯一方法就是提交mutation。每个mutation都有一个字符串类型的事件和一个回调函数，
+我们需要改变state的值就要在回调函数中改变。我们要执行这个回调函数，那么我们需要执行一个相应的调用方法：store.commit
+
+4）action -->action可以提交mutation，在action中可以执行store.commit，而且action中可以有任何的一步操作。在页面中如果
+要使用action，则需要执行store.dispatch
+
+5）module -->module其实只是解决了当state中很复杂臃肿的时候，module可以将store分割成模块，每个
+模块中拥有自己的state，mytation，action和getter
+
+6)用了单一状态管理库vuex，dispatch派发了一个异步动作，路径惯例为前端接口（与前端代码交互，向后端发送请求，通常为二道贩子，存在于你的js模块下）
+
+3  創建一個組件構造器
+var MyComponent = Vue.extend({
+  // 选项...
+})
