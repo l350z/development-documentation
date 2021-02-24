@@ -28,4 +28,28 @@ systemProp.http.proxyUser=H0594499
 4）創建jks簽名文檔
 
 
+二.androidStudio 模擬器鏈接內部網絡
+
+1.顯示所有的虛擬機
+F:\Android\SDK\emulator> .\emulator -list-avds
+
+2. 設置內部網絡路由IP
+
+.\emulator -avd vivoNexAPI -dns-server 10.84.108.1
+
+三.root 模擬機（API）
+adb root
+
+adb shell
+
+getprop
+
+                     # setprop net.eth0.dns1 10.84.108.1
+generic_x86:/ # setprop net.dns1 10.84.108.1
+
+
+
+
+
+
 

@@ -350,6 +350,26 @@ git config --global --unset https.proxy
 git config --global http.proxy http://H0594499:l350z101316@10.191.131.45:3128
 
 git config --global https.proxy  https://H0594499:l350z101316@10.191.131.45:3128
+
+
+
+#合併 與推送
+
+git checkout dev
+git pull
+git checkout master
+git merge dev
+git push -u origin master
+
+
+ssh-keygen -t rsa -C "xxxxx@xxxxx.com" 
+ssh -T  lizhen-2160@163.com@gitee.com
+
+cat ~/.ssh/id_rsa.pub
+
+
+
+
  
  
 
