@@ -375,6 +375,15 @@ ssh-keygen -t rsa -C 'yourEmail@xx.com' -f ~/.ssh/gitlab-rsa
 
 ssh-keygen -t rsa -C 'yourEmail2@xx.com' -f ~/.ssh/github-rsa
 
+//解決 unable to connect to github.com 
+https://github.com/npm/npm/issues/6285 
+
+git config --global url.https://github.com/.insteadOf git://github.com/
+
+//安裝 npm package
+
+https://docs.abp.io/en/abp/latest/Modules/Docs 
+
 
 
  

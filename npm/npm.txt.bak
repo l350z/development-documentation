@@ -36,3 +36,6 @@ npm run build
 
 13 yarn 打包
 yarn build
+
+14 ionic 打包
+ionic build --prod

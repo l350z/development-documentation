@@ -119,3 +119,14 @@ C2.年度績效獎金預算係數為{0}%，預算總額{1}
 ①月薪资超出级距部份发放专案奖金,此部份不列入加班费及年奖金计算基数;
 ②责任制薪资方有"月绩效奖金",月绩效奖金季度考评按月发放,实际发放额度由部门主管结合个人工作表现及绩效按季度考评定,额度评定幅度为±50%(
 试用期内参与考核但发放额度依据预算执行,试用期满考核合格后依最近一季考核结果额度发放),不列入五险一金及奖金基数.
+
+
+********************
+
+ **************29.申請單拒單后,管制編號舊狀態 更新成管制編號中的原始狀態
+
+    update dat_Fixture_Items set status=a.old_status 
+   
+   from (select Fixture_Code fixtureCode,old_status from dat_apps_items where apps_no='10201407140013') a
+   
+   where Fixture_Code =a.fixtureCode

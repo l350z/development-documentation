@@ -1,0 +1,121 @@
+
+
+1 hrsop系統 
+select *  from [dbo].[Sheet1$]
+
+insert into AbpLanguageTexts(LanguageName,Source,[Key],Value, CreationTime) select *,GETDATE() from  [dbo].[Sheet1$]
+
+
+insert into AbpLanguageTexts values(null,'zh-TW','HrSop','Common.Message.CurrentUserNotRes','當前用戶非責任人!',null,null,GETDATE(),null);
+insert into AbpLanguageTexts values(null,'zh-CN','HrSop','Common.Message.CurrentUserNotRes',N'当前用户非责任人!',null,null,GETDATE(),null);
+insert into AbpLanguageTexts values(null,'zh-US','HrSop','Common.Message.CurrentUserNotRes','The current user is not responsible!',null,null,GETDATE(),null);
+
+2 idl系統
+select *  from appMPHRs
+
+
+select *  from AbpAuditLogs order by ExecutionTime desc
+
+select *  from AbpLanguageTexts where [key]='Common.NTD'
+
+update appMPHRs set CreatorUserId='31' where PID='19161989'
+
+select *  from hrlCurriculumVitaes where id=58
+
+update hrlCurriculumVitaes set GraduateDate='2018-11-03 12:20:40.583' where id=58
+
+select *  from appCandidates where id=92
+
+select *  from AbpLanguageTexts where value like '%級距%'
+select *  from AbpLanguageTexts where [Key]='Common.USD'
+
+select *  from appSalaryAssessments where CandidateId=120
+
+select *  from pubParameters where [Type]=46
+
+select *  from AbpSettings order by CreationTime desc
+88AC09B1-058D-423D-846B-756A35231FCB
+select *  from AbpLanguageBasecodes where TextKey='497EA5CE-83AA-42D5-A0E3-DBF82B9B5E43'
+
+update AbpLanguageBasecodes set TextValue=N'C2.年度绩效奖金预算系数为{0}%，预算总额{1}' where id=28283
+update AbpLanguageBasecodes set TextValue='C2.年度績效獎金預算係數為{0}%，預算總額{1}' where id=27598
+update AbpLanguageBasecodes set TextValue='C2. Annual performance incentivie bonus budget coefficient is {0}%.Estimated total budget is {1}' where id=27597
+select *  from extProcesses where pid='19162985'
+
+select *  from appMPHRs order by CreationTime desc
+
+update appMPHRs set BUName='aa',BUManager='bbb',SBUName='cc',SBUManager='ddd',SubBUName='ee',SubBUManager='fff' where PID='19161989'
+
+select *  from pubParameters where id=177
+
+select *  from V_Processes where pid='19162985'
+
+select *  from appCandidates where id=120
+
+select *  from extProcesses where id=389
+
+update extProcesses set TOwnerCode='H0594499',TOwnerName='李振' where id in (385,389)
+
+
+select *  from AbpLanguageTexts where Value like'%項目%'
+select *  from AbpLanguageTexts where Value='/年'
+
+select *  from AbpLanguageTexts where [Key]='Field.MPHR.SalaryGap'
+select *  from AbpLanguageTexts where [Key]='Field.MPHR.AnnualGap'
+select *  from AbpLanguageTexts where [Key]='Field.MPHR.MonthBasicSalary'
+select *  from AbpLanguageTexts where [Key]='Field.MPHR.MoneyAmount'
+
+update AbpLanguageTexts set Value='月薪級距' where Id=3894
+update AbpLanguageTexts set Value=N'月薪级距' where Id=3895
+update AbpLanguageTexts set Value=N'月基本薪资{0}' where Id=3869
+update AbpLanguageTexts set Value='月基本薪資{0}' where Id=3870
+update AbpLanguageTexts set Value=N'月绩效奖金{0}' where Id=3871
+update AbpLanguageTexts set Value='月績效獎金{0}' where Id=3872
+
+update AbpLanguageTexts set Value=N'月专案奖金{0}' where Id=3873
+update AbpLanguageTexts set Value='月專案獎金{0}' where Id=3874
+
+update AbpLanguageTexts set Value=N'合计:A1+A2+A3{0}' where Id=3883
+update AbpLanguageTexts set Value='合計:A1+A2+A3{0}' where Id=3884
+update AbpLanguageTexts set Value=N'{0}{1}(原公司年薪总和)' where Id=3885
+update AbpLanguageTexts set Value='{0}{1}(原公司年薪總和)' where Id=3886
+update AbpLanguageTexts set Value='{0}{1} (Former Total Annual Salary)' where Id=3983
+insert into AbpLanguageTexts values(null,'zh-TW','IDLRecruit','Common.AnnualSalaryUnit','/年',null,null,GETDATE(),null);
+insert into AbpLanguageTexts values(null,'zh-CN','IDLRecruit','Common.AnnualSalaryUnit',N'/年',null,null,GETDATE(),null);
+insert into AbpLanguageTexts values(null,'zh-US','IDLRecruit','Common.AnnualSalaryUnit','by Year',null,null,GETDATE(),null);
+
+insert into AbpLanguageTexts values(null,'zh-TW');
+
+select *  from pubParameters where [Type]=53
+
+
+SET IDENTITY_INSERT   dbo.pubParameters on
+insert into dbo.pubParameters values(46,'INR','B46D11A3-6B33-4EDB-93B7-79F1EE5D095E',0,'Common.INR',4,0,null,null,'2019-01-11 11:26:07.073',1,'2019-01-03 18:01:36.427',335,1,null,null)
+insert into pubParameters values(46,'VND','F0D1F208-C721-4A59-9679-EB5FC281AC1B',0,'Common.VND',5,0,null,null,'2019-01-11 11:09:02.580',1,'2019-01-11 11:09:02.450',1,1,null,null)
+go
+SET IDENTITY_INSERT dbo.pubParameters off
+
+
+SET IDENTITY_INSERT  [dbo].[AbpLanguageBasecodes] ON;
+insert into [dbo].[AbpLanguageBasecodes] values('en-US','B46D11A3-6B33-4EDB-93B7-79F1EE5D095E','INR',0,null,null,'2019-01-11 11:26:07.073',1,'2019-01-03 18:01:36.427',335)
+insert into [dbo].[AbpLanguageBasecodes] values('zh-CN','B46D11A3-6B33-4EDB-93B7-79F1EE5D095E',N'印度卢比',0,null,null,'2019-01-11 11:26:07.073',1,'2019-01-03 18:01:36.443',335)
+insert into [dbo].[AbpLanguageBasecodes] values('zh-TW','B46D11A3-6B33-4EDB-93B7-79F1EE5D095E','印度盧比',0,null,null,'2019-01-11 11:26:07.073',1,'2019-01-03 18:01:36.473',335)
+insert into [dbo].[AbpLanguageBasecodes] values('en-US','F0D1F208-C721-4A59-9679-EB5FC281AC1B','VND',0,null,null,null,null,'2019-01-11 11:09:02.450',1)
+insert into [dbo].[AbpLanguageBasecodes] values('zh-CN','F0D1F208-C721-4A59-9679-EB5FC281AC1B',N'越南盾',0,null,null,null,null,'2019-01-11 11:09:02.490',1)
+insert into [dbo].[AbpLanguageBasecodes] values('zh-TW','F0D1F208-C721-4A59-9679-EB5FC281AC1B','越南盾',0,null,null,null,null,'2019-01-11 11:09:02.557',1)
+go
+
+
+C2.年度绩效奖金预算系数为{0}%，预算总额{1}
+C2. Annual performance incentivie bonus budget coefficient is {0}%.Estimated total budget is {1}
+C2.年度績效獎金預算係數為{0}%，預算總額{1}
+
+
+①月薪超出級距部份發放專案獎金,此部份不列入加班費及年獎金計算基數;
+
+②責任制薪資方有"月績效獎金",月績效獎金季度考評按月發放,實際發放額度由部門主管結合個人工作表現及績效按季度考評定,額度評定幅度為±50%(
+試用期內參與考核但發放額度依據預算執行,試用期滿考核合格后依最近一季考核結果額度發放),不列入五險一金及獎金基數.
+
+①月薪资超出级距部份发放专案奖金,此部份不列入加班费及年奖金计算基数;
+②责任制薪资方有"月绩效奖金",月绩效奖金季度考评按月发放,实际发放额度由部门主管结合个人工作表现及绩效按季度考评定,额度评定幅度为±50%(
+试用期内参与考核但发放额度依据预算执行,试用期满考核合格后依最近一季考核结果额度发放),不列入五险一金及奖金基数.

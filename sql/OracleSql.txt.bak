@@ -61,3 +61,7 @@ ALTER DATABASE SET TIME_ZONE='+08:00';修改之后，重新启动Oracle数据库
 select to_char(current_timestamp at time zone dbtimezone,'dd-mon-rr hh:mi:ss am') from dual;
 
 select to_char(current_timestamp at time zone dbtimezone,'dd-mon-rr hh24:mi:ss ') from dual;
+
+4 修改字段名
+
+          alter table L_OS_SCRAP_ITEM rename COLUMN SAP_ERROR_MSG to ERROR_MESSAGE;

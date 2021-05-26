@@ -65,3 +65,16 @@ select to_char(current_timestamp at time zone dbtimezone,'dd-mon-rr hh24:mi:ss '
 4 修改字段名
 
           alter table L_OS_SCRAP_ITEM rename COLUMN SAP_ERROR_MSG to ERROR_MESSAGE;
+
+
+
+	  10 批量更新價格 （非常重要）
+
+update l_os_scrap_item t2
+   set (t2.scrap_value) =
+       (select t.cost *  t2.scrap_quantity 
+          from l_os_material_cost t 
+         where t.material = t2.material and t2.bucket_id='91003' and t.plant_code='FI20')
+ where exists (select 1 from l_os_material_cost t where t.material = t2.material)
+ and t2.bucket_id='91003' 
+
