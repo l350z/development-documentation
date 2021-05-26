@@ -5,3 +5,7 @@ Update-Database
 Update-Database -TargetMigration    簎计沮畐
 
 Add-Migration InitCreate  -force 眏磅︽ 
+
+//abp Cli 相关
+//安装 dotnet tool install -g Volo.Abp.Cli
+//更新 dotnet tool update -g Volo.Abp.Cli
