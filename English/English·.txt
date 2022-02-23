@@ -1,0 +1,10 @@
+Hi Every one:
+                  The changes to the new requirements of the two systems have been completed.
+Special changes  are  as follows：
+                 1. OneScrap System
+                    ① Added batch delete tickets function in different EMRR NO. 
+                    ② Added new Clumns AREA  when Upload tickets.
+                    ③ The ticket select  approve is other account=> only the other account can see & approve those tickets.
+            2.OneScrap Report
+               Added new Clumns AREA for filter and query list.
+Please release them in QA Server first. Release to the production environment after passing the test.    
