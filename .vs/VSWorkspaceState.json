@@ -1,17 +1,9 @@
-<<<<<<< HEAD
 {
   "ExpandedNodes": [
     "",
-    "\\命令",
+    "\\English",
     "\\源代碼管理工具"
   ],
-  "SelectedNode": "\\命令\\註冊服務.txt",
+  "SelectedNode": "\\源代碼管理工具\\gitlab.txt",
   "PreviewInSolutionExplorer": false
-=======
-{
-  "ExpandedNodes": [
-    ""
-  ],
-  "PreviewInSolutionExplorer": false
->>>>>>> 2c03b3bb9b3f48215068f43b76c389278c230fc5
 }

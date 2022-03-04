@@ -93,6 +93,8 @@ $ time git clone http://10.84.111.202/TEST/hellotest MyProject
 
 回歸
 git reset --hard commitID  
+git reset HEAD^
+
 
 查看操作日誌
 git reflog
