@@ -537,6 +537,11 @@ $ git push origin –tags # 将本地所有标签一次性提交到git服务器
 
 3. cat  test.txt   查看某个文件
 
+回滾
+
+git reset HEAD^
+
+
 
 
  
