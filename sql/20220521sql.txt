@@ -1,0 +1,126 @@
+KM » DB » SQL » 
+
+ 
+常用語句
+•將列表中多行數據合併爲一行
+
+1.使用指定字段法
+    declare @ret nvarchar(max)
+    set @ret = ''
+     select @ret=@ret +Role_Name+',' from dbo.v_Role_Member  
+            where user_code= 'H0755830'  
+     PRINT @ret
+
+
+2.STUFF （（select * from FOR XML PATH('')),1,1,'')
+  SELECT  　 STUFF(
+(SELECT DISTINCT';'+b.User_Email 
+   FROM dbo.usy_User_Role  a 
+　　　　　 　LEFT JOIN dbo.usy_User b ON a.Factory_Code=b.Factory_Code AND a.User_Code=b.User_Code
+　　　　　　　WHERE a.Role_Code LIKE '%dcc%' AND a.Factory_Code='BJ' FOR XML PATH('')),1,1,'')　AS Email 
+
+SELECT tb.appsid,
+    eqTest=
+    STUFF(
+    (
+    　　SELECT ','+Control_Name+'('+Control_Code+')' FROM dbo.dat_CalibrationEqList WHERE AppsID=tb.AppsID for xml path('') 
+    ),1,1,'')
+
+     FROM  [dbo].[dat_CalibrationEqList] tb      GROUP BY  appsid
+
+
+常見SQL語句在LINQ中的使用¶
+
+1.sql中 NOT IN or IN 在linq中的使用
+List<string> empNoList = new List<string>();
+        empNoList.Add("H0755830"); 
+        empNoList.Add("H0766838");
+        empNoList.Add("H0535030");
+        empNoList.Add("F3205780");
+        var query = _employeeRepository
+              .Where(x => !empNoList.Contains(x.EmpNo))
+              .WhereIf(!string.IsNullOrEmpty(userCode), x => x.EmpNo.Equals(userCode));
+        var employeeList = query  .ToList();
+
+
+2.SQl中 a Stuff and XML PATH(SQL) in Linq or Lambda
+第一種使用Group by
+var qParas = (from p in _buManager.QueryUserBu.WhereIf(input.BuId!=null, x => x.BuId.Equals(input.BuId))
+                      join b in _buManager.QueryBu  on p.BuId equals b.Id
+                      join u in _buManager.QueryUsers.WhereIf(!string.IsNullOrEmpty(input.UserCode), x => x.UserName.Contains(input.UserCode))
+                      .WhereIf(!string.IsNullOrEmpty(input.UserName), x => x.Name.Contains(input.UserName))
+                      on p.UserId equals u.Id
+
+                      select new UserBuOutput()
+                      {
+                          UserId = p.UserId,
+                          BuId = p.BuId,
+                          UserCode = u.UserName,
+                          UserName = u.Name,
+                          BuCode=b.Code,
+                          BuName=b.Name
+
+                      });
+        var buList = qParas.ToList();
+        var query = buList.GroupBy(t => new { t.UserId, t.UserCode, t.UserName })
+       .Select(g => new UserBuOutput { UserId = g.Key.UserId, UserCode = g.Key.UserCode, UserName = g.Key.UserName, BuCode = string.Join(",", g.Select(s => s.BuCode).ToArray()), BuName = string.Join(",", g.Select(s => s.BuName).ToArray()) });
+
+        var buQuery = query.AsQueryable();//主要用來爲PageBy服務的，如果不使用PageBy,可以簡化，直接toList()
+        var buinfo = buQuery.OrderBy(input.Sorting).PageBy(input).ToList();
+
+
+第二種 使用關鍵字 Let
+var newDetailTotal = from f in forDetailTotal.ToList()
+                             group f by f.Id into g
+                             let Recruiters = g.Select(b => b.Recruiter.ToString()).ToArray()
+                             select new MPRAllOutput
+                             {
+                                 Id = g.FirstOrDefault().Id,
+                                 PostName = g.FirstOrDefault().PostName,
+                                 JobSeriesName = g.FirstOrDefault().JobSeriesName,
+                                 PostionName = g.FirstOrDefault().PostionName,
+                                 Emp1 = g.FirstOrDefault().Emp1, 
+                                 Recruiter = String.Join(",", Recruiters) == "" ? "-" : String.Join(",", Recruiters)
+                             };
+
+
+
+3.SQL中求和 in Linq
+  var query = (from j in _mRPManager.Jobs.Where(x => x.RecruitmentTypeId.Value.Equals(RecruitmentTypeId)) 
+                                 join jb in _cMRManager.JobWithNames on j.JobBaseId equals jb.Id
+                                 join ass in _cMRManager.CmrAssignment on j.ProjectId equals ass.ProjectId
+                                 group ass by new { jb.Name, jb.Id } into g
+                                 select new MPRReachedStatisticDto
+                                 {
+                                     PostName = g.Key.Name,//崗位名稱
+                                     PostId = g.Key.Id,
+                                     RequestQty = g.Sum(c => c.AssignedQty),//分派的數據
+                                     HiredQty = g.Sum(c => c.HiredQty)//達成的數量
+                                 }
+                   ).ToList();
+
+
+
+4.Enum 
+public enum Roles
+{
+    Administrator = 1,
+    Headquarters = 2,
+    Branch = 3,
+    Driver = 4,
+    Client = 5
+}
+var roles = Enum.GetValues(typeof(Roles)).Cast<Roles>()
+        .Select(r => new { Value = (int)r, Name = r.ToString() }).ToList();
+
+
+you can then use this in your Linq query, for example:
+var roles = Enum.GetValues(typeof(Roles)).Cast<Roles>()
+        .Select(r => new { Value = (int)r, Name = r.ToString() }).ToList();
+
+var users = from u in ApplicationUser
+        join r in roles on u.Role equals r.Value
+        select new {Name = u.Name, RoleId = u.Role, RoleDescription = r.Name} ;
+
+1.sql中 group by having 在linq中的使用
+tasks.GroupBy(x => x.Name).Where(l => l.Count() > 1)
