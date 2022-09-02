@@ -1,20 +1,20 @@
-1 °õ¦æionic ©R¥O
-ionic build  // µo§Gionic
+1 åŸ·è¡Œionic å‘½ä»¤
+ionic build  // ç™¼ä½ˆionic
 
-ionic cap add android  //³Ð«Ø¦w¨ô±M®×
+ionic cap add android  //å‰µå»ºå®‰å“å°ˆæ¡ˆ
 
-ionic cap copy //±Nµo§G¦Zªº±M®×«þ¨©¨ì¦w¨ô±M®×¤¤
+ionic cap copy //å°‡ç™¼ä½ˆåŽçš„å°ˆæ¡ˆæ‹·è²åˆ°å®‰å“å°ˆæ¡ˆä¸­
 
-ionic cap sync //¦P¨B¥»¾÷¥N½X
+ionic cap sync //åŒæ­¥æœ¬æ©Ÿä»£ç¢¼
 
-ionic cap open android // ¦w¨ôstudio ¤¤¥´¶}¦w¨ô±M®×
+ionic cap open android // å®‰å“studio ä¸­æ‰“é–‹å®‰å“å°ˆæ¡ˆ
 
-2 ¥´¥]
-1¡^¦w¸Ëandroid studio
+2 æ‰“åŒ…
+1ï¼‰å®‰è£android studio
 
- 2¡^  ¦w¸Ë SDK  sdktools 28 03
+ 2ï¼‰  å®‰è£ SDK  sdktools 28 03
 
- 3¡^gradle.properties °t¸m¤å¥ó¤¤¥[¤J ¥N²z°t¸m
+ 3ï¼‰gradle.properties é…ç½®æ–‡ä»¶ä¸­åŠ å…¥ ä»£ç†é…ç½®
 
   systemProp.http.proxyPassword=l350z101316
 systemProp.http.proxyHost=10.191.131.45
@@ -25,19 +25,34 @@ systemProp.https.proxyPassword=l350z101316
 systemProp.http.proxyPort=3128
 systemProp.http.proxyUser=H0594499
 
-4¡^³Ð«ØjksÃ±¦W¤åÀÉ
+4ï¼‰å‰µå»ºjksç°½åæ–‡æª”
+
+"keytool -importkeystore -srckeystore F:\LearnPlatformOnline\aaa.jks -destkeystore F:\LearnPlatformOnline\aaa.jks -deststoretype pkcs12
 
 
-¤G.androidStudio ¼ÒÀÀ¾¹Ãì±µ¤º³¡ºôµ¸
+ç”Ÿæˆç§˜é‘°
+keytool -genkeypair -alias mytest -keyalg RSA -keypass mypass -keystore mytest.jks -storepass mypass 
+ç­¾åæ–¹æ³•ä¸€:æŠŠç§˜é‘°æ–‡ä»¶å’Œapkæ”¾åœ¨åŒä¸€ä¸ªæ–‡ä»¶å¤¹ä¸‹é¢
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore lim-app.jks android-release-unsigned.apk lim-app
+#lim-app.jksï¼šè¯ä¹¦æ–‡ä»¶åç§°ï¼Œandroid-release-unsigned.apkï¼šè¦ç­¾åçš„apkåç§°ï¼Œlim-appï¼šè¯ä¹¦åˆ«å
 
-1.Åã¥Ü©Ò¦³ªºµêÀÀ¾÷
+ä½œè€…ï¼šåŒ¿äºŽçƒŸç«ä¸­
+é“¾æŽ¥ï¼šhttps://www.jianshu.com/p/b6a1a64a9dec
+æ¥æºï¼šç®€ä¹¦
+è‘—ä½œæƒå½’ä½œè€…æ‰€æœ‰ã€‚å•†ä¸šè½¬è½½è¯·è”ç³»ä½œè€…èŽ·å¾—æŽˆæƒï¼Œéžå•†ä¸šè½¬è½½è¯·æ³¨æ˜Žå‡ºå¤„ã€‚
+
+
+
+äºŒ.androidStudio æ¨¡æ“¬å™¨éˆæŽ¥å…§éƒ¨ç¶²çµ¡
+
+1.é¡¯ç¤ºæ‰€æœ‰çš„è™›æ“¬æ©Ÿ
 F:\Android\SDK\emulator> .\emulator -list-avds
 
-2. ³]¸m¤º³¡ºôµ¸¸ô¥ÑIP
+2. è¨­ç½®å…§éƒ¨ç¶²çµ¡è·¯ç”±IP
 
 .\emulator -avd vivoNexAPI -dns-server 10.84.108.1
 
-¤T.root ¼ÒÀÀ¾÷¡]API¡^
+ä¸‰.root æ¨¡æ“¬æ©Ÿï¼ˆAPIï¼‰
 adb root
 
 adb shell

@@ -39,3 +39,6 @@ yarn build
 
 14 ionic 打包
 ionic build --prod
+
+15 安裝viewjs插件
+npm install viewerjs

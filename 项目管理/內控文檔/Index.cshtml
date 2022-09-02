@@ -1,0 +1,137 @@
+﻿@page
+@using Microsoft.Extensions.Localization
+@using Fih.FileManagement.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Volo.Abp.AspNetCore.Mvc.UI.Theming
+@using Microsoft.AspNetCore.Authorization
+@using Fih.FileManagement.Permissions
+@using Fih.FileManagement.Web.Menus
+@model Fih.FileManagement.Web.Pages.FileManagement.IndexModel
+@inject IStringLocalizer<FileManagementResource> L
+@inject IAuthorizationService Authorization
+@inject IThemeManager ThemeManager
+@{ ViewBag.PageTitle = L[FileManagementMenus.Files].Value; }
+@inject IPageLayout PageLayout
+
+@{ PageLayout.Content.Title = L[FileManagementMenus.Files].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:DocumentManagement"].Value);
+    PageLayout.Content.MenuItemName = FileManagementMenus.Files;
+    Layout= ThemeManager.CurrentTheme.GetLayout(StandardLayouts.Empty);
+    }
+@{
+     <link href="/libs/datepicker/datepicker.css" rel="stylesheet" media="all">
+}
+
+@section scripts {
+    <abp-script src="/libs/datepicker/moment.min.js"></abp-script>
+    <abp-script src="/libs/datepicker/datepicker.all.js"></abp-script>
+    <abp-script src="/Pages/FileManagement/Index.js" />
+}
+
+
+<div class="m-t-20">
+    <input type="hidden" id="treeNodeId" value="@Model.TreeNodeId" />
+    <abp-card style="height:740px;" class="m-l--180">
+        <abp-card-header>
+            <abp-row>
+                <abp-column size-md="_4" size-xl="_6">
+                    <abp-row>
+                        <abp-column size-md="_4" class="text-left">
+                            <div class="label-wrapper"> <label class="col-form-label">@L["文件編碼"]：</label></div>
+                          
+                        </abp-column>
+                        <abp-column size-md="_8" size-xl="_6">
+                            <input type="text" runat="server" class="form-control text-box single-line" id="FileCode" name="FileCode" placeholder="@L["文件編碼"].Value" />
+                        </abp-column>
+                    </abp-row>
+
+                </abp-column>
+                <abp-column size-md="_4" size-xl="_6">
+                    <abp-row>
+                        <abp-column size-md="_4" class="text-left">
+                            <div class="label-wrapper"> <label class="col-form-label">@L["文件名"]：</label></div>
+                        </abp-column>
+                        <abp-column size-md="_8" size-xl="_6">
+                            <input type="text" runat="server" class="form-control text-box single-line" id="FileName" name="FileName" placeholder="@L["文件名"].Value" />
+                        </abp-column>
+                    </abp-row>
+
+                </abp-column>
+
+
+            </abp-row>
+            <abp-row class="p-t-10">
+                <abp-column size-md="_4" size-xl="_6">
+                    <abp-row>
+                        <abp-column size-md="_4" class="text-left">
+                            <div class="label-wrapper">
+                                <label class="col-form-label">@L["創建時間"]：</label>
+                            </div>
+                        </abp-column>
+                        <abp-column size-md="_8" size-xl="_6">
+                            <div class="c-datepicker-date-editor  J-datepicker-range-day mt10">
+                                <i class="c-datepicker-range__icon kxiconfont icon-clock"></i>
+                                <input placeholder="@L["創建起始時間"]" name="beginTime" id="beginTime" class="c-datepicker-data-input only-date" value="">
+                                <span class="c-datepicker-range-separator">-</span>
+                                <input placeholder="@L["創建截止時間"]" name="endTime" id="endTime" class="c-datepicker-data-input only-date" value="">
+                            </div>
+                        </abp-column>
+                    </abp-row>
+                </abp-column>
+            </abp-row>
+
+
+        </abp-card-header>
+        <abp-card-body>
+            <abp-card-text>
+                <abp-row h-align="Start">
+                    <abp-column class="p-l-30" size="_3">
+                        <abp-button id="btnSearch"
+                                    text="@L["查詢"].Value"
+                                    icon="search"
+                                    button-type="Success" size="Small" />
+
+
+                        @*@if (await Authorization.IsGrantedAsync(FileManagementPermissions.Files.Create))
+                        {*@
+                            @*<abp-dropdown>
+                                      <abp-dropdown-button button-type="Primary" icon="plus" text="@L["CreateANewProject"].Value" />
+                                      <abp-dropdown-menu align="Right">
+                                          <abp-dropdown-item href="#" id="CreateNewGithubProjectButtonId"><i class="fa fa-github"></i> GitHub</abp-dropdown-item>
+                                      </abp-dropdown-menu>
+                                </abp-dropdown>*@
+
+                                        <abp-button id="btnFileAdd"
+                                                    text="@L["新增"].Value"
+                                                    icon="plus"
+                                                    button-type="Primary" size="Small" />
+                                                    @*}*@
+
+
+                        <abp-button id="btnRefresh"
+                                    text="@L["刷新"].Value"
+                                    icon="sync"
+                                    button-type="Warning" size="Small" />
+                    </abp-column>
+
+                </abp-row>
+
+                <abp-card-body>
+
+                    <abp-table striped-rows="true" id="FilesTable" class="nowrap">
+                        @*<thead>
+                            <tr>
+                                <th>@L["操作"]</th>
+                                <th>@L["文件名稱"]</th>
+                                <th>@L["文件類型"]</th>
+                                <th>@L["創建人"]</th>
+                                <th>@L["創建時間"]</th>
+                            </tr>
+                        </thead>*@
+                    </abp-table>
+                </abp-card-body>
+
+            </abp-card-text>
+        </abp-card-body>
+    </abp-card>
+</div>
