@@ -28,6 +28,7 @@ ul.in{list-style-position:inside;}
 </head>
 <body>
 <h4 style="color:red">網址列表</h2>
+<input class="form-control" id="AttrText" name="AttrText" onkeyup="value=value.replace(/^\d-/g, '')" type="text" value="">
 <div>
 <h6>A</h6>
 <ul class="in">
@@ -100,6 +101,7 @@ ul.in{list-style-position:inside;}
     <li><a href="https://www.iviewui.com/">IVIEW教程</a></li>
     <li><a href="https://www.jianshu.com/p/d9e9a40fdedc">IONIC視頻播放</a></li>
     <li><a href="https://ionicons.com/">IONIC 圖標</a></li>
+	<li><a href="http://www.ionic.wang/components_doc-index.html">IONIC教程</a></li>
 </ul>
 </div>
 <div>
