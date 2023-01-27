@@ -1,0 +1,11 @@
+1. cannot open git-upload-pack
+
+eclipse连接github，链接不上 cannot open git-upload-pack(git-receive-pack)
+
+2018年2月8日后禁止通过TLSv1.1协议连接https://github.com 和 https://api.github.com.
+
+原文地址为https://githubengineering.com/crypto-removal-notice/
+
+对于网上的各种方法都不行，亲测如下方法可行
+
+打开eclipse安装目录下的eclipse.ini添加一句：-Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2  就可以了

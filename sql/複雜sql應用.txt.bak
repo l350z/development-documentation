@@ -1,0 +1,66 @@
+ Disposal confirmation
+
+
+if category is NOT e-waste material -> then the qty is automatic copied from scrap ID
+mean no need manually input qty again in the  confirm qty field
+if E-waste ,then need input Qty 
+
+27467670
+
+
+https://gitlab.efihmb.com/opensource/fihidsdemo.aspnetmvc5 
+
+https://gitlab.efihmb.com/opensource
+
+https://gitlab.efihmb.com/opensource/fihidsdemo.website/blob/master/README.md
+
+
+[‎2022/‎7/‎13 上午 10:53]  ran.zhang(張冉):  
+499bf0ce-b6e3-995f-8a37-684c3271dacc
+
+
+現部門開展系統使用狀況盤點工作，請統計各自所負責的系統近期（一個月内）用戶使用狀況，包括：
+1. 日均使用用戶數量（按人統計，去除重複登錄等操作）
+2. 用戶在系統中日均新建單據數量（如果有）
+數據盡量按廠區+BU統計，將統計結果記錄到不同的廠區和BU中，有不清楚的BU可以來問我
+
+
+ SELECT C.Name,AVG(C.CNT) as CNT FROM
+  (SELECT B.Name, B.dt,COUNT(1) AS CNT FROM 
+	  (SELECT A.Name as Name,A.dt,COUNT(A.UserId) AS Users FROM
+		  ( SELECT T.TenancyName as Name, SUBSTRING(CONVERT(varchar(12),L.ExecutionTime,23),1,10) as dt,L.UserId
+		  FROM [dbo].[AbpAuditLogs] L
+		  INNER JOIN [dbo].[AbpTenants] T ON L.TenantId=T.Id
+		  WHERE ExecutionTime>='2022-07-01' AND ExecutionTime<'2022-08-01') A
+	  group by A.Name,A.dt,A.UserId)  B
+  GROUP BY B.Name,B.dt) C
+  GROUP BY C.Name 
+
+
+
+  最近没有什么新专案，大家如果有时间可以学习些新开发技术。
+后面北京车载专案需要开发APP, 我们可以考虑用VS的移动化开发方案实现。
+.NET新推出了跨平台移动开发架构MAUI(NET Multi-Platform App UI)，安装VS 17.3 Preview版本包括此安装包。
+
+
+VS Installer中选择`更多`-`更新设定`-`更新通道`-`Preview`
+
+VS2022 17.3 出正式版本了，要用MAUI不用安裝Preview版本了，如果已安裝可變更更新通道到Current后更新
+
+
+[‎2022/‎8/‎12 上午 11:06]  paul.zy.zh(a查志勇):  
+https://redmine.efihmb.com/projects/it-km/wiki/MAUI%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE 
+MAUI安装与配置 
+ 
+
+ edi [‎2022/‎8/‎22 上午 11:31]  paul.zy.zh(a查志勇):  
+https://gitlab.efihmb.com/b2b/b2b-documents 
+ 
+
+ https://gitlab.efihmb.com/b2b/b2b-documents/blob/master/03.%E5%9F%B9%E8%A8%93%E6%96%87%E6%AA%94/%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/public%20Service%20Introduction.ppt 
+
+
+ https://gitlab.efihmb.com/b2b/b2b-documents/blob/master/03.%E5%9F%B9%E8%A8%93%E6%96%87%E6%AA%94/10-EDI%20%E6%A6%82%E8%BF%B0.pptx 
+
+
+ 

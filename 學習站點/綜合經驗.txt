@@ -1,0 +1,2 @@
+另外，調用其他系統接口 ， 關了 tls.0  tls1.1  是否支持， 一般 新版本.net 的 默認就支持 ， 舊版本升級上來的 有這句話就行 ， 在做賬號中心對接的時候一般都加了 ， 保險起見 可在 global.asmx裡加上 
+ ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls | SecurityProtocolType.Ssl3;  

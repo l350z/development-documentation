@@ -1,0 +1,50 @@
+ Disposal confirmation
+
+
+if category is NOT e-waste material -> then the qty is automatic copied from scrap ID
+mean no need manually input qty again in the  confirm qty field
+if E-waste ,then need input Qty 
+
+27467670
+
+
+https://gitlab.efihmb.com/opensource/fihidsdemo.aspnetmvc5 
+
+https://gitlab.efihmb.com/opensource
+
+https://gitlab.efihmb.com/opensource/fihidsdemo.website/blob/master/README.md
+
+
+[‎2022/‎7/‎13 上午 10:53]  ran.zhang(張冉):  
+499bf0ce-b6e3-995f-8a37-684c3271dacc
+
+
+現部門開展系統使用狀況盤點工作，請統計各自所負責的系統近期（一個月内）用戶使用狀況，包括：
+1. 日均使用用戶數量（按人統計，去除重複登錄等操作）
+2. 用戶在系統中日均新建單據數量（如果有）
+數據盡量按廠區+BU統計，將統計結果記錄到不同的廠區和BU中，有不清楚的BU可以來問我
+
+
+ SELECT C.Name,AVG(C.CNT) as CNT FROM
+  (SELECT B.Name, B.dt,COUNT(1) AS CNT FROM 
+	  (SELECT A.Name as Name,A.dt,COUNT(A.UserId) AS Users FROM
+		  ( SELECT T.TenancyName as Name, SUBSTRING(CONVERT(varchar(12),L.ExecutionTime,23),1,10) as dt,L.UserId
+		  FROM [dbo].[AbpAuditLogs] L
+		  INNER JOIN [dbo].[AbpTenants] T ON L.TenantId=T.Id
+		  WHERE ExecutionTime>='2022-07-01' AND ExecutionTime<'2022-08-01') A
+	  group by A.Name,A.dt,A.UserId)  B
+  GROUP BY B.Name,B.dt) C
+  GROUP BY C.Name 
+
+
+
+
+3.先分區去重，在篩選昨天的數據
+SELECT a.* FROM (select ROW_NUMBER() OVER (PARTITION BY CustPartNo,company   ORDER BY CreationTime DESC ) as FID, * from EDI.Btr_InventoryBalance) as a where a.FID=1
+
+AND  CONVERT(DATE,a.ProductActivity)= DATEADD(DAY,-2,CONVERT(DATE,GETDATE()))
+
+
+
+
+ 
