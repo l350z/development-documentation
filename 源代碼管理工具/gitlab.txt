@@ -545,6 +545,10 @@ git reset HEAD^
 
 git push --set-upstream origin feature/AddGMNode
 
+安全设置问题
+
+git config http.sslVerify "false"
+
 
 
 
