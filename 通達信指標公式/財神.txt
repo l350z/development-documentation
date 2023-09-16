@@ -31,3 +31,42 @@ RSV:=(((CLOSE - LLV(LOW,33)) / (HHV(HIGH,33) - LLV(LOW,33))) * 100);
 轨迹:SMA(SMA(SMA(RSV,6,1),5,1),3,1),COLORMAGENTA;
 财神到:IF(CROSS(神仙,20),20,0),POINTDOT;
 DRAWICON((CROSS(神仙,20)),5,1);
+
+
+
+**********************************************************************************
+A:=ZIG(2,5);
+ FXDD:=A>REF(A,1) AND REF(A,2)>REF(A,1);
+ GDDZ:=IF(FXDD,REF(LOW,1),0);
+支撑位:=IF(GDDZ=0,REF(LOW,BARSLAST(FXDD)+1),REF(LOW,1));
+ ZCW:=IF(支撑位=REF(支撑位,1),支撑位,DRAWNULL);
+ 
+ B:=ZIG(1,5);
+ FXGD:=B<REF(B,1) AND REF(B,2)<REF(B,1);
+ GGDZ:=IF(FXGD,REF(HIGH,1),0);
+压力位:=IF(GGDZ=0,REF(HIGH,BARSLAST(FXGD)+1),REF(HIGH,1));
+ YLW:=IF(压力位=REF(压力位,1),压力位,DRAWNULL);
+
+SCMD1:=BARSLAST((支撑位>REF(支撑位,1)OR 支撑位<REF(支撑位,1)) AND CLOSE>支撑位);
+SCMD2:=BARSLAST(压力位>REF(压力位,1)OR 压力位<REF(压力位,1));
+
+A1:LOW-ZCW;
+A2:HIGH-YLW;
+IF(SCMD1<SCMD2,A1,A2);
+A3:DRAWTEXT(1,-0.2,'介入'),COLORRED,
+
+ IF((支撑位>REF(支撑位,1)OR 支撑位<REF(支撑位,1)) AND CLOSE>支撑位)
+
+ {DRAWTEXT(1,-0.2,'介入'),COLORRED;
+ VERLINE(1,1),COLORRED;
+ }
+ IF(压力位>REF(压力位,1)OR 压力位<REF(压力位,1))
+ {
+ DRAWTEXT(1,0.2,'止盈'),COLORYELLOW;
+ VERLINE(1,1),COLORYELLOW;
+ }
+ IF(MMSJ<0 AND REF(MMSJ,2)>0 AND SCMD2>2)
+ {
+ DRAWTEXT(1,0.2,'止损'),COLORYELLOW;
+ VERLINE(1,1),COLORYELLOW;
+ }
