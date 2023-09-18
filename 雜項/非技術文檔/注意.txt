@@ -1,0 +1,99 @@
+因為我每週要報告週報內容，大家整理週報請注意以下幾點：1.內容盡量精簡，講重點，不要寫太多細節 2.項目多時，完成項和進行中項目分開，完成項列在一起，進行中項目列在一起 3.重要事項列在前面 4.條目能合併盡量合併，減少條目 5.去除已過時的項目 6.把所有其他人文字標黑色，只留自己變更的為紅色 7. 文件名要變更，加上自己的名字以作區分
+
+
+\\10.84.111.201\Public\04_技術資料\01_開發類\02_Web開發技術\图解HTTP.pdf 
+
+\\10.84.111.201\Public\04_技術資料\01_開發類\02_Web開發技術\JavaScriptDOM编程艺术.pdf  
+
+https://objtube.github.io/front-end-roadmap/#/ 
+
+
+SELECT * FROM HUMANRESOURCEDB.HumanResourceDB.dbo.basEmployee WHERE  staffNumber='H0594499'
+
+http://gitlab.efih-foxconn.com/HR/elearning.git 
+
+
+http://redmine.efih-foxconn.com/projects/elearning 
+
+
+今日gitlab和redmine服務器Linux系統已成功升級，因服務器變更，導致gitlab服務器端hostkey變更。（個人密鑰無需變更）
+如果有使用SSH認證方式連接gitlab的同事，需要更新hostkey設置，請參考以下連接"Gitlab SSH連接設置"中"服務器遷移"內容：
+http://redmine.efih-foxconn.com/projects/it-km/wiki/Gitlab_SSH%E9%80%A3%E6%8E%A5%E8%A8%AD%E7%BD%AE
+ 
+執行以下兩行命令：
+ssh-keygen -R  "10.83.16.110"
+ssh -T git@gitlab.efih-foxconn.com
+
+可以看下源码modules中的blogging项目里的文件： PostAuthorizationHandler 
+
+，不要试图改变别人，要学会顺势
+
+ iconClass:'fa fa-book',
+                                action: function (data) {
+                                    document.location.href = abp.appPath + "Cms/Articles/Edit?ArticleId=" + data.record.id + "&ViewType=Read";
+                                } 
+
+
+				新增時候有的寫的紅星，但是沒寫值，也可以保存
+文件路徑輸入框應該是不可編輯
+文件保存成功後，沒有刷新文件列表
+
+
+http://10.83.17.58:8080  云盤地址
+
+https://sonarqube.efihmb.com/
+
+https://clouddrive.efihmb.com/s/JdHaNE5Wk34f2xM 
+Fih123456!
+
+http://10.83.17.245:9000/dashboard?id=netBase
+
+掃描命令：
+SonarScanner.MSBuild.exe begin /k:"micm" /d:sonar.host.url="https://sonarqube.efihmb.com" /d:sonar.login="38206d0e94cf5073918578c5c562ef04869afa82"
+
+MsBuild.exe /t:Rebuild
+
+SonarScanner.MSBuild.exe end /d:sonar.login="38206d0e94cf5073918578c5c562ef04869afa82"
+
+
+//維修系統
+https://10.84.111.216/ 
+
+
+       var list = (from workExperience in WorkExperience
+                        where (from senioritySalarie in _mPHRManager.SenioritySalarys.Where(x => x.SalaryAssessmentId == SalayAssessmentId).Select(p => p.JobId).Distinct() select senioritySalarie).Contains(workExperience.Id)
+                        orderby workExperience.Id
+                        select workExperience
+                //select new WorkExperience
+                //{
+                //    Id = workExperience.Id,
+                //    Company=workExperience.Company,
+                //    ProductType=workExperience.ProductType,
+                //    Position=workExperience.Position
+                //}
+
+                ).OrderByDescending(x=>x.StartDate).ToList();
+            return list;
+
+
+pdf 轉圖片方法
+
+https://10.84.111.216/Blogging/Posts/Detail?Id=077c6395-5920-fa29-1c3d-39fd4e60a6f8&Pages=0 
+
+http://redmine.efih-foxconn.com/projects/it-km/wiki
+
+//下載abp框架前要先設置代理
+
+F:\>set HTTPS_PROXY=http://H0594499:l350z101316@10.191.131.45:3128
+
+F:\>set HTTP_PROXY=http://H0594499:l350z101316@10.191.131.45:3128
+
+ http://gitlab.efih-foxconn.com  更改为 https://gitlab.efihmb.com
+
+
+修改.ssh 文件夹里的config文件
+windows路径: C:\Users\用户名\.ssh
+添加以下行：
+Port 34727 
+
+

@@ -1,0 +1,17 @@
+var builder = new System.Text.StringBuilder();
+            abc abcModel = new abc() { FirstName = "Tom", LastName = "Torres" };
+            var test = JsonConvert.SerializeObject(abcModel);
+            builder.Append($"{test}"); 
+var fileName = "xyz.json";
+
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(test);
+
+            var content = new System.IO.MemoryStream(bytes);
+            return File(content, "application/json", fileName); 
+
+
+
+
+
+	    。1、先对文件名编码：System.Web.HttpUtility.UrlEncode(Encoding.UTF8.GetBytes(fileName)); 
+	        2、在js中，读取出fileName后，解码：decodeURIComponent(编码的文件名)

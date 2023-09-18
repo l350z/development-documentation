@@ -1,0 +1,31 @@
+     public void WriteToLog(string loginfo)
+        {
+            string path = @"D:\wwwroot\KResure\kresource\log.txt";
+            StreamWriter sw;
+            if (System.IO.File.Exists(path))
+            {
+                FileInfo file = new FileInfo(path);
+                sw = file.AppendText();
+            }
+            else
+            {
+                sw = new StreamWriter(path, true);
+            }
+            sw.WriteLine("======================================");
+            sw.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            sw.WriteLine(loginfo);
+            sw.WriteLine("======================================");
+            sw.Close();
+        }
+
+
+
+	 alter table l_os_scrap_item add (CONFIRM_QTY number ,WEIGHT NUMBER, PICTURE VARCHAR2(200) default NULL)
+       alter table l_os_cc_bucket add (GM_APPROVER VARCHAR2(50) default NULL,GMAPPROVE_DATE DATE)
+       
+        alter table l_os_scrap_item drop (GM_USERID,GMAPPROVE_DATE)
+
+
+	GMAPPROVE_DATE=#{gmApproveDate,
+		jdbcType=TIMESTAMP},
+		GM_USERID=#{gmUserId, jdbcType=VARCHAR},

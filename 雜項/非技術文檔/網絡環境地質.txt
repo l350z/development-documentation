@@ -1,0 +1,24 @@
+http://ics.foxconn.com/wlbg.pac
+
+skype：ackn-zhen.li@fih-foxconn.com   Fox-conn99
+
+vs 背景色 ： 85 123 205
+
+http://hr.efih-foxconn.com/photo/H059/H0594499.jpg
+
+
+        因原Workflow測試系統（10.83.18.217）環境較舊，現重新建立一個測試環境（http://10.83.18.212/），用於流程、任務等的測試，上次Workflow待辦任務刷新的功能也可在這上面測試，請知悉！有問題可以聯繫我們，謝謝！
+ 
+        相關信息如下：
+        1. 登錄網址：http://10.83.18.212/
+        2. 所有密碼已重置為：password
+        3. Web Service地址：http://10.83.18.212/teamflowws/teamplatefacade.asmx
+        4. 數據庫：10.83.18.212,2433，複製了正式環境9月2號的數據。
+ 
+        另外，原測試環境10.83.18.217將於一個月後廢除，請知悉！
+
+網址：https://redmine.efihmb.com   https://gitlab.efihmb.com  https://workflow.efihmb.com
+
+
+value="jdbc:oracle:thin:@10.239.73.232:1521/OneScrap" />
+
