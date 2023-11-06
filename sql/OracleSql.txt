@@ -77,4 +77,25 @@ update l_os_scrap_item t2
          where t.material = t2.material and t2.bucket_id='91003' and t.plant_code='FI20')
  where exists (select 1 from l_os_material_cost t where t.material = t2.material)
  and t2.bucket_id='91003' 
+ 
+ 
+ SELECT S1.ID AS ScrapId,CB.ID AS EMRR,S1.MATERIAL AS Material,S1.SCRAP_QUANTITY AS Qty,S1.Status_ID,S1.TRANSFER_FLAG,
+                       CF.CC_FUNCTION as FUNCTIONName,SBI.DESCRIPTION as Detection , aa.failure_desc_english as symptom,
+                      S1.Plant_Code as BU, S1.SCRAPPED_BY as CREATOR,S1.SCRAPPED_ON as CREATIONTIME 
+                    FROM L_OS_SCRAP_ITEM S1 
+                    INNER JOIN L_OS_CC_BUCKET CB ON S1.BUCKET_ID = CB.ID 
+                    INNER JOIN L_OS_STOCK_NUMBER SN ON S1.STOCK_ID = SN.ID 
+                    INNER JOIN L_OS_CC_FUNCTION CF ON CF.ID = S1.FUNCTION_ID 
+                    LEFT JOIN L_OS_COST_CENTER CC ON CF.COST_CENTER=CC.ID
+                    LEFT JOIN G_Material_PDM MP ON S1.MATERIAL=MP.MATERIAL
+                    LEFT JOIN L_OS_SCRAP_REASON SBI ON S1.REASON_ID=SBI.ID 
+                    left join  L_OS_FAILURE_CODE aa ON S1.FAILURE_CODE=aa.Failure_Code
+                    
+                    where S1.Material in('207398','0207456','0207461','0207463','0207465','0207466','31BTVM1000A',
+                    '31CNTM4000A','31LIOML000A','31LIOML003A','31LIOML004A','31LIOML005A','31LIOML006A','31OTRM9000A',
+                    '31OTRMA000A','31PISM3000A','31PISM6000A',
+                    '31PISM8000A','31WNDM3000A','SA0BWCE2010','SA0GD25L0A1','SA0MX25U160')
+                    and S1.Plant_Code='FI20' and to_char(S1.SCRAPPED_ON, 'yyyy-MM-dd hh:mi:ss')>='2023-01-01 00:00:00'
+                    and to_char(S1.SCRAPPED_ON, 'yyyy-MM-dd hh:mi:ss')<='2023-11-30 23:59:59'
+                     order by S1.SCRAPPED_ON desc,S1.Material ASC
 
