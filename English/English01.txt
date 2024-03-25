@@ -1,0 +1,2027 @@
+Hi Every one:
+
+                  The changes to the new requirements of the two systems have been completed.
+
+Special changes  are  as follows：
+
+                 1. OneScrap System
+
+                    ① Added batch delete tickets function in different EMRR NO. 
+
+                    ② Added new Clumns AREA  when Upload tickets.
+
+                    ③ The ticket select  approve is other account=> only the other account can see & approve those tickets.
+
+            2.OneScrap Report
+
+               Added new Clumns AREA for filter and query list.
+
+Please release them in QA Server first. Release to the production environment after passing the test.    
+
+New requirements for scrap tickets have been developed.I have been published them in QA server. Additional optimization content is as follows:
+
+① Add a field category cost to the ticket list.
+
+②Tickets support total price updates.
+
+③Other features include new fields category cost.
+
+④The filter field category cost  was added to the report system and  two report fields (approval name and
+
+category cost)   were added.
+
+have an change request from Hoan. so how can we create a ticket to you ? 
+
+Submit a request for change of information requirements 
+
+i do not remember which app link
+
+can you send to me back ?
+
+can access the database now. pls check it 
+
+How did you bundle the domain name '[onescrap.fushan.fihnbb.com](http://onescrap.fushan.fihnbb.com)' toIP address 10.239.73.231:8001, the default port of the domain name is 80, howto change it to 8001
+
+yes. got your question but i did not bind this DNS in the past, there was other guy did it
+
+this key in service configuration
+
+**I guess it was forwardedby apache or ngin**x
+
+That's not a question, I just wanted to see what techniques do you use to manage web applications
+
+yes, let me ask our infra guy more futher. as you know on onesrapserver use apache tomcat service only
+
+we use apache only, not use nginx 
+
+Ways to go to school. 
+
+Don' t go at the red light.   You must pay attention to the traffic lights.    I often go by subway.   I usually come on foot .
+
+Practice the conversations in the picture. Then greet your partner. 
+
+Listen and number the letters your hear.
+
+Write the missing big letter or small letter for each pair.
+
+Talk about what these letters mean.
+
+1. 
+
+for sale  待售     on sale 在出售/廉價打折出售   for 目的方向   on  狀態
+
+I 'm sorry, it's not for sale.
+
+ All the picture in this exhibition are for sale. 本次展覽中所有的繪畫作品都是出售的。
+
+ We don't want our car anynore; it is for sale. 
+
+ Tickets are on sale from the booking office.   售票處正在售票。   Among the  horses on sale he saw his own horse.
+
+ He was looking for a TV and found  one on sale. 他正在想買電視，結果找到了一台特價的。
+
+ I bought this coat  on sale. for $20 less than the original price.
+
+ I realized that was  the shirt  for me and  it was  on sale.
+
+ What size do you wear? These dress are on sale.
+
+ The yellow shorts are also $30  and the green shorts  are on sale for only $20.
+
+ 2.
+
+ We raise our heads to watch the sun rise in the east.  The price of cotton rose a lot last year. As a result, the factories had to raise the price  of  there cotton clothes.
+
+ Could you please move a little and make some room for me.
+
+ I'm trying to make room for a vegetable garden in the backyard.
+
+ Is there any room/place in the boat? yes. that place in the cornet is empty.
+
+ 3.
+
+ The book is more easily read than described.
+
+ I have a exam next week; I must hit the book now.  
+
+ Have you  booked a  holiday the year?   
+
+ The flight was already fully booked.  I' ll book a table for 5 for 6:00 p.m of this evening.
+
+ Several tourists were booking in.
+
+ 4.
+
+ I borrowed this dictionary from my teacher.   Thank you for lending me your  bike.
+
+ Your mustn't  lend it to others.
+
+ I have kept this book for only one week.
+
+ 5.
+
+ She was wearing a beautiful dress.   Could I have a look at the red dress?  
+
+ Do you have shoes to go with this dress?  
+
+ a gentleman in evening dress.  national dress  fancy dress
+
+ The play was performed in modern dress.
+
+ She dressed quickly and went out.
+
+ Dress warmly if you 're going out for a walk.
+
+ How do you normally dress for work?
+
+ I usually have to dress the kids in the mornings.
+
+ The lady was dressed in white.  She was badly ill and couldn't  get dressed herself.
+
+ She dress up like a boy to fight in the army.
+
+ The girl was poorly dressed.   He was dressed as a woman.
+
+ 6.
+
+ I'd love to, but I'm not free tomorrow.
+
+ You can try new  hobbies.
+
+ Children these days have very little free time.
+
+ He is free to do what he likes to do.
+
+ I have free tickets for the concert.
+
+ My neighbour cut my hair for free.
+
+ Children under five can see the show for free.
+
+ Is this seat free?
+
+ I'm afraid we don't have any free tables this evening.
+
+ He used his free hand to open the door.
+
+ Feel free  隨意 隨便
+
+ be free of/from    沒有。。  不受。。之苦
+
+ be free from danger
+
+ At last she was free of  pain.  最後她不再痛苦。
+
+ The city is free of thieves.  這個城市沒有竊賊
+
+ He expects to be freed quite soon.
+
+ She was freed from proson laset week. 她上週被鑒於釋放。
+
+ 7.
+
+ I' m going out for a bit-- I 'll see you  later.    後來稍後隨後
+
+ It is much later than I thought. 用做形容詞和副詞的比較級
+
+ He left home later than usual.
+
+ I called again a week later.
+
+ He bacame famous two years later.   
+
+ later on  以後  後來
+
+ We 'll discuss the matter later on.
+
+ Later on he realized his mistake.
+
+ sooner or later  遲早
+
+ You ' ll know the truth sooner or  later.
+
+ Sonner or later you ' ll have to make a decision.
+
+ 8.
+
+ off  從某物上移開  / 離開離去/     機器設備停止/    從交通工具下來/    生病度假 / 相距相隔距離   /削價 減價
+
+ Keep off the grass   勿踩草坪
+
+ Take your coat off.
+
+ She fell off her chair. 跌落
+
+ He got into his car and drove off.
+
+ I must be off now.  I must leave.
+
+ Her husband was off on a business trip somewhere, 出差
+
+ Make sure all the lights are off.
+
+ Will someone switch the fadio off?
+
+ I 'll get off at the next stop.
+
+ Everyone got off the train in time.
+
+ You look tired . Why don't  you take tomorrow off?
+
+ It' s my day off today.
+
+ My home was a long way off across the see.
+
+ With the exams now only a week off, I had to study hard.
+
+ All shirts are 10% off.
+
+ Will you discount 20% off  if  I pay in cash?
+
+ 9.so 個 such 的區別   
+
+ so是副詞用來修飾形容詞和副詞  such是形容詞用來修飾名詞，當名詞之前有另外的形容詞，則在此形容詞之前，一般
+
+ 可以用such,也可以用so， 但要注意不定冠詞a/ an 的位置。
+
+ so foolish  如此愚蠢   so exciting  如此的驚訝
+
+ such a fool  如此的傻瓜 such a thing 如此這樣的一件事情
+
+ such a nice coat= so nice a coat
+
+ so interesting a book=such an interesting book
+
+ 後面接複數名詞或不可數名詞時只能用such。
+
+ such beautiful flowers   such terrible· weather
+
+ 複數名詞或不可數名詞前有 many few  much little 時，只能用so
+
+ so many books   so few people  so much money  so little milk
+
+ what a beautiful day!  yes. it's such a nice weather. I 'd like to take a walk.
+
+ It is  so big a job, we 'll  have to be very careful.
+
+ 10.
+
+ what 引導名詞性從句(主語，賓語，同位語，表語)的具體用法。並且在所引導的從句中作主語，賓語，表語，賓補
+
+ 等名詞成分。不引導定語從句。
+
+ That's  what people call the underground in London.
+
+ That's what I want to say to you .
+
+ Your IQ isn't what determines whether you will success in your future life.
+
+ What he cares about is only money.
+
+ What you give me on my birthday is just what I want to give.
+
+ I often write what I think into my blog.
+
+ He has no idea what a remarkable woman Maggie is .
+
+ 11.
+
+ There+be+名詞+地點/時間
+
+ There is a boat in the river.
+
+ There are seven days in a week.
+
+12.
+
+What's wrong with +sb/sth  / What's  the matter with..?
+
+What's wrong with you ?
+
+13.
+
+How do you like ..?
+
+How do you like this skirt?
+
+How do you like your job?
+
+14.
+
+What do you like about? 關於你喜歡什麼
+
+What do you like about China?
+
+15.
+
+had better(not) +動詞原形   最好做某件事
+
+You'd better ask that pliceman over there.
+
+You'd better not eat too mush chocolate, or you'll get too fat.
+
+16.
+
+How+ adj/adv+主語+謂語
+
+What a/an+adj/adv+n.+主語+謂語
+
+How cold it is today.
+
+What a fine picture it is!
+
+17.Thank+sb+for(doing) sth
+
+Thank you for coming to see me.
+
+Thkan you for saying that, Nick,
+
+18.
+
+So+be/情態動詞/助動詞+主語
+
+They can speak French. So can he.
+
+I often go out for a walk after supper. So does she.
+
+19.
+
+advise / bear/command/encourage/forbid/force/hate/ intend mean   sb. to do sth.
+
+建議    忍受    命令      鼓勵         禁止    強迫  討厭    打算
+
+20.
+
+creative  有創造力的     He was a creative1 genius.  
+
+temple  寺廟  He goes to the temple regularly.
+
+mount 山峰/爬上  She mounted her horse and rode off.
+
+former 以前的/前者的  I prefer the former picture to the latter.
+
+clue /線索  =evidence proof·     The police found a clue  to her whereabouts.  警察找到關於她下落的線索。
+
+preserve /保存 保護 維持=keep / retain     Salting preserves food  from decay.  醃鹽可保持食物不腐爛。
+
+promote 促進     Kindness promotes peace   親切的行為可以促進和睦
+
+application  申請 用途     Where should I submit the application?
+
+take part in / 參與某事   You don't need strength to take part in this sport.
+
+give way to  讓步  He should give way to a younger ,more decisive leader. 他應該讓位與更年輕，更有決斷力的領導者。
+
+give birth to   生小孩   give rise to  引起 導致
+
+balance 平衡，均勻 keep balance 保持平衡  She had to hold onto the railings to keep her balance.  她不得不緊緊抓住欄杆來保持平衡。
+
+lead to  導致 = caurse /bring about /result in          Eating too much sugar can lead to obesity.
+
+proposal 提議，建議  make a proposal  提出建議
+
+The proposal found general acceptance. 這項提議被普遍接受。
+
+protest  抗議  under Protest  不情願的
+
+The riot gegan as a  peaceful protest. 暴亂是從一場和平抗議開始的。
+
+likely 可能的，可能地   (形副同形)    It's likely to be cold in November.
+
+turn ..to  向... 求助  turn out  證明是，結果是  turn over  翻轉過來
+
+In times of trouble, I  always turn to my parents for advice.
+
+committee 委員會    The committee has been dissolved.
+
+establish  建立，創立 =build up  /set up /  The brewery was esttablished in 1822.  這個啤酒廠建立與1822 年。
+
+The school has established a successful relationship with the loal  committee.
+
+limit 限度限制  She knew the limits of her power.  她知道自己的權限。 limit.. to  把某個東西限制在哪裡
+
+prevent 阻止 阻礙     =keep .. from / stop ..from
+
+We prevented the fire from spreading. 我們阻止火勢蔓延。
+
+loss 喪失損失   It's a  great loss to me. 那對我是很大的損失
+
+contribution  捐款   We received a substantial contribution.  我們收到一筆數額相當大的捐款。
+
+
+
+department     He moved to the sales department.
+
+fund  基金 The concert will raise funds for research into AIDS.  這場音樂會將為艾滋病研究籌款。
+
+within 在。。。之內  You will receive a reply within seven days. 你會在7天之內收到答復。
+
+investigate 調查，研究  Scientists are investiagting the effects of diet on fighting cancer.
+
+科學家正在研究飲食的抗癌作用。
+
+issue 重要議題 The party was divided on this issur.
+
+conduct 行為標線/ 組織安排  The prisoner was released  early because of good conduct. 
+
+這罪犯因表現良好提前釋放。
+
+
+
+document    文件，公文/記錄，記載   The spy stole secret government documents.
+
+間諜竊取了政府的秘密文件。
+
+
+
+donate 捐贈
+
+He donated large sums to relief organizations. 他向救濟組織捐贈了巨款。
+
+
+
+disappear 消失滅絕   The plane disappeared behind a cloud.
+
+attempt 企圖，試圖，嘗試   = try doing 
+
+My early attempts at learning to deive were unsuccessful.  我曾經幾次打算學開車，卻都沒有學成。
+
+The prisoners attempted to escape,but failed. 囚犯企圖逃跑，但是失敗了。
+
+
+
+make sure   確保，設法保證
+
+Just make sure you shut the gate after you.
+
+worthwhile 值得做的，值得花時間的
+
+The smile on her face made it all worthwhile. 她臉上的笑容使得這一切都非常值得。
+
+It is worthwhile to spend more time on study. 在學習上花更多的時間是值得的。
+
+
+
+21.
+
+teenager 13-19歲之間的青少年 
+
+It is not easy to educate teenagers. 教育青少年不是一件容易的事。
+
+ballet 芭蕾舞
+
+She wants to be a ballet dancer.
+
+volunteer 志願者    to do sth.
+
+I am an Olympic volunteer. 我是一個奧運志願者。
+
+
+
+debate 辯論，爭論   have a deate with ab. about sth.
+
+The debate became white-hot. 爭論達到了白熱化程度
+
+He  debated with his parents on his holiday plan. 他就他的假期計劃和父母爭論。
+
+prefer ...to 喜歡。。多於。。
+
+I prefer doing this to doing that. 我寧願做這件事業不願意做那件事。
+
+content 內容 目錄
+
+She kept the contents of the letter a secret. 她對這封信的內容保密。
+
+movement  動作 運動 活動
+
+Loose  clothing gives you greater freedon of movement.
+
+衣服寬鬆，可以讓你活動更自如。
+
+greenhouse  暖房
+
+He works in his greenhouse on Sundays.
+
+clean up  打掃乾淨
+
+please clean up your  desk.
+
+suitable for   對。。。適合
+
+This pair of boots will be suitable for your  white skirt. 
+
+這雙紅靴子將會很適合你的白裙子。
+
+actually 事實上，的確
+
+Actually,I have mixed feelings about it. 
+
+實際上，我對它有種複雜的感情。
+
+challenge 挑戰/懷疑，向。。挑戰
+
+We welcome your next challenge. 我們歡迎你下次挑戰。
+
+You like to challenge yourself.     face the challenge   直面挑戰
+
+title  標題  頭銜
+
+ Do you have some ideas about this title?
+
+topic 話題 標題
+
+The environment is a popular topic these days. 如今環境是一個熱門話題。
+
+confused 糊塗的，迷惑的
+
+I'm totally confused.Could you explain that again. 我完全糊塗了，你能在解釋一邊嗎。
+
+fluent 流利的，熟練的
+
+She was fluent in English, French,and German.
+
+graduate 畢業，獲得學位
+
+When and where did you graduate?
+
+He is an arts graduate. 他是一個文科畢業生
+
+recommend j建議，推薦，介紹
+
+Can you recommend a good hotel?
+
+sign up  (for sth)  報名 參加課程
+
+We highly recommend that you sign up for this course.
+
+advance 前進發展
+
+That was a great advance for him. 這對於他是一大進步。
+
+literature  文學
+
+Can you show me how to learn literature.
+
+extra  額外的，附加的
+
+I  have to do some extra job. 我不得不做些額外的工作。
+
+obviously 顯然明顯地
+
+They obviously appreciate  you very much. 他們明顯很欣賞你
+
+quit 停止，戒掉  ，離開工作崗位
+
+I've quit smoking.
+
+If i don't get more money I'll quit. 不給我加薪我就辭職。
+
+responsible 負責的，有責任的   be responsible for  對。。負責
+
+responsibility 責任 義務
+
+He should be responsible for that.
+
+
+
+She feels a strong sense of responsibility towards her employees.
+
+她對僱員有很強的責任感。
+
+solution 解決辦法，方案
+
+I have found the solution to this problem.
+
+schedule 工作計劃，日程安排
+
+He has been forced to adjust his schedule. 他已被迫調整了日程安排。
+
+Schedule another production meeting for tomorrow. 安排在明天舉行另一場生產會議。
+
+22.
+
+senior 地位，水平，級別高的  senior high 高中
+
+He is senior to me. 他的職位比我高
+
+curious 好奇的
+
+Children are natrually curious. 孩子天生好奇。
+
+impression 感想 印象
+
+What was your first impression of college. 你對大學的第一印象是什麼。
+
+campus 校園
+
+He show me around the campus when I first arrived.
+
+tradition 傳統
+
+The Brithish are said to love tradition.
+
+facility 設施
+
+The hotel has special facilities for disabled people. 
+
+這家旅館有專供殘疾人使用的設施。
+
+moment 某一時刻
+
+At this moment, a car stopped at the house.
+
+author  作者
+
+Who is your favourite author.
+
+eagerness  熱切，渴望 eager to do sth
+
+My son is looking forward with eagerness to your visit.
+
+我兒子熱切盼望你的到來。
+
+
+
+explore  exploration 考察探險
+
+The city is best explored on foot.
+
+one by one 一個接一個地
+
+We always  went one by one out the back.我們總是一個一個地從後門出去。
+
+engine 發動機 引擎
+
+My car had to have a new engine.
+
+23.
+
+How did  you feel on your first day at senior high?
+
+curious 好奇的 excited 興奮的 proud 自豪的
+
+be curious about
+
+They were very curious about the people who lived upstairs. 他們 對住在樓上的人感到好奇。
+
+24.
+
+What was your first impression of your new school?你對學校的第一印象如何?
+
+impression  印象，感想 negative  一般般
+
+one's first impression of... 某人對。。的第一印象
+
+My first impression of him was favourable. 他給我的第一印象不錯。
+
+25.
+
+Tick what you want to include in your diary about your first day at senior high.
+
+勾選出你在寫高中第一天的日記中想要包括的內容。
+
+The school campus 學校校園   new teachers
+
+an embarrassing moment 尷尬的時刻
+
+moment 某一時刻
+
+He thought for a moment before replying,[//]: # (動名詞)
+
+他想了一下才回答
+
+26.what引導賓語從句
+
+I heard what you've told amy. 我聽到你講給Amy的話了。
+
+27.
+
+I woke up early and rushed out  of the door in my eagerness^[迫不及待地] to get to know my new school.
+
+我醒的很早，迫不及待地想要了解我的新學校，就急忙沖出門去。
+
+Carl pushed ahead^[向前擠] in his eagerness to reach the wall.
+
+28.
+
+I was looking at the photos on the noticeboard when I heard a voice behind me. 
+
+當我看佈告欄上的菜單時，突然聽到背後有個聲音。
+
+該句使用了 sb was doing..when.. 句式 表示某人正在做。。，這時。。when 是並列連詞，相當於and then 或 and at that time。
+
+I was thinking about my new plan when a good idea occurred to me.
+
+我正在考慮我的新計劃，這時一個好主意浮現出來。
+
+29.
+
+I'm wondering what life is going to be like here.
+
+我想知道這裡的生活會是什麼樣子的。
+
+wonder+ what/how/who/if
+
+想知道。。。wonder後是其賓語從句
+
+I wonder who she is.
+
+30.
+
+How true these words were! 這些話是多麼真實啊！
+
+這是how引導的感歎句。 How+adj./adv+主語+謂語
+
+|||
+|-|-|
+|how 引導的感歎句主要有以下三種結構||
+|結構|例句|
+|How+形容詞+主語+謂語|How kind the girl is.這個女孩多好啊。|
+|How+副詞+主語+謂語|How fast he runs!他跑的多快啊|
+|How+主語+謂語 此句型中how修飾動詞，但動詞不提前|How  time files. 時間過的真快呀。 |
+
+
+31.
+
+When my English teacher stepped into the classroom, I was surprised to see the same man I had met earlier.
+
+當我的英語老師走進教室時，我驚訝的看到了我之前遇到的那個人。
+
+主語+be+adj.+to do (不定式表原因) 
+
+該句中的形容詞是表示人的情感的形容詞，如：surprised，shocked，amazed，excited，disappointed，delighted，happy，sorry,sad等，不定式做原因狀語，表示產生這種情感的原因。
+
+32.
+
+Before we start,please come to the front one by one and introduce yourself to the class,
+
+introduce oneself 自我介紹 briefly
+
+Let me introduce myself.  
+
+33.
+
+I tried to turn on my brain but the engine just wouldn't start.
+
+我設法開動腦筋，但是引擎就是發動不起來。
+
+turn on 打開   I want to turn on the television.
+
+engine trouble 引擎故障
+
+I switched/turned the engine off. 我關掉了發動機。
+
+34.試題
+
+I was driving down to London when I suddenly found that I was on the wrong road.
+
+我正在開車去倫敦的路上。突然發現我走錯了路。
+
+Did you enjoy the party last night?
+
+Very much. How wonderful the party was!
+
+35.9種狀語
+
+I study at night. 不屬於狀從，因為沒有謂語動詞。
+
+I study at home.
+
+I study through the online class. 方式狀語。
+
+I study because of the exam. 原因狀語
+
+I study to pass the exam.目的
+
+I am too tired to study. 結果
+
+I study harder than my deskmate.比較
+
+Though I feel very tired, I study every night. 讓步狀從
+
+If you don't study,you can't live.條件狀從
+
+36.時間狀語從句
+
+知識點：時間狀語從句連詞
+
+1 when,while,as 的用法和區別
+
+2 before，after的用法和區別
+
+3 as soon as/ the moment/ the minute/the instant;
+
+immediately/directly/instantly;
+
+hardly...when/ no sooner...than 的用法和區別
+
+4.since until 的用法和區別
+
+延續動詞：study，work, stay,live,sing,sleep,wait 
+
+瞬間動詞：leave,come,go,start,begin,become,receive,die
+
+We laughed loudly as/when he fell to the ground.While we were still laughing,the teacher came in.
+
+when/as: 謂語為延續，瞬間動詞
+
+while：謂語只能是延續動詞
+
+I was playing computer games when my mom came in.
+
+I was about to[//]: # (打算做某事，例句屬於過去將來時) play computer games when my mom came in.
+
+
+
+If  you wan to tell the history of the whole world, a history that does not provilege one part of humanity, you cannot do it through texts alone,because only some of the world has ever had texts,while[//]: # (然而) most of the world, for most of the time,has not.
+
+如果你想講述整個世界的歷史，一段不偏袒人類一部分的歷史，你不能只通過文本來講述，因為世界上只有一些地區有文本，而世界上大多數地區在大多數時候都沒有。
+
+What's particularly interesting is the attitude various cities have toward Dubanchet's cause.Berlin has been the easiest while the most difficult was the Czech town of Pilsen.
+特别有趣的是，各个城市对Dubanchet事业的态度。柏林是最容易的，而最困难的是捷克的比尔森镇。
+
+As[//]: # (隨著) brother Long grew older,his hair became thinner and thinner.
+
+As I was shopping at the mall, I saw brother Long buying a wig.
+
+With[//]: # (錯誤用法，介詞後面不可以跟句子，用 As) the Internet develops repidly,online-learning has become an option for more and more people.
+
+隨著互聯網的發展，在線學習成為越來越多人的選擇。
+
+![](https://secure2.wostatic.cn/static/eNjx2Tkp226XvU8qo1tqZ7/image.png?auth_key=1711336491-a5yMY98tEeWfBToTv6kGdu-0-84e464667da2837ee5556b85885be637)
+
+37.
+
+trait 特性，特質  Creativity is a human trait. 創造力是人類的一種特性。
+
+niece 姪女，外甥女 My niece is a high-school graduate. 我姪女是個高中畢業生
+
+nephew 侄子，外甥 He entrusted the task to his nephew.
+
+ 他把這個任務託付給了他的侄兒。
+
+humour 幽默感  She has her very own brand of humour.
+
+她的幽默感很獨特。
+
+passionate 熱愛的，酷愛的 He was passionate about all literature.
+
+他對所有文學作品都有熱情。
+
+outgoing 外向的 She is such an outgoing person.
+
+她就是這樣一個外向的人。
+
+secondary 中等教育，次要的
+
+She taught history at a secondary school.
+
+flu 流行性感冒 I was stuck at home with flu. 我因流感被困在了家裡
+
+host 主辦/主人
+
+Germany hosted the world cup finals.
+
+Our host introduced us to the other guests.
+
+主人把我們介紹給了其他客人。
+
+incredible 難以置信的；極好的
+
+The hotel was incredible. 這家旅館棒極了。
+
+occasionally 偶爾，偶然
+
+We occasionally meet for a drink after work. 我們下班後偶爾相聚小酌
+
+emotionnal 情感上的；情緒上的；
+
+They made an emotional appeal for help.
+
+他們情緒激動地懇求救助。
+
+extremely 極度，極其
+
+This species is extremely rare. 這一物極其罕見。
+
+grateful 感激的，感謝的
+
+Kate gave him a grateful smile.
+
+practical 實際的，實踐的
+
+He had a practical outlook on life. 他的人生觀很實際。
+
+angle 角 The boat is now leaning at a 30 degree angle.
+
+這條船現在正以30度角傾斜著。
+
+for the first time
+
+I'll never forget hearing this piece of music for the first time.
+
+hydrogen 氫
+
+Hydrogen and oxygen combine to form water.
+
+氫和氧化合成水。
+
+rocket 火箭
+
+The rocket was launched in March 1980.
+
+pour into 倒入
+
+Thousands of tons of sewage pour into the Ganges every day.
+
+每天都有成年上萬噸廢水排入恆河。
+
+fuel 燃料  They were low on fuel. 他們的燃料快耗盡了。
+
+lack 缺乏 He  lacks confidence. 他缺乏信心。
+
+presentation 報告
+
+I always ask how much time I have to make my presentation.
+
+我總是問我的報告需要做多長時間。
+
+a couple of 一雙，一對
+
+They hugged each other like a couple of lost children.
+
+他們互相緊抱在一起，就像一對迷路的孩子。
+
+used to 過去經常
+
+Lizzie used to play the violin. 莉齊過去經常拉小提琴。
+
+behaviour 行為，舉止
+
+Her behaviour really made me angry. 她的行為確實令我惱火。
+
+drag 拖拉  I draged the chair over to the window.
+
+我把椅子拖到了窗口那邊。
+
+acid 酸     Acid corrodes metal。
+
+onion 洋蔥 When the oil is hot，add the sliced onion.
+
+油熱之後，加入切好的洋蔥。
+
+access 接觸的機會
+
+Everyone should enjoy the right of access to the countryside.
+
+每個人都應享有進入鄉村的權利。
+
+worthwhile 值得做的，重要的
+
+The smile on her face made it all worthwhile.
+
+她臉上的笑容使得這一切都非常值得。
+
+educationallist 教育學家
+
+Cai yuanpei is a great educationallist in our country.
+
+38.
+
+It's good that we take some time occasionally to remember some of the positive things in life,don't you agree?
+
+我們偶爾花點時間記住一些生活中的積極的事情是很好的。
+
+Disputes occasionally occurred between us.
+
+我們之間偶爾也會發生爭論。
+
+There was no light except for the occasional glow of a cigarette.
+
+除了偶爾有香煙的微弱紅光外沒有一點亮光。
+
+occasion ...的時候，時機，場合，理由
+
+on occasion 有時，偶爾     on this/that occasion 這次，那次
+
+on the occasion of 在。。之際  在。。之時
+
+occasion 作先行詞時，若關係詞在定語從句中作狀語，則關係詞要用when 或where。側重時刻 時機時用when 側重場合時用where
+
+Occasions are quite rare when I have the time to spend a day with my kids.
+
+我能有一整天時間陪孩子們的機會非常少。
+
+39.
+
+I'm extremely grateful to him. 我十分感激他。
+
+be grateful(to sb) for sth. 因某事感激某人
+
+be grateful to do sth. 因某事心存感激
+
+I am extremely grateful to all the teachers for their help.
+
+She seems to think that I should be grateful to have a job at all.
+
+她似乎認為我有份工作就該謝天謝地了。
+
+I would be grateful if you could/would(用於書信或正式場合提出請求) 如果你能。。我將感激不盡。
+
+I would be grateful if you could send me the book immediately.
+
+如果你能馬上把書寄給我，我將感激不盡。
+
+gratefully 感激地 adv.
+
+Thank you. You are very kind, She said gratefully.
+
+gratitude  感激之情 n.
+
+She sent them a present to show/express her gratitude.
+
+她送了他們一件禮物，以表達她的感激之情。
+
+40.
+
+I remember that he let me pour some fuel into the rocket,and then another student lit a match to set it off.
+
+pour into/out of 湧入湧出
+
+People poured into the square from all parts of the city.
+
+人們從全市各處湧向廣場
+
+pour out 毫無保留地表達感情；(感情或話語) 奔湧，迸發。
+
+She poured out her troubles to me over a cup of coffee.
+
+她一面喝著咖啡，一面向我傾吐著她的煩惱。
+
+pour 傾盆而下 ；不斷流出
+
+It never rains but it pours. 不雨則已，雨則傾盆。
+
+Tears of happiness poured down Sunsan's cheeks.
+
+幸福的淚水順著蘇珊的臉頰不斷流了下來。
+
+41.
+
+The problem was that I lacked confidence in myself.
+
+The house lacks basic facilities. 這所房子缺乏基礎設施。
+
+a lack of...  缺乏
+
+A lack of food made pelple suffer. 缺乏食物使人們痛苦不堪
+
+for lack of .. 由於缺乏。。
+
+He was fired by the boss for lack of skills.
+
+他因為技能不足被老闆解僱了。
+
+lacking adj. 缺乏的
+
+be lacking in。。 缺乏。。
+
+The painting is lacking in originality. 這幅畫缺乏創意。
+
+42.
+
+app application的簡稱
+
+This app allows users to share text,tasks and files. 
+
+enable
+
+The software enables you to access the internet in seconds.
+
+這種軟件使你在幾秒鐘內便可以訪問互聯網。
+
+His good health enables him to work hard.
+
+convenience 方便
+
+We have provided seats for the conveninence of our customers.
+
+為方便客戶我們提供了座位。
+
+inconvenience 不便利。n.  convenient adj. 方便的 
+
+inconvenient 不便的
+
+effect 效應，影響 n.   effective 有效的 adj. effectively 有效地 adv.
+
+have an effect on 對。。有效
+
+an的替換： no/little/some
+
+My plan has no effect on him. 我的計劃對他無效。
+
+with effect 有效  without effect
+
+My plan has been carried out with effect. 我的計劃有效實施了。
+
+come into effect 生效
+
+impact 影響作用 n.
+
+Her speech made a profound impact on everyone.
+
+她的講話對每個人都有深遠的影響。
+
+self-focused 已自我為中心，關注自我。
+
+How can we be released from such self-focused attention?
+
+我們怎樣才能從這種自我關注中解脫出來呢。
+
+self-regarding 利己主義
+
+addicted 對。。著迷  
+
+Why are they addicted to the virtual world?
+
+為什麼他們沉迷於虛擬世界中？
+
+be addicted to  沉迷
+
+一個...迷     a TV/ sports / movie addict
+
+-holic: alcoholic 酒鬼  workaholic 工作狂
+
+1. indeed 確實；當然
+
+It is  indeed/certainlly/surely/definally a remarkable achievement.
+
+這的確是非凡的成就。
+
+download
+
+Users can download their material to a PC in the office.
+
+44.
+
+recommendation 建議，提議
+
+I had the operation on the recommendation of my doctor.
+
+我根據醫生的建議做了手術。
+
+recommend sth to sb.
+
+I recommend the book to all my students.
+
+我向我所有的學生都推薦這本書。
+
+45.
+
+super 極好的，了不起的
+
+We had a super time. 我們度過了一段美好的時光。
+
+explore 探究 探討 探險
+
+These ideas will be explored in more detail in chaper 7.
+
+這些想法將在第7章里作詳細的探討。
+
+personality 個性 性格
+
+The children all have very different personality.
+
+kind, friendly, outgoing,easy-going, introvert,extrovery
+
+admit 承認
+
+She admits to being strict with her children.
+
+她承認對自己的孩子很嚴厲。
+
+46.
+
+alarm  鬧鐘
+
+Dad set the alarm for eight the next day.
+
+image 圖像
+
+Image is very importment in the music world.
+
+在音樂界，個人形象很重要。
+
+fancy adj. 花哨的，別緻的
+
+The magazine was packaged in a fancy plastic case.
+
+這本雜誌裝在一個別緻的盒子裡。
+
+v. 想做；喜愛
+
+Do you fancy going out this evening? 
+
+今晚，你想不想出去。
+
+n.幻想，想象力；愛好
+
+She looked through the hotel advertisements until one of them caught her fancy.
+
+她仔細查看旅館廣告，終於有一家中了她的意。
+
+47.
+
+trick vt 欺騙，誘騙，哄騙
+
+Stephen is going to be pretty upset when he finds out how you tricked him.
+
+當史蒂芬發現你是如何欺騙他時，他會非常不高興的。
+
+trick sb into doing sth 欺騙某人做某事
+
+play tricks / a trick on 捉弄
+
+48.
+
+identity 身份 特征
+
+Their identities were kept secret. 他們的身份保密。
+
+2D（2-dimensional） adj.
+
+2D codes are commonplace in Japan's media,advertising and culture.
+
+2D條碼在日本的媒體，廣告和文化中很常見。
+
+49.
+
+variety n. 多樣化  various 各種各樣的 adj. vary 變化
+
+She does a variety of fitness activities.
+
+她參加各種各樣的健身活動。
+
+主謂一致問題：
+
+a variety of+可數名詞複數+複數謂語動詞
+
+varieties of +可數名詞複數+複數謂語動詞
+
+the varieties of + 可數名詞複數+單數謂語動詞
+
+50.
+
+opera n. 歌劇，歌劇藝術
+
+She wanted to be an opera singer ten years ago.
+
+十年前她想成為一名歌劇演員。
+
+band n. 樂隊，樂團
+
+He was a drummer in a rock band.
+
+他曾是一隻搖滾樂隊里的鼓手。
+
+51.
+
+performance n.表演；演出
+
+The performance starts at seven. 演出七點開始
+
+exhibition n. 展出，展覽
+
+She refused to allow the exhibition of her husband's work.
+
+她拒不允許展出她丈夫的作品。
+
+52.
+
+classical adj.古典的，傳統的
+
+He plays classical music,as well as pop.
+
+他既演奏流行音樂，也演奏古典音樂。
+
+jazz n. 爵士
+
+The club has live jazz on Sundays.
+
+該俱樂部每個星期天都有現場爵士樂演奏。
+
+53.
+
+drama n. 戲劇
+
+The film is a  drama about a woman dearching for her children.
+
+這部電影是關於一個女人尋找她孩子的戲。
+
+comedy n.喜劇片；喜劇節目
+
+The movie is a romantic comedy. 這部電影是一個浪漫喜劇。
+
+54.
+
+calligraphy n. 書法
+
+He decided to take a class in calligraphy.
+
+他決定參加一個書法課程。
+
+performer n. 表演者；演奏者
+
+The young performer boasted himself to be an all-rounder.
+
+這個青年演員自稱是個多面手。
+
+55.
+
+talented adj. 有才能的，有天資的
+
+Howard is a talented pianist. 霍華德是一名有天賦的鋼琴家。
+
+professional adj. 專業的；職業的
+
+He is a professional journalist.
+
+他是一位專門的新聞從業人員。
+
+56.
+
+component n.組成部門
+
+The management plan has four main components.
+
+該管理計劃有四個主要組成部門。
+
+stage 舞台；講台；階段
+
+The  audience threw flowers onto the stage.
+
+觀眾把鮮花拋向舞台。
+
+This technology is till in its early stages.
+
+這項技術還處於其早期開發狀態。
+
+57.
+
+costume n. 戲裝；化裝服
+
+The actors were still in costume and make-up.
+
+這些演員仍是戲裝打扮。
+
+shade n. 畫的陰影部分
+
+The painting needs more light and shade.
+
+這幅畫明暗層次不夠。
+
+58.
+
+atmosphere n. 氣氛；氛圍；
+
+There was an atmosphere of mutual trust between them.
+
+他們之間有一種相互信任的氣氛。
+
+monthly adv. 每月地；每月一次地
+
+She gets paid monthly. 她按月領薪水。
+
+59.
+
+uplifting  adj. 令人振奮的
+
+That is a charming and uplifting love story.
+
+那是一個引人入勝，令人振奮的愛情故事。
+
+masterpiece n. 傑作，代表作
+
+"Man's Fate", translated into sixteen languages,is probably his masterpiece.
+
+<<人類的命運>>，被翻譯成16種文字，可能是他的代表作。
+
+60.
+
+figure n. 人像，人形，數字
+
+It will not be long before the inflation figure starts to fall.
+
+過不了多久，通貨膨脹的數字就會開始下降。
+
+starry adj. 佈滿星星的
+
+She stared up at the starry sky.
+
+她仰視繁星點點的夜空。
+
+61.
+
+mentally adv.精神上；心理上
+
+Sport is not only physically challenging,but it can also be mentally challenging.
+
+體育運動不僅是對體力的挑戰，而且是對心理的挑戰。
+
+massive adj. 巨大的
+
+The explosion made a massive hole in the ground.
+
+爆炸在地面留下了一個巨大的坑。
+
+62.
+
+beneath prep & adv 在。。正下方
+
+The boat sank beneath the waves.
+
+小船被大浪吞沒了。
+
+Her careful make-up hid the signs of age beneath.
+
+她細膩的化妝掩蓋了妝容下年齡的痕跡。
+
+affect vt. 影響
+
+There are certain factors that affect people's size and weight.
+
+還是有一些因素會影響人們的體型和體重的。
+
+63.
+
+drug n. 藥物，藥材
+
+The drug has some bad side effects.
+
+這種藥有些不好的副作用。
+
+spot n.圓點;斑點；污漬
+
+The male bird has a red spot on its beak.
+
+雄鳥喙上有一個紅點。
+
+His jacket was covered with spots of mud.
+
+他的上衣滿是泥點。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+  
