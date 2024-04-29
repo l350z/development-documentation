@@ -1,0 +1,98 @@
+[‎2024/‎3/‎28 14:05]  Hoan Nguyen Thi(EMSVN_WH):
+operation require that  when entry ID, creators MUST input Category cost=> but Approval can edit/select again  when he do approval
+besides that, add function to upload attachment for creator when he do create EMRR
+or when he do modify
+
+[‎2024/‎3/‎28 14:07]  Hoan Nguyen Thi(EMSVN_WH):
+and for approval, if ok-> click approve, if not click REJECT, but if require more information=> click Add.request (add more this one)
+if click add. request => auto mail to creator, to update/edit more as approval requires.
+means creator needs to modify then submit again
+
+[‎2024/‎3/‎28 14:08]  Hoan Nguyen Thi(EMSVN_WH):
+once submit again ,auto mail to  approval for approve.
+pls help to check if it is able to develop.
+
+[‎2024/‎3/‎28 14:28]  Hoan Nguyen Thi(EMSVN_WH):  
+it is for provide evident to approval to check &approve ticket, so as much as possible, but from system point of view, you can advise 
+so that it will minus the impact to tool.
+ 
+[‎2024/‎3/‎28 14:33]  ackn-zhen.li(李振):  
+Add.Request is a new status??
+ 
+[‎2024/‎3/‎28 14:35]  Hoan Nguyen Thi(EMSVN_WH):  
+after ticket created,=> status is CC_APPROVAL_WAITING , if ticket need additional request=> status will be ADD.REQUEST, mean approval already check ticket but requires more information
+so it waiting creators to  update
+so need one more status for add_request
+ 
+系統已儲存此交談。您很快就會在商務用 Skype 的 [交談] 索引標籤及 Outlook 的 [交談記錄] 資料夾中看見該內容。 
+[‎2024/‎3/‎28 14:54]  ackn-zhen.li(李振):  
+ok. please sent a email to me and cc my boss.
+ 
+[‎2024/‎3/‎28 14:55]  Hoan Nguyen Thi(EMSVN_WH):  
+ok, am i waiting approval from may mangers, once it is approved, will send mail 
+thanks.
+ 
+[‎2024/‎4/‎24 10:15]  jojo.zhao(趙俊嬌):  
+[‎2024/‎4/‎22 上午 10:48]  Hoan Nguyen Thi(EMSVN_WH):  
+hi,both,
+
+ 
+currently,Onescrap,only,note,the,ID(scrapID-yellow,color)
+when,transfer,TO,in,SAP
+now,we,want,to,also,note,the,ProcessFucntion
+(redColor)
+ 
+[‎2024/‎4/‎22 上午 10:49]  Hoan Nguyen Thi(EMSVN_WH):  
+could,you,pls,help,to,check,if,we,can,input,it?
+we,want,when,download,in,MB51,can,see,both,scrapID,&,also,Process,Function.
+   
+about this function 
+RFC still have a field not in use
+it's uploading point in TO 
+ 
+[‎2024/‎4/‎24 10:16]  jojo.zhao(趙俊嬌):  
+max character length is 25
+we can mark it in header text of MB51
+ 
+[‎2024/‎4/‎24 10:17]  jojo.zhao(趙俊嬌):  
+mean that 953 TO mark your new comments field in uploading point （input field is I_ABLAD  in RFC）
+then we will get this field and put it into the header text of material document
+you can get the header text in MB51
+ 
+[‎2024/‎4/‎24 10:24]  Hoan Nguyen Thi(EMSVN_WH):  
+yes,mean,can,right
+ 
+[‎2024/‎4/‎24 10:24]  jojo.zhao(趙俊嬌):  
+from SAP system side it can
+Lizhen need to transport this comment field via RFC to SAP
+field name is I_ABLAD  
+max length is 25
+ 
+[‎2024/‎4/‎24 10:31]  ackn-zhen.li(李振):  
+OK, ProcessFunciton as comments field  transfer into SAP， isn't  it？
+ 
+[‎2024/‎4/‎24 10:32]  Hoan Nguyen Thi(EMSVN_WH):  
+yes
+ 
+[‎2024/‎4/‎24 10:32]  jojo.zhao(趙俊嬌):  
+if it's ok pls create PCR for me
+ 
+[‎2024/‎4/‎24 10:32]  Hoan Nguyen Thi(EMSVN_WH):  
+ok,let,me,create,PCR,in,SAP,
+ 
+[‎2024/‎4/‎24 10:32]  jojo.zhao(趙俊嬌):  
+because we need to get new field to material doc in SAP
+ 
+[‎2024/‎4/‎24 10:32]  Hoan Nguyen Thi(EMSVN_WH):  
+@Li,do,you,need,PCR,also,in,work,flow>
+for,onecrap?
+ 
+[‎2024/‎4/‎24 10:33]  ackn-zhen.li(李振):  
+yes，It's best to provide a PCR
+ 
+[‎2024/‎4/‎24 10:34]  Hoan Nguyen Thi(EMSVN_WH):  
+ok
+thanks,all
+ 
+您已被移出交談。 
+系統已儲存此交談。您很快就會在商務用 Skype 的 [交談] 索引標籤及 Outlook 的 [交談記錄] 資料夾中看見該內容。 
