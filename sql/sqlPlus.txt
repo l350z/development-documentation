@@ -1,0 +1,50 @@
+sqlplus scrap/Kk123456@10.74.19.202:1521/orcl
+
+SELECT TABLESPACE_NAME FROM DBA_DATA_FILES WHERE ROWNUM = 1;
+
+select name from v$database;
+
+desc [table name]
+
+SELECT table_name FROM user_tables;  //查詢當前用戶下的所有表
+
+select * from all_tab_comments where owner='SCRAP'; //賬號下的所有對象
+
+
+CREATE DIRECTORY expdp_dir AS 'C:\expdp';//創建備份目錄
+
+grant read,write on directory dump_dir TO scrap; // 管理員賬號授權指定賬號對目錄的讀寫權限
+
+
+
+select * from dba_data_files; //查看當前數據文件路徑
+
+create tablespace test datafile 'C:\APP\ZCY\ORADATA\IMZCY\TEST.DBF' SIZE 200m AUTOEXTEND ON next 20m;  //創建表空間
+
+
+create user test identified by test default tablespace test quota unlimited on test;  //創建用戶並授權
+grant connect,resource,dba,JAVASYSPRIV to test;
+
+
+
+3.1.1 普通用户查看自己所有表的表名和表空间名
+select table_name 表名 ,tablespace_name 表空间名 from user_tables;
+ 
+ 
+3.1.2 sys用户查询其他用户所有表及使用表空间名
+select table_name 表名 , tablespace_name 表空间名 from all_tables where owner='SCOTT';
+
+
+
+客戶端導出oracle 數據：
+exp scrap/Kk123456@ONESCRAP_BJ_QA FILE=E:\oracle\dump\scrap_20240430.dmp full=y
+導入：
+imp system/test@xe fromuser=hkb touser=hkb_new file=c:\orabackup\hkbfull.dmp
+
+log=c:\orabackup\hkbimp.log;
+
+服務器段導出oracle數據：
+expdp scrap/Kk123456   DIRECTORY=DUMP_DIR schemas=SCRAP DUMPFILE=scrap_20240430.dmp
+導入：
+impdp test/test remap_schema=SCOTT:test remap_tablespace=USERS:test dumpfile=SCOTT_20181125.DMP directory=dump_dir transform=oid:n
+
