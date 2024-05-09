@@ -1,0 +1,54 @@
+1.使用sqlserver存儲過程實現分頁功能?
+
+--①
+ CREATE PROCEDURE GetPageData1
+	-- Add the parameters for the stored procedure here
+	@pagesize INT,
+	@pageIndex INT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	DECLARE @pageCount INT
+	SET @pageCount=@pagesize*@pageIndex
+
+	SELECT *  FROM [dbo].[FilesParameters]
+	ORDER BY CreationTime
+	OFFSET @pageCount ROWS
+    FETCH NEXT @pagesize ROWS ONLY
+	
+END
+GO
+
+
+--②
+CREATE PROCEDURE GetPageData2
+	-- Add the parameters for the stored procedure here
+	@pagesize INT,
+	@pageIndex INT
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+	DECLARE @startRow INT
+	DECLARE @endRow INT
+	SET @startRow=@pagesize*@pageIndex+1
+	SET @endRow=@startRow+@pagesize-1
+
+	SELECT *  FROM 
+	(SELECT ROW_NUMBER() OVER(ORDER BY CreationTime) AS serialNo,* FROM [dbo].[FilesParameters]) p
+	WHERE p.serialNo BETWEEN @startRow AND @endRow
+	
+	
+END
+GO
+
+
+
+
+EXEC dbo.GetPageData2 @pagesize = 10, -- int
+                      @pageIndex = 0 -- int
