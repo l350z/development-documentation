@@ -46,5 +46,19 @@ AND  CONVERT(DATE,a.ProductActivity)= DATEADD(DAY,-2,CONVERT(DATE,GETDATE()))
 
 
 
+4.日期格式灵活转化
+
+SELECT a.pid, a.ApproverName+'('+a.ApproverCode+')' AS '签核人', format(a.ApprovedOn,'yyyy/MM/dd')+' '+ CASE
+        WHEN DATEPART(hour, a.ApprovedOn) < 12 THEN '上午'
+        ELSE '下午'
+    END +' '+FORMAT(a.ApprovedOn,'HH\:mm\:ss') AS '签核日期',b.Name AS '任务描述',
+'同意' AS N'签核结果', a.ApprovalRemark AS '签核备注'
+
+   FROM dbo.extWFTaskLogs a
+LEFT JOIN dbo.V_Parameters b ON a.TID=b.Id 
+
+WHERE a.pid IN('28198815','30101287') AND b.LanguageCode='zh-TW' ORDER BY PID,CreationTime ASC
+
+
 
  

@@ -1,0 +1,44 @@
+sqp_bbc2f683971465a52dd120966753283ebc5ffb8f
+
+--FM
+
+//運行命令
+set SONAR_SCANNER_OPTS=-Djavax.net.ssl.trustStore=d:\keystore\keystore.jks -Djavax.net.ssl.trustStorePassword=159951 
+
+
+SonarScanner.MSBuild.exe begin /k:"KResource" /d:sonar.host.url="http://10.83.17.243:9000" /d:sonar.login="sqp_50fd046816485213da65e37593d057886d8c64e9"
+
+MsBuild.exe /t:Rebuild
+
+SonarScanner.MSBuild.exe end /d:sonar.login="sqp_50fd046816485213da65e37593d057886d8c64e9"
+
+C:\Program Files\Microsoft\jdk-11.0.16.101-hotspot\bin
+
+
+
+http://10.83.17.243:9000/dashboard?id=KResource&selectedTutorial=local
+
+https://sonar.fihtdc.com
+
+--Core
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[‎2023/‎11/‎23 16:53]  Donald.HL.Duan(段鶴齡):  
+keytool -import -trustcacerts -alias root -keystore d:\keystoree\keystore.jks -file D:\keystore\certs\root.cer 
+keytool -import -trustcacerts -alias intermediate -keystore d:\keystore\keystore.jks -file D:\keystore\certs\uca.cer 
+
+set SONAR_SCANNER_OPTS=-Djavax.net.ssl.trustStore=d:\keystoree\keystore.jks -Djavax.net.ssl.trustStorePassword=159951 
+ 

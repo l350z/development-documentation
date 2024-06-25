@@ -98,4 +98,41 @@ update l_os_scrap_item t2
                     and S1.Plant_Code='FI20' and to_char(S1.SCRAPPED_ON, 'yyyy-MM-dd hh:mi:ss')>='2023-01-01 00:00:00'
                     and to_char(S1.SCRAPPED_ON, 'yyyy-MM-dd hh:mi:ss')<='2023-11-30 23:59:59'
                      order by S1.SCRAPPED_ON desc,S1.Material ASC
+					 
+					 11.綁定變量
+					 
+					 -- 创建绑定参数的语句
+DECLARE
+  v_fileUrl varchar2(200);
+  v_fileName varchar2(200);
+  v_id number;
+  v_sql varchar2(500);
+  v_modify date;
+  
+BEGIN
+  v_fileUrl:= '/picture/RE  Scrap material Tá»n kho NPI.msg';
+  v_fileName:= 'RE  Scrap material Tá»n kho NPI.msg';
+  v_id:=3;
+  v_modify:=sysdate;
+  v_sql:='update l_os_scrap_attachment set file_name=:v_fileName,file_url=:v_fileUrl,modified=:v_modify where id =:v_id';
+  
+  -- 使用绑定参数执行更新操作
+  execute immediate v_sql using v_fileName,v_fileUrl,v_modify,v_id;
+  
+END;
+
+12. 修改字段名
+
+  alter table l_os_material_cost add tmp_col NUMBER(10,5);-- 添加临时列
+ 
+update l_os_material_cost set tmp_col = cost ; --将目标字段中数据加入到临时列中
+ 
+update l_os_material_cost set cost = null; --将目标字段数据清空
+ 
+alter table  l_os_material_cost modify ( cost NUMBER(10,5)); --更改目标字段类型
+ 
+update l_os_material_cost set cost = tmp_col; --将临时列数据加回到目标字段中
+ 
+alter table l_os_material_cost  drop column tmp_col; --清除临时列
+
 
