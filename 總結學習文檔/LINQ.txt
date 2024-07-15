@@ -1,0 +1,414 @@
+
+您查询的关键词是：常用語句 以下是该网页在北京时间 2016年03月30日 06:41:01 的快照；
+如果打开速度慢，可以尝试快速版；如果想保存快照，可以添加到搜藏；如果想更新或删除快照，可以投诉快照。
+
+百度和网页 http://blog.csdn.net/buynider/article/details/24306947 的作者无关，不对其内容负责。百度快照谨为网络故障时之索引，不代表被搜索网站的即时页面。
+
+buynider的专栏
+
+ 目录视图
+ 摘要视图
+ 订阅
+为什么未来是全栈工程师的世界     前端精品课程免费看，写课评赢心动大礼！ AngularJS知识库发布
+常用Linq语句用法
+
+2014-04-22 14:21 2107人阅读 评论(0) 收藏 举报
+ 分类：
+Linq（1）  
+作者同类文章X
+比如说我们要从用户表customer和用户订单表orders中，查询上海的用户，在最近10个月中至少消费3笔满10快钱的用户的姓名和年龄。如果写成传统的方法，不知道要写多少代码，而且各种复杂的处理逻辑使得代码的语义非常不清晰，但是，如果写成LINQ的话，会是如下:
+var results = from customer in customers
+              where customer.State == "WA"
+              let custOrders = (from order in orders
+                                where customer.ID == order.ID
+                                select new { order.Date, order.Amount })
+              where custOrders.Count(co => co.Amount >= 10 &&
+                                     co.Date >= DateTime.Now.AddMonths(�6�110)) >= 3
+              select new { customer.Name, customer.Age };
+foreach (var result in results) {
+Console.WriteLine("{0} {1}", result.Name, result.Age);
+let子句可以引入一个变量，并对该变量赋值
+ 
+Linq对以前集合的支持
+  大多数Linq标准查询操作符只能对实现了IEnumerable<T>接口的集合进行调用，对于以前C#集合位于System.Collection命名空间的没有实现IEnumerable<T>的集合，可以通过Cast和OfType操作符进行转义操作,如:
+   ArrayList alist=new ArrayList()
+   alist.add("Adams"); alist.add("Arthur"); alist.add("Buchanan")
+   IEnumerable<string> names=alist.Cast<string>().where(n=>n.Length<7);
+   IEnumerable<string> names=alist.OfType<string>().where(n=>n.Length<7);
+上述两个结果相同，区别是Cast操作符将把集合中的每个元素转换为将要放到输出序列中的指定类型，如果集合中有一个数据类型不能被转换为指定的类型，刚将会产生一个异常，而OfType操作符将只把可以被转换为指定类型的那些元素放到输出序列中,所以应优先使用OfType
+ 
+对象初始化操作
+Address address=new Address{ 
+                address="105 Elm Street",
+                city="Atlanta",
+                state="GA",
+                postalCode='30339"};
+ 
+扩展方法:　当我们需要对已有类的功能进行扩展时，我们通常会想到继承，继承已有类，然后加入新的行为，C#3.0中加入扩展方法的概念，我们可以在不使用继承的前提下对已有类的功能进行扩展，这种方法不会产生新的类型，而是采用向已有类中加入新方法的方式来完成功能扩展
+注意：扩展方法的类要是Static,方法要是Static,在第一个参数前要有一个this
+public static int  Extensions(this string s,int x,string y)
+ 
+Linq的延时加载
+int[] intArray=new int[]{1,2,3};
+List<int> ints=intArray.Select(i=>i);
+foreach(int i in ints)
+ Console.writeLine(i)
+intArray[0]=5
+foreach(inti in ints)
+ Console.writeLine(i)
+两者结果不相同，前一个是1,2,3,后一个是5,2,3
+List<int> ints=intAraray.Select(i=>i).ToList()
+如果采用ToList()后，两者结果相同，都是1,2,3
+原因:第一种操作查询没有真正的执行，只是操作被延时了，如果不希望查询被延时，可以使用一个不返回IEnumerable<T>数据类型的转换符，如ToList,ToArray,ToDictionary,ToLookUp,First,Last,Single,ElementAt,Contains,Count,Sum,Min,Max,Average等计算这些操作符会创建一个不同的数据结构来缓存返回结果，这样，即使数据源改变了，这些缓存的结果也不会发生改变,所以后面的调用了ToList()操作符的结果没有发生改变
+ 
+   采用复合From子句筛选出所有架驶法拉利的冠军车手 (C#高级编程)  
+    var ferrarDivers=from r in alist
+                     from c in alist.Cars()
+                     where c="Ferrari"
+                     order by r.LastName Select r.FirstName+" "+r.LastName;
+ 其中aList表示所有冠军车手的一个集合                  
+ 
+顶
+0
+踩
+0
+上一篇各种状态管理
+下一篇Func委托
+猜你在找
+查看评论
+* 以上用户言论只代表其个人观点，不代表CSDN网站的观点或立场
+个人资料
+ 访问我的空间 
+buynider
+访问：67951次
+积分：1027
+等级： 
+排名：千里之外
+原创：21篇
+转载：52篇
+译文：2篇
+评论：6条
+文章搜索
+  
+文章分类
+Asp.Net(32)
+SQL(36)
+学习(7)
+操作系统(1)
+JQuery(9)
+Linq(2)
+文章存档
+2014年06月(3)
+2014年04月(10)
+2014年03月(6)
+2014年02月(2)
+2014年01月(1)
+2013年12月(1)
+2013年11月(2)
+2013年10月(1)
+2013年09月(4)
+2013年07月(4)
+2013年06月(7)
+2013年05月(3)
+2013年04月(1)
+2013年03月(1)
+2013年02月(2)
+2013年01月(1)
+2012年11月(1)
+2012年07月(1)
+2012年05月(5)
+2012年04月(1)
+2011年11月(1)
+2011年10月(1)
+2011年08月(2)
+2011年07月(1)
+2011年04月(7)
+2011年01月(9)
+2010年12月(7)
+2010年10月(1)
+2010年08月(1)
+2010年05月(3)
+2009年11月(2)
+阅读排行
+大数据量并发处理(10511)
+求一组数据中最大的值（也可以理解为近三个月是最后一条记录）(7459)
+主键,唯一索引 聚集索引的关系(6148)
+常用Linq语句用法(2099)
+关于期初期末循环累加的SQL(1245)
+访问共享文件夹(958)
+encodeURLComponent编码问题(946)
+javascript控件可见(888)
+SQL Server 分区表(855)
+代码实现报表打印(826)
+评论排行
+大数据量并发处理(4)
+SQL Server 分区表(1)
+主键,唯一索引 聚集索引的关系(1)
+控件的ViewState属性(0)
+页面的生命周期(0)
+扩展方法(0)
+[sql server] 分拆列值(0)
+SQL中常见函数的用法(0)
+收集的好的文章(0)
+javascript复选框选择(0)
+推荐文章
+*Viewpager实现底部滑动菜单，同时取消预加载
+*几种软负载均衡策略分析
+*浅谈Storm流式处理框架
+*有关深度学习领域的几点想法
+* 管理Java垃圾回收的五个建议
+*分享一个android 多条件筛选菜单效果
+最新评论
+大数据量并发处理
+ganxiaojian: 这只是单服务器的，服务器集群分布式高性能没那么简单，百度erpcore，这是内存数据库服务器集群的框...
+SQL Server 分区表
+lsyuan_hello: 楼主你写得很好很详细,有一问,如果服务器只有一个硬盘四个独立分区,将文件组文件放在不同的分区,再创建...
+主键,唯一索引 聚集索引的关系
+yangguangqizhi: 讲得很好！
+大数据量并发处理
+wangshaoqing2005: 呵呵 谢谢楼主
+大数据量并发处理
+u012832653: 相当专业，谢谢楼主
+大数据量并发处理
+biychen: 最近面试刚好需要这些理论，感谢博主
+
+
+
+
+
+
+
+您查询的关键词是：語句 以下是该网页在北京时间 2016年03月31日 03:55:43 的快照；
+如果打开速度慢，可以尝试快速版；如果想保存快照，可以添加到搜藏；如果想更新或删除快照，可以投诉快照。
+
+百度和网页 http://www.cnblogs.com/luckly-hf/p/4075123.html 的作者无关，不对其内容负责。百度快照谨为网络故障时之索引，不代表被搜索网站的即时页面。
+
+zg_heng
+
+随笔 - 53, 文章 - 0, 评论 - 13, 引用 - 0
+LinQ的一些基本语句
+
+LINQ（Language Integrated Query）即语言集成查询。它是一种语言特性和API，使得你可以使用统一的方式编写各种查询，查询的对象包括xml、对象集合、SqlServer数据库等。
+
+1、LINQ To Object      负责对象的查询
+
+2、LINQ To XML         负责对XML的查询
+
+3、LINQ To ADO.NET  负责数据库的查询
+
+查询例如：
+
+int[] numbers=new int[]{1,2,7,9,3,6}
+
+List<int> array=new List<int>();
+
+foreach(int temp in numbers)
+
+{
+
+if(temp%2==0)
+
+{
+
+array.Add(temp);
+
+}
+
+} 
+
+LINQ 查询：
+
+int[] numbers=new int[]{1,3,5,9,2,7}
+
+var even=numbers.where(p=>p%2==0).select(p=>p).OrderBy Descending(p=>p);//从数组中提取偶数并降序排列
+
+even.sort();//升序
+
+even.Reverse();//降序
+
+ 
+
+Lambda表达式的进化：
+
+C# 1.0  委托
+
+C# 20  匿名方法
+
+C# 3.0 Lambda表达式
+
+委托：
+
+delegate string ProcessString(string input);
+
+ProcessString p=new ProcessString(Lowerlt);
+
+foreach(string name in FoxRive)
+
+{
+
+console.WriteLine(p(name));
+
+}
+
+Private string Lowerlt(string input)
+
+{
+
+return input.ToLower();
+
+}
+
+ 
+
+匿名方法：
+
+ProcessString p=new ProcessString(string input)
+
+{
+
+return input.ToLower();
+
+}
+
+ 
+
+foreach(string name in FoxRive)
+
+{
+
+console.WriteLine(p(name));
+
+}
+
+Lambda表达式：
+
+ProcessString p=input=>input.ToLower();
+
+foreach(string name in FoxRive)
+
+{
+
+console.WriteLine(p(name));
+
+}
+
+ 
+
+查询语句示例：
+
+示例一：
+
+int[] numbers=new int[]{6,4,3,2,1,9,7,8,5}
+
+var even=numbers.where(p=>p%2==0)
+
+              .select(p=>{console.write(p.tostring())}); return p;)
+
+foreach(var item in even)
+
+{
+
+console.writeline(item);
+
+}
+
+示例二：
+
+int[] numbers=new int[]{6,4,3,2,1,9,7,8,5}
+
+var even=from number in numbers
+
+              where  number%2==0)
+
+              .orderby number descending select number;
+
+foreach(var item in even)
+
+{
+
+console.writeline(item);
+
+}
+
+复杂查询语句示例：
+
+List<Person> p=GetFoxRiver();
+
+var q=from a in p where a.Age<30 && a.FristName.Length=7
+
+          orderby a.Age DEscending
+
+         select new {Name=a.FristName+""+a.LastName,Age=a.Age};
+
+foreach(var item in even)
+
+{
+
+console.writeline(item.Name+""+item.Age);
+
+}
+
+聚合类
+
+int[] array=new int[]{1,3,7,9,2,14}
+
+console.writeline("Max:{0}",array.Max());//返回最大值
+
+console.writeline("Min:{0}",array.Min());//返回最小值
+
+console.writeline("Average:{0}",array.Average());//返回平均值
+
+var result=(from p in array where p.Startswith(',') select p).count();
+
+console.writeline("count:{0}",result);//返回数组中总共几个数
+
+分区类
+
+var result=array.Take(3);//从序列开头返回指定数量,连续元素
+
+结果：1,3,7
+
+var result=array.Takewhere(p=>p%2==0);//满足条件就返回元素，不满足就不返回
+
+结果：2,14
+
+var result=array.where(p=>p%2==0).Take(1);//
+
+结果：2
+
+var result=array.skip(2);//跳出序列中指定数量的元素返回剩余值元素
+
+结果：3,7,9,2,14
+
+var result=array.skipwhere(p=>p》3);//
+
+结果：7,9,2,14
+
+集合类
+
+var result=array.Distirot();//返回序列中非重复元素
+
+生成类：
+
+var result=Enumerable.Repeat("a",10).tolist();//生成包含一个重复值的序列
+
+var result=Enumerable.Range(2,10).tolist();//生成一个指定范围内的序列
+
+ 
+
+posted on 2014-11-04 23:01 zg_heng 阅读(...) 评论(...) 编辑 收藏
+
+刷新评论刷新页面返回顶部
+导航
+
+博客园
+首页
+新随笔
+联系
+订阅 订阅
+管理
+公告
+
+Powered by: 
+博客园 
+Copyright © zg_heng
