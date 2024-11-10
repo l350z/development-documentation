@@ -18,7 +18,8 @@ select   dateadd(dd,-day(getdate())+1,getdate())
 
 2、修改字段类型：
 
-　　alter table 表名 alter column 字段名 type not null
+　　alter table 表名 alter column 字段名 type not null                  (SqlServer)
+        alter table  l_os_material_cost modify ( cost NUMBER(10,5)); --更改目标字段类型（Oracle）
 
 3、修改字段默认值
 　　alter table 表名 add default (0) for 字段名 with values

@@ -1,4 +1,4 @@
-1  npm config set registry http://10.57.49.71:8081/repository/npm/
+1  npm config set registry http://10.57.49.71:8081/repository/npm/        npm config get registry     
 2  npm install -g typescript
 3  ng 命令创建模块、类等
     ng g module about
@@ -44,3 +44,15 @@ ionic build --prod
 npm install viewerjs
 
 npm config set registry https://registry.npm.taobao.org/
+
+16 強制安裝
+npm install <package_name> --force 
+
+17 你可以使用以下命令来查看 npm 上可用的 @angular/cli 版本：
+
+npm show @angular/cli versions --json
+
+18 查看緩存文件夾
+npm config get cache
+
+19 yarn config set "strict-ssl" false -g //关闭代理

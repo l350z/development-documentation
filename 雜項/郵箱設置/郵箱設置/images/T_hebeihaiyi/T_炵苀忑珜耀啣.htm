@@ -1,0 +1,87 @@
+<stl:include file="include/head.html"></stl:include>
+<div id="main">
+<stl:include file="include/left.html"></stl:include>
+<div class="right">
+  <div class="r_gs">
+  <stl:contents channelName="公司简介" totalNum="1" scope="All">
+    <ul class="r_title">
+      <li><stl:a><img src="{Stl.SiteUrl}/images/more.jpg"></stl:a></li>
+    </ul>
+    <ul class="r_content">
+    <li class="r_img"><stl:a><stl:image width="319" height="75" border="0"></stl:image></stl:a></li>
+    <li class="r_ne"><stl:content type="Summary" wordNum="100"></stl:content></li>
+    </ul>
+  </stl:contents>
+  </div> 
+ <div class="news">
+   <ul class="news_yi">
+     <li><stl:a channelName="新闻中心"><img src="{Stl.SiteUrl}/images/more.jpg"></stl:a></li>
+   </ul>
+   <ul class="news_top">
+   <stl:contents channelName="新闻中心" totalNum="1" scope="All" isHot="true">
+     <li class="news_img"><stl:a><stl:image width="93" height="72" border="0"></stl:image></stl:a></li>
+     <li class="news_t">
+     <span class="news_tt"><stl:a></stl:a></span>
+     <span class="news_ti"><stl:content type="Summary" wordNum="65"></stl:content></span>
+     </li> 
+  </stl:contents>
+   </ul>
+   <ul class="news_l">
+   <stl:contents channelName="新闻中心" totalNum="3" isRecommend="true" scope="All">
+   <li><stl:a></stl:a><span><stl:content type="AddDate" formatString="yyyy-MM-dd"></stl:content></span></li>
+   </stl:contents>
+   </ul>
+  </div>
+<div class="pro">
+  <ul class="pro_ti">
+    <li><stl:a channelIndex="产品展示"><img src="{Stl.SiteUrl}/images/more.jpg"></stl:a></li>
+  </ul>
+   <div class="pro_l">
+     <div class="pro_z"></div>
+      <div id="colee_left" class="pro_zhong">
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+
+<td id="colee_left1" valign="top" align="center">
+<table cellpadding="2" cellspacing="0" border="0">
+<tr align="center">
+<stl:contents channelIndex="产品展示" totalNum="10" scope="All" isRecommend="true">
+ <td>     <li class="pro_zh">
+            <div class="pro_img"><stl:a><stl:image width="148" height="171" border="0"></stl:image></stl:a></div>
+            <div class="pro_tit"><stl:a></stl:a></div>
+     </li>
+</td>
+</stl:contents>
+</tr>
+</table>
+</td>
+
+<td id="colee_left2" valign="top"></td>
+</tr>
+
+
+</table></div>
+     <div class="pro_y"></div>
+   </div>
+   <script>
+//使用div时，请保证colee_left2与colee_left1是在同一行上.
+var speed=30//速度数值越大速度越慢
+var colee_left2=document.getElementById("colee_left2");
+var colee_left1=document.getElementById("colee_left1");
+var colee_left=document.getElementById("colee_left");
+colee_left2.innerHTML=colee_left1.innerHTML
+function Marquee3(){
+if(colee_left2.offsetWidth-colee_left.scrollLeft<=0)//offsetWidth 是对象的可见宽度
+colee_left.scrollLeft-=colee_left1.offsetWidth//scrollWidth 是对象的实际内容的宽，不包边线宽度
+else{
+colee_left.scrollLeft++
+}
+}
+var MyMar3=setInterval(Marquee3,speed)
+colee_left.onmouseover=function() {clearInterval(MyMar3)}
+colee_left.onmouseout=function() {MyMar3=setInterval(Marquee3,speed)}
+</script>
+
+</div>  
+</div>
+<stl:include file="include/foot.html"></stl:include>

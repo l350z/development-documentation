@@ -551,6 +551,15 @@ git config http.sslVerify "false"
 
 
 
+echo "# 项目名称" >> README.md
+git add README.md
+git commit -m "Add README.md"
+
+//更新指針對象
+git update-ref -d HEAD
+
+
+
 
 
 
