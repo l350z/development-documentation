@@ -1,0 +1,58 @@
+USE [SMT]
+GO
+/****** Object:  StoredProcedure [dbo].[getDccPreviousPage]    Script Date: 2025/1/9 13:48:08 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER procedure [dbo].[getDccPreviousPage]
+@parentId bigint
+as
+begin
+DECLARE @temp VARCHAR(MAX)
+   IF(@parentId=228)
+		   Begin
+				;WITH RCTE AS
+		(
+			SELECT *, 1 AS Lvl FROM 
+			--[LNKDCCAP].[Policy].[dbo].LevelMenus 
+			[Policy].[dbo].LevelMenus 
+			WHERE Id = 5
+			UNION ALL
+			SELECT rh.*, Lvl+1 AS Lvl FROM 
+			--[LNKDCCAP].[Policy].[dbo].LevelMenus rh
+			[Policy].[dbo].LevelMenus rh
+			INNER JOIN RCTE rc ON rh.Id = rc.ParentId
+		)
+		select Id,Name from RCTE  order by Lvl desc
+
+   END
+   Else
+   Begin
+--DECLARE @childID INT 
+--SET @childID  = 60
+
+;WITH RCTE AS
+(
+    SELECT *, 1 AS Lvl FROM LevelMenus 
+    WHERE Id = @parentId
+    UNION ALL
+    SELECT rh.*, Lvl+1 AS Lvl FROM dbo.LevelMenus rh
+    INNER JOIN RCTE rc ON rh.Id = rc.ParentId
+)
+select Id,Name from RCTE  order by Lvl desc
+END
+--SELECT @temp = COALESCE(@temp+' --> ' ,'') + Name
+--FROM RCTE order by Lvl desc
+--SELECT @temp
+;WITH RCTE AS(
+SELECT *, 1 AS Lvl FROM LevelMenus 
+    WHERE Id = 13
+    UNION ALL
+    SELECT rh.*, Lvl+1 AS Lvl FROM dbo.LevelMenus rh
+    INNER JOIN RCTE rc ON rh.Id = rc.ParentId)
+select * from RCTE  order by Lvl desc
+
+
+
+--   exec getDccPreviousPage  61

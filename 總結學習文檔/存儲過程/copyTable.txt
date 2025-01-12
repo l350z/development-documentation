@@ -1,0 +1,513 @@
+USE [KResource]
+GO
+/****** Object:  StoredProcedure [dbo].[usp_Copy_BaseDataForNewTenant]    Script Date: 2025/1/9 14:25:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+ALTER PROCEDURE [dbo].[usp_Copy_BaseDataForNewTenant] 
+	-- Add the parameters for the stored procedure here
+	@tenantId   INT
+AS
+BEGIN
+    DECLARE @Count INT=0,@AppCount INT,
+	@FileTypeCode NVARCHAR(50),@Memo NVARCHAR(200),@IsActive BIT,@IsDeleted BIT,@DeleterUserId BIGINT,
+	@DeletionTime DATETIME,@LastModificationTime DATETIME,@LastModifierUserId BIGINT,@CreationTime DATETIME,
+	@CreatorUserId BIGINT,@OrderNo INT,@IsPublic BIT,@Name UNIQUEIDENTIFIER,@ClassCode NVARCHAR(50)
+	
+
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+	---------------------------------------------------------------------------------------------------------------------------
+	--先刪除所有該租戶下的數據
+
+	---------------------------------------------------------------------------------------------------------------------------
+	--插入FileType數據
+	--SELECT @Count=COUNT(Id) FROM dbo.PubFileTypes WHERE TenantId=@tenantId AND IsActive=1 AND IsDeleted=0
+	--IF @Count > 0 and @tenantId <> 1
+	BEGIN
+	DELETE dbo.PubTreeNodes WHERE TenantId=@tenantId 
+	DELETE dbo.PubSigningSetting WHERE TenantId=@tenantId 
+	DELETE dbo.PubAttributeValues WHERE TenantId=@tenantId 
+	DELETE dbo.SysUserParameters WHERE TenantId=@tenantId 
+	DELETE dbo.SysParameters WHERE TenantId=@tenantId 
+	DELETE dbo.PubAttributes WHERE TenantId=@tenantId 
+	DELETE dbo.PubFileTypes WHERE TenantId=@tenantId 
+	END
+	
+	
+	SELECT ROW_NUMBER()OVER(ORDER BY Id) ItemNo,* INTO #FileTypeInfo  FROM dbo.PubFileTypes WHERE TenantId= 1 AND IsActive=1 AND IsDeleted=0  
+	SELECT @AppCount=COUNT(ItemNo) from  #FileTypeInfo
+	SET @Count=1
+	    WHILE @Count <= @AppCount
+		BEGIN
+		SELECT @FileTypeCode=FileTypeCode,@Memo=Memo,@IsActive=IsActive,@IsDeleted=IsDeleted,@DeleterUserId=DeleterUserId,@DeletionTime=DeletionTime,
+		       @LastModificationTime=LastModificationTime,@LastModifierUserId=LastModifierUserId,@CreationTime=CreationTime, @CreatorUserId=CreatorUserId,
+		       @OrderNo=OrderNo,@IsPublic=IsPublic,@Name=Name,@ClassCode=ClassCode
+		      FROM #FileTypeInfo WHERE ItemNo=@Count
+    --開始插入FileType數據
+		INSERT INTO dbo.PubFileTypes
+		(
+		    FileTypeCode,
+		    Memo,
+		    IsActive,
+		    IsDeleted,
+		    DeleterUserId,
+		    DeletionTime,
+		    LastModificationTime,
+		    LastModifierUserId,
+		    CreationTime,
+		    CreatorUserId,
+		    OrderNo,
+		    IsPublic,
+		    Name,
+		    ClassCode,
+			TenantId
+		)
+		VALUES
+		(   @FileTypeCode,
+		    @Memo,
+		    @IsActive,
+		    @IsDeleted,
+		    @DeleterUserId,
+		    @DeletionTime,
+		    @LastModificationTime,
+		    @LastModifierUserId,
+		    @CreationTime,
+		    @CreatorUserId,
+		    @OrderNo,
+		    @IsPublic,
+		    @Name,
+		    @ClassCode,
+			@TenantId)
+
+		SET @Count=@Count+1	
+
+		END
+		print 'FileType copy Success!'
+
+		drop table #FileTypeInfo
+	----------------------------------------------------------------------------------------------------------------------
+	DECLARE @Type INT,@Code NVARCHAR(20),@IsInput BIT,@Description  NVARCHAR(50),@HardCode NVARCHAR(20)
+		--插入基礎參數數據
+	--SELECT @Count=COUNT(Id) FROM dbo.SysParameters WHERE TenantId=@tenantId AND IsActive=1 AND IsDeleted=0
+	--IF @Count > 0 and @tenantId <> 1
+	--BEGIN
+	--DELETE dbo.SysParameters WHERE TenantId=@tenantId 
+	--END
+	
+	
+	SELECT ROW_NUMBER()OVER(ORDER BY Id) ItemNo,* INTO #SysParametersInfo  FROM dbo.SysParameters WHERE TenantId= 1 AND IsActive=1 AND IsDeleted=0  
+	SELECT @AppCount=COUNT(ItemNo) from  #SysParametersInfo
+	SET @Count=1
+	    WHILE @Count <= @AppCount
+		BEGIN
+		SELECT @Type=Type,@Code=Code,@Name=Name,@IsInput=IsInput,@Description=Description,@OrderNo=[Order],@IsActive=IsActive, 
+		       @HardCode=HardCode, @IsDeleted=IsDeleted,@DeleterUserId=DeleterUserId,@DeletionTime=DeletionTime,
+		       @LastModificationTime=LastModificationTime,@LastModifierUserId=LastModifierUserId,@CreationTime=CreationTime, @CreatorUserId=CreatorUserId
+		      FROM #SysParametersInfo WHERE ItemNo=@Count
+    --開始插入基礎參數數據
+		INSERT INTO dbo.SysParameters
+		(
+		    Type,
+		    Code,
+		    Name,
+		    IsInput,
+		    Description,
+		    [Order],
+		    IsActive,
+		    HardCode,
+		    IsDeleted,
+		    DeleterUserId,
+		    DeletionTime,
+		    LastModificationTime,
+		    LastModifierUserId,
+		    CreationTime,
+		    CreatorUserId,
+		    TenantId
+		)
+		VALUES
+		(   @Type,
+            @Code,
+            @Name,
+            @IsInput,
+			@Description,
+			@OrderNo,
+            @IsActive,
+            @HardCode,
+            @IsDeleted,
+            @DeleterUserId,
+            @DeletionTime,
+            @LastModificationTime,
+            @LastModifierUserId,
+            @CreationTime,
+            @CreatorUserId,
+			@TenantId
+		    )
+	
+		SET @Count=@Count+1	
+
+		END
+		print 'SysParameter copy Success!'
+
+		drop table #SysParametersInfo
+	----------------------------------------------------------------------------------------------------------------------
+		--插入用戶參數數據
+	--SELECT @Count=COUNT(Id) FROM dbo.SysUserParameters WHERE TenantId=@tenantId AND IsActive=1 AND IsDeleted=0
+	--IF @Count > 0 and @tenantId <> 1
+	--BEGIN
+	--DELETE dbo.SysUserParameters WHERE TenantId=@tenantId 
+	--END
+	
+	
+	SELECT ROW_NUMBER()OVER(ORDER BY Id) ItemNo,* INTO #SysUserParametersInfo  FROM dbo.SysUserParameters WHERE TenantId= 1 AND IsActive=1 AND IsDeleted=0  
+	SELECT @AppCount=COUNT(ItemNo) from  #SysUserParametersInfo
+	SET @Count=1
+	    WHILE @Count <= @AppCount
+		BEGIN
+		SELECT @Type=Type,@Code=Code,@Name=Name,@IsInput=IsInput,@Description=Description,@OrderNo=[Order],@IsActive=IsActive, 
+		       @HardCode=HardCode, @IsDeleted=IsDeleted,@DeleterUserId=DeleterUserId,@DeletionTime=DeletionTime,
+		       @LastModificationTime=LastModificationTime,@LastModifierUserId=LastModifierUserId,@CreationTime=CreationTime, @CreatorUserId=CreatorUserId
+		      FROM #SysUserParametersInfo WHERE ItemNo=@Count
+    --開始插入用戶參數數據
+		INSERT INTO dbo.SysUserParameters
+		(
+		    Type,
+		    Code,
+		    Name,
+		    IsInput,
+		    Description,
+		    [Order],
+		    IsActive,
+		    HardCode,
+		    IsDeleted,
+		    DeleterUserId,
+		    DeletionTime,
+		    LastModificationTime,
+		    LastModifierUserId,
+		    CreationTime,
+		    CreatorUserId,
+		    TenantId
+		)
+		VALUES
+		(   @Type,
+            @Code,
+            @Name,
+            @IsInput,
+			@Description,
+			@OrderNo,
+            @IsActive,
+            @HardCode,
+            @IsDeleted,
+            @DeleterUserId,
+            @DeletionTime,
+            @LastModificationTime,
+            @LastModifierUserId,
+            @CreationTime,
+            @CreatorUserId,
+			@TenantId
+		    )
+	
+		SET @Count=@Count+1	
+
+		END
+		print 'SysUserParameters copy Success!'
+
+		drop table #SysUserParametersInfo
+
+	-----------------------------------------------------------------------------------------------------------------------
+	DECLARE @AttrDescribe NVARCHAR(200),@AttTypeId INT,@AttrCode NVARCHAR(50)
+		--插入Attribute數據
+	--SELECT @Count=COUNT(Id) FROM dbo.PubAttributes WHERE TenantId=@tenantId AND IsActive=1 AND IsDeleted=0
+	--IF @Count > 0 and @tenantId <> 1
+	--BEGIN
+	--DELETE dbo.PubAttributes WHERE TenantId=@tenantId 
+	--END
+	
+	
+	SELECT ROW_NUMBER()OVER(ORDER BY Id) ItemNo,* INTO #PubAttributesInfo  FROM dbo.PubAttributes WHERE TenantId= 1 AND IsActive=1 AND IsDeleted=0  
+	SELECT @AppCount=COUNT(ItemNo) from  #PubAttributesInfo
+	SET @Count=1
+	    WHILE @Count <= @AppCount
+		BEGIN
+		SELECT @AttrDescribe=AttrDescribe,@Memo=Memo, @OrderNo=OrderNo,@AttTypeId=AttTypeId,@IsActive=IsActive,@IsDeleted=IsDeleted,@DeleterUserId=DeleterUserId,
+		       @DeletionTime=DeletionTime,@LastModificationTime=LastModificationTime,@LastModifierUserId=LastModifierUserId,@CreationTime=CreationTime, @CreatorUserId=CreatorUserId,
+		       @AttrCode=AttrCode,@Name=Name
+		      FROM #PubAttributesInfo WHERE ItemNo=@Count
+
+       --查初始租戶的Type和Code
+        SELECT @Type=Type,@Code=Code FROM dbo.SysParameters WHERE Id=@AttTypeId
+        --查新租戶中的AttTypeId
+        SELECT @AttTypeId=Id FROM dbo.SysParameters  WHERE TenantId=@tenantId AND IsActive=1 AND IsDeleted=0 AND Type=@Type AND Code=@Code
+    --開始插入Attribute數據
+		INSERT INTO dbo.PubAttributes
+		(
+		    AttrDescribe,
+		    Memo,
+		    OrderNo,
+		    AttTypeId,
+		    IsActive,
+		    IsDeleted,
+		    DeleterUserId,
+		    DeletionTime,
+		    LastModificationTime,
+		    LastModifierUserId,
+		    CreationTime,
+		    CreatorUserId,
+		    AttrCode,
+		    Name,
+		    TenantId
+		)
+		VALUES
+		(    
+		    @AttrDescribe,
+		    @Memo,
+		    @OrderNo,
+		    @AttTypeId,
+		    @IsActive,
+		    @IsDeleted,
+		    @DeleterUserId,
+		    @DeletionTime,
+		    @LastModificationTime,
+		    @LastModifierUserId,
+		    @CreationTime,
+		    @CreatorUserId,
+		    @AttrCode,
+		    @Name,
+		    @TenantId       
+		    )
+	
+		SET @Count=@Count+1	
+
+		END
+		print 'Attributes copy Success!'
+
+		drop table #PubAttributesInfo
+
+	-----------------------------------------------------------------------------------------------------------------------
+		DECLARE @AttrId INT,@Describe NVARCHAR(200), @AttrValueCode NVARCHAR(4000)
+		--插入AttributeValue數據
+	--SELECT @Count=COUNT(Id) FROM dbo.PubAttributeValues WHERE TenantId=@tenantId AND IsActive=1 AND IsDeleted=0
+	--IF @Count > 0 and @tenantId <> 1
+	--BEGIN
+	--DELETE dbo.PubAttributeValues WHERE TenantId=@tenantId 
+	--END
+	
+	
+	SELECT ROW_NUMBER()OVER(ORDER BY Id) ItemNo,* INTO #PubAttributeValuesInfo  FROM dbo.PubAttributeValues WHERE TenantId= 1 AND IsActive=1 AND IsDeleted=0  
+	AND AttrId IN(SELECT Id  FROM dbo.PubAttributes WHERE AttTypeId IN(SELECT Id FROM dbo.SysParameters WHERE Type=6 AND Code IN('DROPDOWNLIST','CHECKBOX')AND TenantId=1)) 
+	SELECT @AppCount=COUNT(ItemNo) from  #PubAttributeValuesInfo
+	SET @Count=1
+	    WHILE @Count <= @AppCount
+		BEGIN
+		SELECT @AttrId=AttrId,@Describe=Describe, @Memo=Memo,@IsActive=IsActive,@IsDeleted=IsDeleted,@DeleterUserId=DeleterUserId,
+		       @DeletionTime=DeletionTime,@LastModificationTime=LastModificationTime,@LastModifierUserId=LastModifierUserId,@CreationTime=CreationTime, @CreatorUserId=CreatorUserId,
+		       @OrderNo=OrderNo,@AttrValueCode=AttrValueCode,@Name=Name
+		      FROM #PubAttributeValuesInfo  WHERE ItemNo=@Count
+
+       --查初始租戶的AttrCode
+        SELECT @AttrCode=AttrCode FROM dbo.PubAttributes WHERE Id=@AttrId
+       --查新租戶中的AttrId
+        SELECT @AttrId=Id FROM dbo.PubAttributes  WHERE TenantId=@tenantId AND IsActive=1 AND IsDeleted=0 AND AttrCode=@AttrCode
+       --開始插入AttributeValue數據
+		INSERT INTO dbo.PubAttributeValues
+		(
+		    AttrId,
+		    Describe,
+		    Memo,
+		    IsActive,
+		    IsDeleted,
+		    DeleterUserId,
+		    DeletionTime,
+		    LastModificationTime,
+		    LastModifierUserId,
+		    CreationTime,
+		    CreatorUserId,
+		    OrderNo,
+		    AttrValueCode,
+		    Name,
+			TenantId 
+		)
+		VALUES
+		(   @AttrId,
+		    @Describe,
+		    @Memo,
+		    @IsActive,
+		    @IsDeleted,
+		    @DeleterUserId,
+		    @DeletionTime,
+		    @LastModificationTime,
+		    @LastModifierUserId,
+		    @CreationTime,
+		    @CreatorUserId,
+		    @OrderNo,
+		    @AttrValueCode,
+		    @Name,
+			@TenantId 
+		    )
+	
+		SET @Count=@Count+1	
+		END
+		print 'AttributeValues copy Success!'
+
+		drop table #PubAttributeValuesInfo
+
+	-----------------------------------------------------------------------------------------------------------------------
+	DECLARE @FileTypeId INT,@ModelCodeId INT, @PreCode NVARCHAR(30),@PipeLineNums INT
+		--插入簽核配置數據
+	--SELECT @Count=COUNT(Id) FROM dbo.PubSigningSetting WHERE TenantId=@tenantId  AND IsDeleted=0
+	--IF @Count > 0 and @tenantId <> 1
+	--BEGIN
+	--DELETE dbo.PubSigningSetting WHERE TenantId=@tenantId 
+	--END
+	
+	
+	SELECT ROW_NUMBER()OVER(ORDER BY Id) ItemNo,* INTO #SigningSettingInfo  FROM dbo.PubSigningSetting WHERE TenantId= 1  AND IsDeleted=0  
+	SELECT @AppCount=COUNT(ItemNo) from  #SigningSettingInfo
+	SET @Count=1
+	    WHILE @Count <= @AppCount
+		BEGIN
+		SELECT @FileTypeId=FileTypeId,@ModelCodeId=ModelCodeId,@PreCode=PreCode,@PipeLineNums= PipeLineNums,@IsDeleted=IsDeleted,@DeleterUserId=DeleterUserId,
+		       @DeletionTime=DeletionTime,@LastModificationTime=LastModificationTime,@LastModifierUserId=LastModifierUserId,@CreationTime=CreationTime, @CreatorUserId=CreatorUserId,
+		       @IsInput=IsInput
+		      FROM #SigningSettingInfo  WHERE ItemNo=@Count
+
+        --查初始租戶的FileTypeCode
+        SELECT @FileTypeCode=FileTypeCode FROM dbo.PubFileTypes WHERE Id=@FileTypeId 
+        --查新租戶中的FileTypeId
+        SELECT @FileTypeId=Id FROM dbo.PubFileTypes  WHERE TenantId=@tenantId AND IsActive=1 AND IsDeleted=0 AND FileTypeCode=@FileTypeCode
+
+       --查初始租戶的Type和Code
+        SELECT @Type=Type,@Code=Code FROM dbo.SysParameters WHERE Id=@ModelCodeId
+        --查新租戶中的AttTypeId
+        SELECT @ModelCodeId=Id FROM dbo.SysParameters  WHERE TenantId=@tenantId AND IsActive=1 AND IsDeleted=0 AND Type=@Type AND Code=@Code
+       --開始插入簽核配置數據
+		INSERT INTO dbo.PubSigningSetting
+		(
+		    FileTypeId,
+		    ModelCodeId,
+		    PreCode,
+		    PipeLineNums,
+		    TenantId,
+		    IsDeleted,
+		    DeleterUserId,
+		    DeletionTime,
+		    LastModificationTime,
+		    LastModifierUserId,
+		    CreationTime,
+		    CreatorUserId,
+		    IsInput
+		)
+		VALUES
+		(   @FileTypeId,
+		    @ModelCodeId,
+		    @PreCode,
+		    @PipeLineNums,
+		    @TenantId,
+		    @IsDeleted,
+		    @DeleterUserId,
+		    @DeletionTime,
+		    @LastModificationTime,
+		    @LastModifierUserId,
+		    @CreationTime,
+		    @CreatorUserId,
+		    @IsInput
+		    )
+		
+	
+		SET @Count=@Count+1	
+		END
+		print 'SigningSetting copy Success!'
+
+		drop table #SigningSettingInfo
+
+
+	-----------------------------------------------------------------------------------------------------------------------
+	DECLARE @NodeCode NVARCHAR(50),@NodeName NVARCHAR(max),@ParentNodeId INT,@IEParentNodeId INT
+	--插入TreeNode數據
+	--SELECT @Count=COUNT(NodeCode) FROM dbo.PubTreeNodes WHERE TenantId=@tenantId AND IsActive=1 AND IsDeleted=0
+	--IF @Count > 0 and @tenantId <> 1
+	--BEGIN
+	--DELETE dbo.PubTreeNodes WHERE TenantId=@tenantId 
+	--END
+
+   
+	--SELECT ROW_NUMBER()OVER(ORDER BY Id) ItemNo,* INTO #TreeNodeInfo  FROM dbo.PubTreeNodes WHERE TenantId= 1 AND IsActive=1 AND IsDeleted=0 
+	--AND ParentNodeId=1 OR ParentNodeId IS NULL
+    --OR NodeCode IN('IEShare','EMS1KnowledgeBase') 
+    SELECT ROW_NUMBER()OVER(ORDER BY Id) ItemNo,* INTO #TreeNodeInfo   FROM dbo.PubTreeNodes WHERE TenantId= 1 AND IsActive=1 AND IsDeleted=0 
+	AND NodeCode IN('IEShare','EMS1KnowledgeBase','IE')  OR (TenantId= 1 AND ParentNodeId IS NULL  AND IsDeleted=0) 
+	SELECT @AppCount=COUNT(ItemNo) from  #TreeNodeInfo
+	SET @Count=1
+	    WHILE @Count <= @AppCount
+		BEGIN
+		SELECT @NodeCode=NodeCode,@NodeName=NodeName,@FileTypeId=FileTypeId,@ParentNodeId=ParentNodeId,
+		       @IsActive=IsActive,@OrderNo=OrderNo,@IsDeleted=IsDeleted,@DeleterUserId=DeleterUserId,@DeletionTime=DeletionTime,
+		       @LastModificationTime=LastModificationTime,@LastModifierUserId=LastModifierUserId,@CreationTime=CreationTime, @CreatorUserId=CreatorUserId,
+		       @Name=Name
+		      FROM #TreeNodeInfo WHERE ItemNo=@Count
+        --查初始租戶的FileTypeCode
+        SELECT @FileTypeCode=FileTypeCode FROM dbo.PubFileTypes WHERE Id=@FileTypeId 
+        --查新租戶中的FileTypeId
+        SELECT @FileTypeId=Id FROM dbo.PubFileTypes  WHERE TenantId=@tenantId AND IsActive=1 AND IsDeleted=0 AND FileTypeCode=@FileTypeCode
+
+		--開始插入TreeNode數據
+        INSERT INTO dbo.PubTreeNodes
+        (
+            NodeCode,
+            NodeName,
+            FileTypeId,
+            ParentNodeId,
+            IsActive,
+            OrderNo,
+            IsDeleted,
+            DeleterUserId,
+            DeletionTime,
+            LastModificationTime,
+            LastModifierUserId,
+            CreationTime,
+            CreatorUserId,
+            Name,
+			TenantId
+        )
+        VALUES
+        (   @NodeCode,
+            @NodeName,
+            @FileTypeId,
+            @ParentNodeId,
+            @IsActive,
+            @OrderNo,
+            @IsDeleted,
+            @DeleterUserId,
+            @DeletionTime,
+            @LastModificationTime,
+            @LastModifierUserId,
+            @CreationTime,
+            @CreatorUserId,
+            @Name,
+			@TenantId
+            )
+
+		SET @Count=@Count+1	
+
+		END
+		--插入完treenode後 要更新根目錄ID 與個別專區的 父節點
+		BEGIN
+		SELECT @ParentNodeId=Id FROM dbo.PubTreeNodes WHERE TenantId=@tenantId AND IsDeleted=0 AND NodeCode='ROOT' 
+		SELECT @IEParentNodeId=Id FROM dbo.PubTreeNodes WHERE TenantId=@tenantId AND IsActive=1 AND IsDeleted=0 AND NodeCode='IE' 
+		UPDATE dbo.PubTreeNodes SET ParentNodeId=@ParentNodeId  WHERE TenantId=@tenantId AND IsActive=1 AND IsDeleted=0
+	    UPDATE dbo.PubTreeNodes SET ParentNodeId=@IEParentNodeId WHERE TenantId=@tenantId AND IsActive=1 AND IsDeleted=0 AND NodeCode='IEShare'
+
+		END
+		print 'TreeNode copy Success!'
+
+		drop table #TreeNodeInfo
+
+
+    if @@Error <> 0 goto lab
+
+    return 0
+    lab:
+    Print N'Data Copy Fail'
+END
