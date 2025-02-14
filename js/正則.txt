@@ -872,6 +872,12 @@ java :^\\d+\\.?\\d{0,2}%$
         string pattern = @"^[A-Za-z]{1}\d+$|^\d+$"
         return Regex.IsMatch(str, pattern);
     }
+	//驗證數字+字符串
+	
+	   var str = $("#txtPRODUCTQUANTITY").val();
+    let reg = /^[0-9]{1,10}\s*[A-Za-z]{1,10}$/;
+    let isAllow = reg.test(str);
+    return isAllow;
 
 
     
