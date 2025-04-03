@@ -1,0 +1,870 @@
+1   TFS 如何強制撤銷被簽出的文件 [復制链接]  
+  
+發送消息 
+UID1精華1威望725 金錢725 元性别男来自在線時間2620註冊時間2014-12-12最後登錄2015-01-06 查看公共資料 檢索帖子 F2806229 
+头像 
+朱優良
+ 
+組别管理員 姓名朱優良帖子69積分799  1# 字体大小: t T  發表於 50分鐘 |只看楼主 
+TFS 源代碼管理 
+        我們在使用TFS (Team Foundation Server) 源代碼管理的時候，源代碼管理會在每個PC上創建一個工作區，然後這個工作區域映射到伺服器上的源碼資料夾，我們在正常簽入，簽出的時候，我們的源碼會在伺服器到用戶端的工作區進行操作。
+        但是偶爾會有這樣的情況：項目組成員請假或者離職之前簽出，並且加入了簽出鎖，這時如果項目組的其他成員想要修改被鎖定的檔，或者是TFS的管理員想要在源代碼管理中刪除這個專案，這時會有如下提示：
+        The item $/量具儀器校準管理系統/MICMS/micmsWeb/Login.aspx.cs is locked for check-out by H0594499:5 in workspace CN511577.
+        因此我們無法通過Team Explorer圖形界面來進行撤銷簽出操作，怎麼辦？這個時候我們只能通過TFS命令：undo來進行操作，強行撤銷別人簽出的文檔。
+
+        1、打開命令行工具，進入TF所在的文件夾：
+             >cd C:\Program Files\Microsoft Visual Studio 8\Common7\IDE                                // 32位系統
+             >cd C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE                    // 64位系統
+        2、查找那個人所用到的workspace，通常已經在提示信息中會顯示。操作如下：
+             >tf workspaces /owner:FIH\H0594499 /server:http://10.83.18.67:8080/tfs/si
+        3、查看那個人掛起的更改文件：
+             >tf status /server:http://10.83.18.67:8080/tfs/si  /workspace:*  /user:FIH\H0594499
+        4、強制撤銷那個人的簽出：
+             >tf undo /workspace:cn511577;FIH\H0594499:5 $/量具儀器校準管理系統/MICMS/micmsWeb/Login.aspx.cs /server:http://10.83.18.67:8080/tfs/si
+             其中 tf 是命令，undo 是第一個參數，其他命令參數具體說明如下：
+             cn511577 是電腦名，
+             FIH\H0594499 是用戶賬號，
+             :5 是用戶序號，可能有也可能沒有，
+             $/量具儀器校準管理系統/MICMS/micmsWeb/Login.aspx.cs 是文件的服務器路徑，可以從源代碼管理器的文件屬性查看到。
+             /server:http://10.83.18.67:8080/tfs/si 是TFS的地址。 
+
+
+判斷提單人是否是小米部門
+
+維護相關數據 週期狀態周
+
+當前登陸人沒有使用人角色，請為登陸人維護一個角色！
+
+保管
+批量處理 單筆處理 備份
+
+Mr guo:
+請幫忙查詢相關數據：
+
+地址：10.83.18.70,1869      database： jpos
+table   MoRequestReport  MoData
+選擇
+
+
+
+
+2 GridView 
+      DataGrid 隱藏列之後依然能夠取得列的值，但在 GridView 中，隱藏列之後無法取到該列的值。
+               <asp:BoundField DataField="Level" HeaderText="" Visible="false"><asp:BoundField>
+      這個問題可以利用 DataKey 和 DataKeyNames 解決如下：
+      1、首先在 gridView.DataBind() 前，註冊 DataKeyNames:
+               gridView.DataKeyNames = new string[]{"Level"};
+               gridView.DataBind();
+           注意，DataKeyNames 是一個字符串數組，可以存入不止一個欄位的名稱，本例只存入一個 Level 欄位。
+      2、後面在需要取值的地方，就可以用 DataKey 索引到列的值。
+               string level = gridView.DataKey.Value;
+           如果是組合欄位，則形式如下：
+               string level = gridView.DataKey.Values[0];
+
+筆試題
+31.公司要求开发一个继承System.Windows.Forms.ListView类的组件，要求达到以下的特殊功能：点击ListView各列列头时，能按照点击列的每行值进行重排视图中的所有行 (排序的方式如DataGrid相似)。根据您的知识，请简要谈一下您的思路
+答：根据点击的列头,包该列的ID取出,按照该ID排序后,在给绑定到ListView中。
+32.给定以下XML文件，完成算法流程图。
+<FileSystem> 
+< DriverC > 
+<Dir DirName=”MSDOS622”> 
+<File FileName =” Command.com” ></File> 
+</Dir> 
+<File FileName =”MSDOS.SYS” ></File> 
+<File FileName =” IO.SYS” ></File> 
+</DriverC> 
+</FileSystem> 
+请画出遍历所有文件名（FileName）的流程图(请使用递归算法)。
+答：
+void FindFile( Directory d ) 
+{ 
+FileOrFolders = d.GetFileOrFolders(); 
+foreach( FileOrFolder fof in FileOrFolders ) 
+{ 
+if( fof is File ) 
+You Found a file; 
+else if ( fof is Directory ) 
+FindFile( fof ); 
+} 
+}
+
+33.写出一条Sql语句：取出表A中第31到第40记录（SQLServer,以自动增长的ID作为主键,注意：ID可能不是连续的。
+答：解1: select top 10 * from A where id not in (select top 30 id from A) 
+解2: select top 10 * from A where id > (select max(id) from (select top 30 id from A )as A) 
+
+34.面向对象的语言具有________性、_________性、________性
+答：封装、继承、多态。
+35.能用foreach遍历访问的对象需要实现 ________________接口或声明________________方法的类型。
+答：IEnumerable 、 GetEnumerator。
+36.GC是什么? 为什么要有GC?
+答：GC是垃圾收集器。程序员不用担心内存管理，因为垃圾收集器会自动进行管理。要请求垃圾收集，可以调用下面的方法之一： 
+System.gc()
+Runtime.getRuntime().gc()
+
+37.String s = new String("xyz");创建了几个String Object?
+答：两个对象，一个是“xyx”,一个是指向“xyx”的引用对象s。
+38.abstract class和interface有什么区别?
+答：
+声明方法的存在而不去实现它的类被叫做抽象类（abstract class），它用于要创建一个体现某些基本行为的类，并为该类声明方法，但不能在该类中实现该类的情况。不能创建abstract 类的实例。然而可以创建一个变量，其类型是一个抽象类，并让它指向具体子类的一个实例。不能有抽象构造函数或抽象静态方法。Abstract 类的子类为它们父类中的所有抽象方法提供实现，否则它们也是抽象类为。取而代之，在子类中实现该方法。知道其行为的其它类可以在类中实现这些方法。
+接口（interface）是抽象类的变体。在接口中，所有方法都是抽象的。多继承性可通过实现这样的接口而获得。接口中的所有方法都是抽象的，没有一个
+有程序体。接口只可以定义static final成员变量。接口的实现与子类相似，除了该实现类不能从接口定义中继承行为。当类实现特殊接口时，它定义（即将程序体给予）所有这种接口的方法。
+然后，它可以在实现了该接口的类的任何对象上调用接口的方法。由于有抽象类，它允许使用接口名作为引用变量的类型。通常的动态联编将生效。引用可以转换到
+接口类型或从接口类型转换，instanceof 运算符可以用来决定某对象的类是否实现了接口。
+39.启动一个线程是用run()还是start()?
+答：启动一个线程是调用start()方法，使线程所代表的虚拟处理机处于可运行状态，这意味着它可以由JVM调度并执行。这并不意味着线程就会立即运行。run()方法可以产生必须退出的标志来停止一个线程。
+40.接口是否可继承接口? 抽象类是否可实现(implements)接口? 抽象类是否可继承实体类(concrete class)?
+答：接口可以继承接口。抽象类可以实现(implements)接口，抽象类是否可继承实体类，但前提是实体类必须有明确的构造函数。
+41.构造器Constructor是否可被override?
+答：构造器Constructor不能被继承，因此不能重写Overriding，但可以被重载Overloading。
+42.是否可以继承String类?
+答：String类是
+
+
+
+
+final
+
+
+
+类故不可以继承。
+43.try {}里有一个return语句，那么紧跟在这个try后的finally {}里的code会不会被执行，什么时候被执行，在return前还是后?
+答：会执行，在return前执行。
+44.两个对象值相同(x.equals(y) == true)，但却可有不同的hash code，这句话对不对?
+答：不对，有相同的hash code。
+45.swtich是否能作用在byte上，是否能作用在long上，是否能作用在String上?
+答：switch（expr1）中，expr1是一个整数表达式。因此传递给 switch 和 case 语句的参数应该是 int、 short、 char 或者 byte。long,string 都不能作用于swtich。
+47.当一个线程进入一个对象的一个synchronized方法后，其它线程是否可进入此对象的其它方法?
+不能，一个对象的一个synchronized方法只能由一个线程访问。
+48.abstract的method是否可同时是static,是否可同时是native，是否可同时是synchronized?
+答：都不能。
+49.List, Set, Map是否继承自Collection接口?
+答：List，Set是Map不是
+50.Set里的元素是不能重复的，那么用什么方法来区分重复与否呢? 是用==还是equals()? 它们有何区别?
+答：Set里的元素是不能重复的，那么用iterator()方法来区分重复与否。equals()是判读两个Set是否相等。
+equals()和==方法决定引用值是否指向同一对象equals()在类中被覆盖，为的是当两个分离的对象的内容和类型相配的话，返回真值。
+51.数组有没有length()这个方法? String有没有length()这个方法？
+答：数组没有length()这个方法，有length的属性。String有有length()这个方法。
+52.sleep() 和 wait() 有什么区别?
+答：sleep()方法是使线程停止一段时间的方法。在sleep 时间间隔期满后，线程不一定立即恢复执行。这是因为在那个时刻，其它线程可能正在运行而且没有被调度为放弃执行，除非(a)“醒来”的线程具有更高的优先级
+(b)正在运行的线程因为其它原因而阻塞。
+wait()是线程交互时，如果线程对一个同步对象x 发出一个wait()调用，该线程会暂停执行，被调对象进入等待状态，直到被唤醒或等待时间到。
+53.short s1 = 1; s1 = s1 + 1;有什么错? short s1 = 1; s1 += 1;有什么错?
+答：short s1 = 1; s1 = s1 + 1;有错，s1是short型，s1+1是int型,不能显式转化为short型。可修改为s1 =(short)(s1 + 1) 。short s1 = 1; s1 += 1正确。
+54.谈谈final, finally, finalize的区别。
+答：
+final—修饰符（关键字）如果一个类被声明为final，意味着它不能再派生出新的子类，不能作为父类被继承。因此
+一个类不能既被声明为 abstract的，又被声明为final的。将变量或方法声明为final，可以保证它们在使用中
+不被改变。被声明为final的变量必须在声明时给定初值，而在以后的引用中只能读取，不可修改。被声明为 final的方法也同样只能使用，不能重载
+finally—再异常处理时提供 finally 块来执行任何清除操作。如果抛出一个异常，那么相匹配的 catch 子句就会
+执行，然后控制就会进入 finally 块（如果有的话）。
+finalize—方法名。Java 技术允许使用 finalize() 方法在垃圾收集器将对象从内存中清除出去之前做必要的清理
+工作。这个方法是由垃圾收集器在确定这个对象没有被引用时对这个对象调用的。它是在 Object 类中定义的
+，因此所有的类都继承了它。子类覆盖 finalize() 方法以整理系统资源或者执行其他清理工作。finalize() 方法是在垃圾收集器删除对象之前对这个对象调用的。
+55.如何处理几十万条并发数据？
+答：用存储过程或事务。取得最大标识的时候同时更新..注意主键不是自增量方式这种方法并发的时候是不会有重复主键的..取得最大标识要有一个存储过程来获取.
+
+56.Session有什么重大BUG，微软提出了什么方法加以解决？
+答：是iis中由于有进程回收机制，系统繁忙的话Session会丢失，可以用Sate server或SQL Server数据库的方式存储Session不过这种方式比较慢，而且无法捕获Session的END事件。
+57.进程和线程的区别？
+答：进程是系统进行资源分配和调度的单位；线程是CPU调度和分派的单位，一个进程可以有多个线程，这些线程共享这个进程的资源。
+58.堆和栈的区别？
+答：
+栈：由编译器自动分配、释放。在函数体中定义的变量通常在栈上。
+堆：一般由程序员分配释放。用new、malloc等分配内存函数分配得到的就是在堆上。
+59.成员变量和成员函数前加static的作用？
+答：它们被称为常成员变量和常成员函数，又称为类成员变量和类成员函数。分别用来反映类的状态。比如类成员变量可以用来统计类实例的数量，类成员函数负责这种统计的动作。
+60.ASP。NET与ASP相比，主要有哪些进步？
+答：asp解释形，aspx编译型，性能提高，有利于保护源码。
+
+
+公告
+
+关于Response.redirect和Response.End出现线程中止异常的处理
+异常错误提示: 线程正被中止 
+原因很明了，在调用response.end的时候被Abort，异常直接抛出来了 
+
+在微软的Support里面查到相关资料，不过微软在给出问题出错原因时显得很搞笑： 
+解释是：   这种现象是设计使然。 
+
+症状
+
+如果使用 Response.End、Response.Redirect 或 Server.Transfer 方法，则出现 ThreadAbortException 异常。 可使用 try-catch 语句捕捉此异常。
+原因
+
+Response.End 方法停止页的执行，并将该执行变换到应用程序的事件管线中的 Application_EndRequest 事件。 Response.End 后面的代码行将不执行。 
+
+此问题出现在 Response.Redirect 和 Server.Transfer 方法中，这是由于这两种方法都在内部调用 Response.End 
+
+解决方案
+
+若要解决此问题，请使用下列方法之一：
+对于 Response.End，调用 ApplicationInstance.CompleteRequest 方法而不调用 Response.End，以便跳过 Application_EndRequest 事件的代码执行。
+对于 Response.Redirect，使用重载 Response.Redirect(String url, bool endResponse)，对 endResponse 参数它传递 false以取消对 Response.End 的内部调用。例如：
+  Response.Redirect ("nextpage.aspx", false);
+如果使用这种解决方法，Response.Redirect 后面的代码将得到执行。
+对于 Server.Transfer，请改用 Server.Execute 方法。
+状态
+
+这种现象是设计使然。
+这篇文章中的信息适用于:
+
+Microsoft ASP .NET（包含在 .NET 框架中）
+最近更新:	2002-1-17 (1.0)
+关键字	kbDSupport kberror kbExceptHandling kbGrpDSASP kbprb kbWebForms KB312629
+
+
+    protected void lbDownloadClick(object sender, EventArgs e)
+    {
+        GridViewRow gvr = (GridViewRow)((LinkButton)sender).NamingContainer;
+        Guid key = new Guid(gvr.Cells[0].Text);
+        PubMsopEntity entity = bs.Load<PubMsopEntity>(QueryExp.Equal("MSOP_Guid", key));
+        if((entity.IsPic == true) && (!string.IsNullOrWhiteSpace(entity.PicUrl)))
+        {
+            string filepath = Server.MapPath("~/Upload/MSOP/") + entity.PicUrl;
+
+            if (File.Exists(filepath))
+            {
+                Response.ContentType = "application/octet-stream";
+                Response.AddHeader("Content-Disposition", "attachment;filename=" + Server.UrlPathEncode(entity.PicUrl));
+                //指定编码 防止中文文件名乱码
+                Response.HeaderEncoding = System.Text.Encoding.Default;
+                Response.TransmitFile(filepath);
+            }
+            else
+            {
+                string script = "alert(\"" + ("圖檔文件不存在!") + "\");";
+                ClientScript.RegisterStartupScript(typeof(Page), "", script, true);
+                return;
+            }
+        }
+        else
+        {
+            string script = "alert(\"" + ("無圖檔文件或圖檔文件不存在!") + "\");";
+            ClientScript.RegisterStartupScript(typeof(Page), "", script, true);
+            return;
+        }      
+    }
+
+
+
+
+
+
+    很多系統在Safari，Chrome瀏覽器中或多或少會存在兼容性問題，對於已開發好的系統不妨按以下方式暫時解決，以避免一次又一次的教用戶手動設置瀏覽器兼容模式。待有好的方案時再改寫代碼。
+
+對於新開發系統， 當然不能這樣做，一開始就得考慮代碼的兼容性.
+
+做法很簡單：如下
+1.在項目中添加BrowserFile.browser文件：
+
+ 
+11.png(44.15 K)
+
+12/27/2014 10:22:06 AM
+
+
+2.在新增的BrowserFile.browser文件中，將內容設置成如下：
+
+<!--
+    You can find existing browser definitions at
+    <windir>\Microsoft.NET\Framework\<ver>\CONFIG\Browsers
+-->
+<browsers>
+  <browser id="Safari3" parentID="Safari1Plus">
+    <identification>
+      <userAgent match="Safari/\d+\.\d+" />
+    </identification>
+    <capture>
+      <userAgent match="Version/(?'version'\d+\.\d+)" />
+    </capture>
+    <capabilities>
+      <capability name="browser" value="Safari3" />
+      <capability name="version" value="${version}" />
+    </capabilities>
+    <controlAdapters>
+      <adapter controlType="System.Web.UI.WebControls.Menu"
+               adapterType="" />
+    </controlAdapters>
+  </browser>
+  <browser id="GoogleChrome" parentID="Safari3">
+    <identification>
+      <userAgent match="Chrome/(?'version'\d+\.\d+)" />
+    </identification>
+    <capabilities>
+      <capability name="browser" value="Googlebot" />
+    </capabilities>
+  </browser>
+</browsers>
+
+
+
+
+
+
+
+ASP.NET @Page指令属性(vs2010)
+
+      @Page指令位于每个ASP.NET页面的顶部，告诉ASP.NET这个具体页面使用什么属性，以及该页面继承的用户控件。ASP.NET页面@Page指令属性有：AspCompat、Async、AsyncTimeout、AutoEventWireup、Buffer、ClassName、ClientIDMode、CodeBehind、 CodeFile、CodeFileBaseClass、CodePage、CompilationMode 、ContentType、 CompilerOptions、Culture 、Debug、 EnableEventValidation、EnableSessionState、EnableTheming 、EnableViewState、 EnableViewStateMac 、ErrorPage 、Explicit、 Inherits、 Language、 LCID 、LinePragmas、MaintainScrollPositionOnPostback、 MasterPageFile、 MetaDescription 、MetaKeywords 、ResponseEncoding、Src、Strict、StylesheetTheme、Theme、Title、Trace 、TraceMode 、Transaction 、UICulture、 ValidateRequest、ViewStateEncryptionMode、ViewStateMode、WarningLevel。
+
+      AspCompat通过设置页面在单线程单元中运行，使得ASP.NET页面能够访问传统的COM对象。ASP.NET页面默认是在多线程单元(MTA)中运行。当启用AspCompant模式时，设置ASP.NET在单线程单元（STA）中运行页面，以便它能够安全地与COM对象交互。AspCompat设置为true会影响性能。默认为false。
+
+      Async使页面成为异步处理程序，即导致页使用IHttpAsyncHandler的实现来处理请求，默认为false。
+
+      AsyncTimeout定义在处理异步任务时使用的超时的时间间隔（以秒为单位）。默认为45秒。
+
+      AutoEventWireup指示页面的事件是否自动绑定。如果启用了事件的自动绑定，则为true；否则为false。默认值为true。
+
+      Buffer确定是否启用HTTP响应缓冲。如果启用页面缓冲为true；否则为false。默认为true。
+
+      ClassName指定在请求该页面时将自动进行动态编译的页的类名。此值可以是任何有效的类名，并且可以包括类的完整命名空间。如果未指定该属性的值，则已编译的类名将基于页的文件名。其他页可以通过使用 @ Reference 指令来引用分配给第一页的类名。
+
+      ClientTarget指示 ASP.NET 服务器控件应该为其呈现内容的目标用户代理（通常是 Web 浏览器，例如 Microsoft Internet Explorer）。该值可以是应用程序配置文件的 <clientTarget> 节中定义的任何有效别名。
+
+      CodeBehind指定包含与页关联的类的已编译文件的名称。该属性不能在运行时使用。提供此属性是为了与以前版本的 ASP.NET 的兼容，以实现代码隐藏功能。在 ASP.NET 2.0 版中，应改用 CodeFile 属性指定该源文件的名称，同时使用 Inherits 属性指定该类的完全限定名称。
+
+      CodeFile指定指向页引用的代码隐藏文件的路径。此属性与 Inherits 属性一起使用可以将代码隐藏源文件与网页相关联。此属性仅对编译的页有效。
+
+      CodeFileBaseClass指定页的基类及其关联的代码隐藏类的路径。此属性是可选的，但如果使用此属性，则必须同时使用 CodeFile 属性。如果希望实现以下共享方案，可使用该属性：在该共享方案中，您在基类中定义通用字段（可以选择性地定义关联事件）以引用在网页中声明的控件。出于 ASP.NET 代码生成模型的缘故，如果您在基类中定义字段时没有使用该属性，则编译时将为在网页中（在单独的分部类存根中）声明的控件生成新的成员定义，而您希望的方案将无法生效。但是，如果您使用 CodeFileBaseClass 属性将基类与页相关联，并且您的分部类（其名称分配给 Inherits 属性，并且其源文件由 CodeFile 属性引用）是从该基类继承的，则该基类中的字段在代码生成之后将能够引用页上的控件。
+
+      CodePage指示用于响应的编码方案的值。该值是一个用作编码方案 ID 的整数。有关可能的 CodePage ID 的列表，请参见 Encoding 类。
+
+     CompilationMode设置是否应使用指定多个枚举选项之一的字符串来编译页。默认值为 Always，因此，默认情况下编译 .aspx 页。包含用于编译页的编译器选项的字符串。在 C# 和 Visual Basic 中，这是编译器命令行开关的序列。有关编译器选项的更多信息，请参见 C# 编译器选项或 Visual Basic 编译器。
+
+     ContentType将响应的 HTTP 内容类型定义为标准的 MIME 类型。
+
+     CompilerOptions支持任何有效的 HTTP 内容类型字符串。有关可能值的列表，请在 MSDN Library 中搜索 MIME。Culture指示页的区域性设置。该属性的值必须是有效的区域性 ID。注意，LCID 和 Culture 属性是互相排斥的；如果使用了其中一个属性，就不能在同一页中使用另一个属性。
+
+      Culture动态生成的类将设置此属性的值。此外，还可以通过编程方式或在 Web.config 文件的 globalization 元素（ASP.NET 设置架构） 中显式设置 Culture 属性的值。Culture 属性用于帮助本地化页内容。可以将其设置为任何有效的区域性 ID。例如，en-us 区域性 ID 将页设置为美国英语，而 fr 区域性 ID 将页设置为法语。还可以将该值设置为 auto，从而自动检测浏览器的首选语言并设置该语言。可以用默认值（如 auto:en-us）限定自动语言检测。
+
+      Debug指示是否应使用调试符号编译该页。如果应使用调试符号编译该页，则为 true；否则为 false。由于此设置影响性能，因此只应在开发期间将此属性设置为 true。
+
+      EnableEventValidation在回发方案中启用事件验证。如果验证事件，则为 true；否则为 false。默认值为 true。
+
+      EnableSessionState定义页的会话状态要求。如果启用了会话状态，则为 true；如果可以读取会话状态但不能进行更改，则为 ReadOnly；否则为 false。默认值为 true。这些值是不区分大小写的。
+
+      EnableTheming指示是否在页上使用主题。如果使用主题，则为 true；否则为 false。默认值为 true。
+
+      EnableViewState指示是否在页请求之间保持视图状态。如果要保持视图状态，则为 true；否则为 false。默认值为 true。
+
+      EnableViewStateMac指示当页从客户端回发时，ASP.NET 是否应该对页的视图状态运行计算机身份验证检查 (MAC)。如果应该对视图状态运行 MAC 检查，则为 true；否则为 false。默认值为 false。视图状态 MAC 是隐藏变量的加密版本，当某页被发送到浏览器时，该页的视图状态永久保持到该变量中。当您将此属性设置为 true 时，将检查加密的视图状态以验证它在客户端未被篡改。注意，将此属性设置为 true 会影响性能，因为在页的每次往返行程中，都必须加密和解密变量值。
+
+      ErrorPage定义在出现未处理页异常时用于重定向的目标 URL。
+
+      Explicit确定是否使用 Visual Basic Option Explicit 模式来编译页。如果启用了 Visual Basic 显式编译选项，且所有变量必须使用 Dim、Private、Public 或 ReDim 语句来声明，则为 true；否则为 false。默认值为 false。除了 Visual Basic，所有其他语言都忽略该属性。此外，该选项在 Machine.config 配置文件中被设置为 true。
+
+Inherits定义供页继承的代码隐藏类。它可以是从 Page 类派生的任何类。它与 CodeFile 属性（包含指向代码隐藏类的源文件的路径）一起使用。
+
+      Language指定在对页中的所有内联呈现（<% %> 和 <%= %>）和代码声明块进行编译时使用的语言。值可以表示任何 .NET Framework 支持的语言，包括 Visual Basic、C# 或 JScript。每页只能使用和指定一种语言。
+
+LCID定义 Web 窗体页的区域设置标识符。区域设置标识符是一个 32 位值，该值唯一地定义某个区域设置。除非您使用该属性为 Web 窗体页指定不同的区域设置，否则 ASP.NET 使用 Web 服务器默认的区域设置。注意，LCID 和 Culture 属性是互相排斥的；如果使用了其中一个属性，就不能在同一页中使用另一个属性。
+
+      LinePragmas确定运行库是否应在源代码中生成行杂注。这些是编译器选项，调试工具通常使用这些选项来标记源文件中的特定位置。如果应该生成行杂注，则为 true；否则为 false。
+
+      MaintainScrollPositionOnPostback指示在回发后是否将用户返回到客户端浏览器中的同一位置。如果应该将用户返回到同一位置，则为 true；否则为 false。默认值为 false。开发人员可以通过设置 Web.config 文件的 <pages> 元素上的 maintainScrollPostitionOnPostback 属性（注意，此属性在配置文件中是区分大小写的），为所有页定义该属性。
+
+MasterPageFile设置内容页的母版页或嵌套母版页的路径。支持相对路径和绝对路径。
+
+     MetaDescription为ASP.NET4.0新增为页面的SEO优化，指定在响应的 HTML <Meta> 标记中呈现的页的描述。也可以通过编程方式将描述作为页的属性来访问。
+
+     MetaKeywords也是ASP.NET4.0新增的为SEO优化，指定在响应的 HTML <Meta> 标记中呈现的页的Keywords。也可以通过编程方式将描述作为页的属性来访问。
+
+     ResponseEncoding指示用于包含页内容的 HTTP 响应的编码方案的名称。分配给该属性的值是有效的编码名称。有关可能的编码名称的列表，请参见 Encoding 类。您也可以调用 GetEncodings 方法来获取可能的编码名称和 ID 的列表。
+
+     Src指定包含链接到页的代码的源文件的路径。在链接的源文件中，可以选择将页的编程逻辑包含在类中或代码声明块中。可以使用 Src 属性将生成提供程序链接到页。有关更多信息，请参见 BuildProvider 类。另外，在低于 2.0 版的 ASP.NET 中，Src 属性是另一种将代码隐藏文件链接到页的方法。在 ASP.NET 2.0 中，将代码隐藏源文件链接到页的首选方法是使用 Inherits 属性来指定类，并使用 CodeFile 属性来指定该类的源文件的路径。
+
+     Strict指示应使用 Visual Basic OptionStrict 模式来编译页。如果启用了 Option Strict，则为 true；否则为 false。默认值为 false。除了 Visual Basic，所有其他语言都忽略该属性。
+
+     StyleSheetTheme指定在页上使用的有效主题标识符。如果设置了 StyleSheetTheme 属性，则单独的控件可以重写主题中包含的样式设置。这样，主题可以提供站点的整体外观，同时，利用 StyleSheetTheme 属性中包含的设置可以自定义页及其各个控件的特定设置。
+
+      Theme指定在页上使用的有效主题标识符。如果设置 Theme 属性时没有使用 StyleSheetTheme 属性，则将重写控件上的单独的样式设置，允许您创建统一而一致的页外观。
+
+     Title指定在响应的 HTML <title> 标记中呈现的页的标题。也可以通过编程方式将标题作为页的属性来访问。
+
+     Trace指示是否启用跟踪。如果启用了跟踪，则为 true；否则为 false。默认值为 false。
+
+     TraceMode指示当启用跟踪时如何为页显示跟踪消息。可能的值为 SortByTime 和 SortByCategory。当启用跟踪时，默认值为 SortByTime。
+
+     Transaction指示在页上是否支持事务。可能的值有 Disabled、NotSupported、Supported、Required 和 RequiresNew。默认值为 Disabled。
+
+     UICulture指定用于页的用户界面 (UI) 区域性设置。支持任何有效的 UI 区域性值。
+
+     ValidateRequest指示是否应发生请求验证。如果为 true，请求验证将根据具有潜在危险的值的硬编码列表检查所有输入数据。如果出现匹配情况，将引发 HttpRequestValidationException 异常。默认值为 true。该功能在计算机配置文件 (Machine.config) 中启用。可以在应用程序配置文件 (Web.config) 中或在页上将该属性设置为 false 来禁用该功能。该功能有助于减少对简单页或 ASP.NET 应用程序进行跨站点脚本攻击的风险。如果应用程序不能正确验证用户输入，则可能会受到多种类型的格式错误的输入的攻击，包括跨站点脚本攻击和 Microsoft SQL Server 注入式攻击。应该仔细地评估应用程序中所有形式的输入，并确保对它们进行了正确地验证和编码，或者确保应用程序在处理数据或将信息发送回客户端之前已退出。除此之外，别无它法。
+
+       ViewStateEncryptionMode使用三个可能的枚举值来确定如何加密视图状态：Auto、Always 或 Never。默认值为 Auto，表示如果单个控件请求进行加密，将加密视图状态。
+
+       ViewStateMode这个属性可以单独设置控件的视图状态。在以前版本的 ASP.NET 中，控件的视图只有在 Page 的 ViewState 启用的前提下才可以单独控制。在 ASP.NET4.0 中，控件的视图状态可以单独设置了，也就是说，即使页面的视图状态没有启用，控件依然可以启用视图状态。
+
+ViewStateMode 属性是个枚举值：InheritL：视图状态从父控件继承；Enabled：即使父控件的视图状态没有启用，也启用该控件的视图状态；Disabled：即使父控件的视图状态启用了，也禁用此控件的视图状态。
+
+       WarningLevel指示您希望编译器将警告视为错误（从而中止对页进行编译）的编译器警告等级。可能的警告等级为 0 到 4。有关更多信息，请参见 WarningLevel 属性。
+
+
+       /// List转成json   
+/// </summary>  
+/// <typeparam name="T"></typeparam>  
+/// <param name="jsonName"></param>  
+/// <param name="list"></param>  
+/// <returns></returns>  
+public static string ListToJson<T>(IList<T> list, string jsonName)  
+{  
+ StringBuilder Json = new StringBuilder();  
+ if (string.IsNullOrEmpty(jsonName))  
+  jsonName = list[0].GetType().Name;  
+ Json.Append("{/"" + jsonName + "/":[");  
+ if (list.Count > 0)  
+ {  
+  for (int i = 0; i < list.Count; i++)  
+  {  
+   T obj = Activator.CreateInstance<T>();  
+   PropertyInfo[] pi = obj.GetType().GetProperties();  
+   Json.Append("{");  
+   for (int j = 0; j < pi.Length; j++)  
+   {  
+    Type type = pi[j].GetValue(list[i], null).GetType();  
+    Json.Append("/"" + pi[j].Name.ToString() + "/":" + StringFormat(pi[j].GetValue(list[i], null).ToString(), type));  
+
+    if (j < pi.Length - 1)  
+    {  
+     Json.Append(",");  
+    }  
+   }  
+   Json.Append("}");  
+   if (i < list.Count - 1)  
+   {  
+    Json.Append(",");  
+   }  
+  }  
+ }  
+ Json.Append("]}");  
+ return Json.ToString();  
+}  
+
+/// <summary>  
+/// List转成json   
+/// </summary>  
+/// <typeparam name="T"></typeparam>  
+/// <param name="list"></param>  
+/// <returns></returns>  
+public static string ListToJson<T>(IList<T> list)  
+{  
+ object obj = list[0];  
+ return ListToJson<T>(list, obj.GetType().Name);  
+}  
+
+/// <summary>   
+/// 对象转换为Json字符串   
+/// </summary>   
+/// <param name="jsonObject">对象</param>   
+/// <returns>Json字符串</returns>   
+public static string ToJson(object jsonObject)  
+{  
+ string jsonString = "{";  
+ PropertyInfo[] propertyInfo = jsonObject.GetType().GetProperties();  
+ for (int i = 0; i < propertyInfo.Length; i++)  
+ {  
+  object objectValue = propertyInfo[i].GetGetMethod().Invoke(jsonObject, null);  
+  string value = string.Empty;  
+  if (objectValue is DateTime || objectValue is Guid || objectValue is TimeSpan)  
+  {  
+   value = "'" + objectValue.ToString() + "'";  
+  }  
+  else if (objectValue is string)  
+  {  
+   value = "'" + ToJson(objectValue.ToString()) + "'";  
+  }  
+  else if (objectValue is IEnumerable)  
+  {  
+   value = ToJson((IEnumerable)objectValue);  
+  }  
+  else 
+  {  
+   value = ToJson(objectValue.ToString());  
+  }  
+  jsonString += "/"" + ToJson(propertyInfo[i].Name) + "/":" + value + ",";  
+ }  
+ jsonString.Remove(jsonString.Length - 1, jsonString.Length);  
+ return jsonString + "}";  
+}  
+
+/// <summary>   
+/// 对象集合转换Json   
+/// </summary>   
+/// <param name="array">集合对象</param>   
+/// <returns>Json字符串</returns>   
+public static string ToJson(IEnumerable array)  
+{  
+ string jsonString = "[";  
+ foreach (object item in array)  
+ {  
+  jsonString += ToJson(item) + ",";  
+ }  
+ jsonString.Remove(jsonString.Length - 1, jsonString.Length);  
+ return jsonString + "]";  
+}  
+
+/// <summary>   
+/// 普通集合转换Json   
+/// </summary>   
+/// <param name="array">集合对象</param>   
+/// <returns>Json字符串</returns>   
+public static string ToArrayString(IEnumerable array)  
+{  
+ string jsonString = "[";  
+ foreach (object item in array)  
+ {  
+  jsonString = ToJson(item.ToString()) + ",";  
+ }  
+ jsonString.Remove(jsonString.Length - 1, jsonString.Length);  
+ return jsonString + "]";  
+}  
+
+/// <summary>   
+/// Datatable转换为Json   
+/// </summary>   
+/// <param name="table">Datatable对象</param>   
+/// <returns>Json字符串</returns>   
+public static string ToJson(DataTable dt)  
+{  
+ StringBuilder jsonString = new StringBuilder();  
+ jsonString.Append("[");  
+ DataRowCollection drc = dt.Rows;  
+ for (int i = 0; i < drc.Count; i++)  
+ {  
+  jsonString.Append("{");  
+  for (int j = 0; j < dt.Columns.Count; j++)  
+  {  
+   string strKey = dt.Columns[j].ColumnName;  
+   string strValue = drc[i][j].ToString();  
+   Type type = dt.Columns[j].DataType;  
+   jsonString.Append("/"" + strKey + "/":");  
+   strValue = StringFormat(strValue, type);  
+   if (j < dt.Columns.Count - 1)  
+   {  
+    jsonString.Append(strValue + ",");  
+   }  
+   else 
+   {  
+    jsonString.Append(strValue);  
+   }  
+  }  
+  jsonString.Append("},");  
+ }  
+ jsonString.Remove(jsonString.Length - 1, 1);  
+ jsonString.Append("]");  
+ return jsonString.ToString();  
+}  
+
+/// <summary>  
+/// DataTable转成Json   
+/// </summary>  
+/// <param name="jsonName"></param>  
+/// <param name="dt"></param>  
+/// <returns></returns>  
+public static string ToJson(DataTable dt, string jsonName)  
+{  
+ StringBuilder Json = new StringBuilder();  
+ if (string.IsNullOrEmpty(jsonName))  
+  jsonName = dt.TableName;  
+ Json.Append("{/"" + jsonName + "/":[");  
+ if (dt.Rows.Count > 0)  
+ {  
+  for (int i = 0; i < dt.Rows.Count; i++)  
+  {  
+   Json.Append("{");  
+   for (int j = 0; j < dt.Columns.Count; j++)  
+   {  
+    Type type = dt.Rows[i][j].GetType();  
+    Json.Append("/"" + dt.Columns[j].ColumnName.ToString() + "/":" + StringFormat(dt.Rows[i][j].ToString(), type));  
+    if (j < dt.Columns.Count - 1)  
+    {  
+     Json.Append(",");  
+    }  
+   }  
+   Json.Append("}");  
+   if (i < dt.Rows.Count - 1)  
+   {  
+    Json.Append(",");  
+   }  
+  }  
+ }  
+ Json.Append("]}");  
+ return Json.ToString();  
+}  
+
+/// <summary>   
+/// DataReader转换为Json   
+/// </summary>   
+/// <param name="dataReader">DataReader对象</param>   
+/// <returns>Json字符串</returns>   
+public static string ToJson(DbDataReader dataReader)  
+{  
+ StringBuilder jsonString = new StringBuilder();  
+ jsonString.Append("[");  
+ while (dataReader.Read())  
+ {  
+  jsonString.Append("{");  
+  for (int i = 0; i < dataReader.FieldCount; i++)  
+  {  
+   Type type = dataReader.GetFieldType(i);  
+   string strKey = dataReader.GetName(i);  
+   string strValue = dataReader[i].ToString();  
+   jsonString.Append("/"" + strKey + "/":");  
+   strValue = StringFormat(strValue, type);  
+   if (i < dataReader.FieldCount - 1)  
+   {  
+    jsonString.Append(strValue + ",");  
+   }  
+   else 
+   {  
+    jsonString.Append(strValue);  
+   }  
+  }  
+  jsonString.Append("},");  
+ }  
+ dataReader.Close();  
+ jsonString.Remove(jsonString.Length - 1, 1);  
+ jsonString.Append("]");  
+ return jsonString.ToString();  
+}  
+
+/// <summary>   
+/// DataSet转换为Json   
+/// </summary>   
+/// <param name="dataSet">DataSet对象</param>   
+/// <returns>Json字符串</returns>   
+public static string ToJson(DataSet dataSet)  
+{  
+ string jsonString = "{";  
+ foreach (DataTable table in dataSet.Tables)  
+ {  
+  jsonString += "/"" + table.TableName + "/":" + ToJson(table) + ",";  
+ }  
+ jsonString = jsonString.TrimEnd(',');  
+ return jsonString + "}";  
+}  
+
+/// <summary>  
+/// 过滤特殊字符  
+/// </summary>  
+/// <param name="s"></param>  
+/// <returns></returns>  
+private static string String2Json(String s)  
+{  
+ StringBuilder sb = new StringBuilder();  
+ for (int i = 0; i < s.Length; i++)  
+ {  
+  char c = s.ToCharArray()[i];  
+  switch (c)  
+  {  
+   case '/"':  
+    sb.Append("///""); break;  
+   case '//':  
+    sb.Append("////"); break;  
+   case '/':  
+    sb.Append("///"); break;  
+   case '/b':  
+    sb.Append("//b"); break;  
+   case '/f':  
+    sb.Append("//f"); break;  
+   case '/n':  
+    sb.Append("//n"); break;  
+   case '/r':  
+    sb.Append("//r"); break;  
+   case '/t':  
+    sb.Append("//t"); break;  
+   default:  
+    sb.Append(c); break;  
+  }  
+ }  
+ return sb.ToString();  
+}  
+
+/// <summary>  
+/// 格式化字符型、日期型、布尔型  
+/// </summary>  
+/// <param name="str"></param>  
+/// <param name="type"></param>  
+/// <returns></returns>  
+private static string StringFormat(string str, Type type)  
+{  
+ if (type == typeof(string))  
+ {  
+  str = String2Json(str);  
+  str = "/"" + str + "/"";  
+ }  
+ else if (type == typeof(DateTime))  
+ {  
+  str = "/"" + str + "/"";  
+ }  
+ else if (type == typeof(bool))  
+ {  
+  str = str.ToLower();  
+ }  
+ return str;  
+}
+
+C# JavaScript JSON 
+      在ASP.NET的JSON处理中，通常会遇到使用单引号或其他特殊字符，如果直接使用，会截断JSON数据，造成JS错误无法正确运行。
+      其实只要使用Javascript的escape方法编码字符串后就可以解决这个问题。
+
+      但是在C#代码中怎么解决这个问题呢？
+      我们自然就想到了使用Server.UrlEncode方法来编码数据，可是实践后发现编码后的有些字符在JS中无法被unescape方法还原。
+      其实解决方法很简单，引用Microsoft.JScript程序集后，使用GlobalObject类的escape方法就行了。
+      这个方法作用和Server.UrlEncode类似，但是它相当于是在C#代码里调用了javascript的escape方法，自然而然可以保证能被unescape方法还原。
+
+      C# 
+           Microsoft.JScript.GlobalObject.escape(json);
+
+
+      JS
+           var csStr = unescape(json.str);
+
+
+
+
+
+
+asp.net页面异常：对象的当前状态使该操作无效 
+
+
+
+
+今天在页面上提交数据的时候出现这个异常：
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+原来是微软对asp.net表单域的默认长度限制为1000，而我要上传的数据已经超过一千条。
+
+ 
+
+问题：现在asp.net request 表单域的默认长度是1000，如果是超过一千 就会出错，或者request.form取不到1000以后的表单数据。
+
+测试代码：
+
+
+复制代码
+<%@ Page Language="C#"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+    <title>无标题页</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <%
+        Response.Write(Request.Params.AllKeys.Length);
+        Response.Write("<br />");
+        for (int i = 0; i < 3000; i++)
+        {
+            Response.Write(string.Format("<input type='text' name='txt{0}' value='{0}'/>",i));
+            if (i% 5 == 0)
+            {
+                Response.Write("<br />");
+            }
+        }
+         %>
+        <input type="submit" value="提交" /> 
+    </form>
+</body>
+</html>
+
+复制代码
+
+点提交会有如下图的错误（1、对象的当前状态使该操作无效；2、URL编码窗体数据无效）：
+
+
+
+解决办法：
+
+在Web.config的appSettings加入如下配置：
+
+    <appSettings>
+        <add key="aspnet:MaxHttpCollectionKeys" value="5000" />
+    </appSettings>
+
+
+再次提交就不会出错，而且能取得所有表单的信息。
+
+参考：
+
+http://blogs.msdn.com/b/paulking/archive/2012/01/16/using-an-http-module-to-assist-in-adjusting-the-value-of-aspnet-maxhttpcollectionkeys-imposed-by-ms11-100.aspx
+
+
+
+
+正清的专栏
+
+不积跬步无以至千里，不积溪流无以成江海
+
+ 目录视图
+ 摘要视图
+ 订阅
+博客Markdown编辑器上线啦      那些年我们追过的Wrox精品红皮计算机图书      PMBOK第五版精讲视频教程      火星人敏捷开发1001问
+HTTP 错误 500.21 - Internal Server Error 解决方案
+
+分类： asp.net 2012-07-04 12:59 26198人阅读 评论(8) 收藏 举报
+serveriiswindows平台2010
+不久前重新安装了Windows7，在安装了VS2010 开发平台之后，将网站发布到IIS，访问发生如下错误：
+HTTP 错误 500.21 - Internal Server Error处理程序“NickLeeCallbackHandler”在其模块列表中有一个错误模块“ManagedPipelineHandler”
+
+
+ 原因：在安装Framework v4.0之后，再启用IIS，导致Framework没有完全安装
+
+解决：开始->所有程序->附件->鼠标右键点击“命令提示符”->以管理员身份运行->%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_regiis.exe -i
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

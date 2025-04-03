@@ -558,6 +558,10 @@ git commit -m "Add README.md"
 //更新指針對象
 git update-ref -d HEAD
 
+//你可以在合并时使用 --allow-unrelated-histories 选项来允许合并两个不相关的历史。例如，如果你想要合并 branch1 到当前的分支，你可以使用以下命令：
+
+git merge --allow-unrelated-histories branch1
+
 
 
 

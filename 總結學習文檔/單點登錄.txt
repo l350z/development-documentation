@@ -1,0 +1,166 @@
+
+
+
+您查询的关键词是：asp.net实现单点登录 以下是该网页在北京时间 2016年03月30日 06:56:22 的快照； 
+如果打开速度慢，可以尝试快速版；如果想保存快照，可以添加到搜藏；如果想更新或删除快照，可以投诉快照。 
+ 
+百度和网页 http://www.cnblogs.com/xlhblogs/archive/2012/03/29/2422804.html 的作者无关，不对其内容负责。百度快照谨为网络故障时之索引，不代表被搜索网站的即时页面。
+
+
+
+
+
+         
+
+
+返回主页	 
+kuangkro
+
+  
+
+
+
+ •
+•闪存
+•首页
+•新随笔
+•
+•管理
+•订阅 订阅
+
+
+  
+ 
+
+
+asp.net 使用application实现单点登录（一个账号只能在一个地方登录） 
+
+
+
+
+登陆用户名密码验证通过之后输入以下代码：
+
+Hashtable hOnline = (Hashtable)Application["Online"];
+if(hOnline != null)
+{
+IDictionaryEnumerator idE = hOnline.GetEnumerator();
+string strKey = "";
+while(idE.MoveNext())
+{
+if(idE.Value != null && idE.Value.ToString().Equals(UserID))
+{
+//already login 
+strKey = idE.Key.ToString();
+hOnline[strKey] = "XXXXXX";
+break;
+}
+}
+}
+else
+{
+hOnline = new Hashtable();
+}
+
+hOnline[Session.SessionID] = UserID;
+Application.Lock();
+Application["Online"] = hOnline;
+Application.UnLock();
+
+用户登陆的时候将登陆用户名放在一个全局变量Online，Online为Hashtable结构，Key为SessionID，Value为用户名。每次用户登陆时均判断以下要登陆的用户名在Online中是不是已经存在，如果存在该用户名已经被登陆，将第一个人登陆的SessionID对应的用户名强制变更为XXXXXX，表示该登陆将被强制注销。
+
+建立一个CommonPage页，系统中所有的页面都继承于CommonPage页，在CommonPage页的后台代码中添加如下代码：
+
+override protected void OnInit(EventArgs e)
+{
+
+Hashtable hOnline = (Hashtable)Application["Online"];
+if(hOnline != null)
+{
+IDictionaryEnumerator idE = hOnline.GetEnumerator();
+while(idE.MoveNext())
+{
+if(idE.Key != null && idE.Key.ToString().Equals(Session.SessionID))
+{
+//already login
+if(idE.Value != null && "XXXXXX".Equals(idE.Value.ToString()))
+{
+hOnline.Remove(Session.SessionID);
+Application.Lock();
+Application["Online"] = hOnline;
+Application.UnLock();
+MessageBox("你的帐号已在别处登陆，你被强迫下线！",Login.aspx);
+return false;
+}
+break;
+}
+}
+}
+
+}
+
+继承于CommonPage的页面在刷新时都要执行重载的OnInit中的代码，取出Online，找到该用户对应的SessionID，判断SessionID里对应的用户名是否变更，如果变更，就强迫下线，清掉Session，转到Login画面。
+
+最后需要在Session过期或者退出系统时释放资源，在Global.asax文件中的Session_End中添加如下代码：
+
+Hashtable hOnline = (Hashtable)Application["Online"];
+if(hOnline[Session.SessionID] != null)
+{
+hOnline.Remove(Session.SessionID);
+Application.Lock();
+Application["Online"] = hOnline;
+Application.UnLock();
+}
+
+如果用户不正常退出后重登陆，因为重登陆的优先级大，不会影响用户的登陆，而不正常退出的用户占用的资源会在Session过期后自动清除，不会影响系统的性能。 
+
+转自：http://www.cnblogs.com/yshj/archive/2010/11/06/1870831.html
+
+ 
+
+补充：我用MVC3做了一个单点登录的实例，自定义了系统身份验证票，实现功能：只要是相同帐号的用户登录到系统中，上一个登录的人就会被挤下线。登录系统后，点击“测试”，如果没有跳转到登录页面说明你是最后一个登录到系统的，如果点击“测试”，页面跳转至登录页面，说明你的帐号在别处登录。
+
+你想通过点击后退或者在地址栏输入url地址方式来进入系统都是不允许的，这是转载文章的一个缺陷。
+
+附件地址：http://files.cnblogs.com/xlhblogs/sign_load.rar
+
+ 
+
+
+
+
+
+
+
+
+
+
+posted @ 2012-03-29 09:52 kuangkro 阅读(...) 评论(...) 编辑 收藏
+ 
+
+ 
+
+刷新评论刷新页面返回顶部
+
+
+
+
+
+
+
+
+
+  
+
+ 
+
+公告
+
+
+
+
+
+  
+ 
+
+ Copyright ©2016 kuangkro 
+  
